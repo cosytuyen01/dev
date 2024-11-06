@@ -1,0 +1,14 @@
+:root {
+    --backgroudPrimary: #010103;
+    --subBackgroud: #F8F8F8;
+    --backgroudSecondary: #010314;
+    --primaryColor: #6F6ADC;
+    --red: #FD5454;
+    --green: #069568;
+    --orange: #ffa200;
+    --textDarkPrimary:  rgb(219, 233, 255);
+    --textLightPrimary: #010314;
+    --subTextLight: #999;
+    --subTextDark: #8A8EAB;
+    --bgInput: #1a1a1d;
+  }

@@ -1,0 +1,93 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--textDarkPrimary); /* Màu chữ */
+  width: 100%;
+  margin-top: 40px;
+  max-width: 1000px;
+  position: fixed;
+  z-index: 100;
+}
+
+.logo {
+  width: 100px;
+}
+.header-left {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.sub-title {
+  font-size: 16px;
+  font-style: italic;
+  color: #bbbbbb; /* Màu chữ phụ */
+  margin-top: 5px;
+}
+
+.header-right {
+  display: flex;
+  gap: 10px;
+}
+
+.gr-button {
+  display: flex;
+  gap: 10px;
+}
+.menu-icon{
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--bgInput);
+  display: none;
+}
+@media only screen and (max-width: 1023px) {
+  .header {
+    display: flex;
+    align-items: center;
+    color: var(--textDarkPrimary); /* Màu chữ */
+    margin-top: 20px;
+    padding: 0px 40px;
+    
+  }
+}
+@media only screen and (max-width: 739px) {
+  .header {
+    display: flex;
+    align-items: center;
+    color: var(--textDarkPrimary); /* Màu chữ */
+    margin-top: 20px;
+    padding: 0px 20px;
+  }
+  .gr-button {
+    display: none;
+  }
+  .menu-icon{
+    display: flex;
+    cursor: pointer;
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Make sure clicks are enabled */
+  }
+  .mobile-dropdown {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; 
+    right: 0;
+    padding: 30px;
+    width: 100vw;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(100px);
+    position: absolute;
+  }
+
+  .mobile-dropdown > button {
+    margin: 10px 0;
+  }
+}

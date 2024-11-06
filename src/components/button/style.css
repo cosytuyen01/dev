@@ -1,0 +1,36 @@
+.gradient-border-button {
+  position: relative;
+  padding: 10px 20px;
+  background-color: rgba(35, 36, 37, 0.3); /* Màu nền cho button */
+  border: 4px linear-gradient(var(--primaryColor), var(--backgroudPrimary));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1;
+  overflow: hidden;
+  border:1px solid rgba(255, 255, 255, 0.04);
+  gap: 8px;
+}
+.gradient-border-button p {
+  font-size: 16px;
+  color: var(--subTextDark); /* Màu chữ */
+}
+.gradient-border-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: auto;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background-color: rgba(35, 36, 37, 0.4);
+  z-index: -1;
+  transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.gradient-border-button:hover::before {
+  left: auto;
+  right: 0;
+  width: 100%;
+}
