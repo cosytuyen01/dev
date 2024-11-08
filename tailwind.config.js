@@ -6,6 +6,7 @@ export default {
     extend: {
       colors: {
         backgroundPrimary: "#f6f8f9",
+        darkBg:"#060809",
         subBackground: "#ebeeef",
         bgFocus: "#d5dadc",
         borderColor: "rgba(255, 255, 255, 0.06)",

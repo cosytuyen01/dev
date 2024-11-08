@@ -7,7 +7,7 @@ import Projects from "./pages/user/projects";
 
 const UserRoutes = () => {
   return (
-    <div className="bg-backgroundPrimary flex flex-col justify-center ">
+    <div className="bg-backgroundPrimary dark:bg-darkBg flex flex-col justify-center ">
       <div className="flex-grow flex justify-center">
         <Routes>
           <Route path="/" element={<Home />} />

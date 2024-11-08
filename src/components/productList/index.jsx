@@ -60,8 +60,8 @@ const ProductCardList = ({isHome }) => {
     <div className="">
       {isHome && (
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-[32px] font-semibold text-gray-800">Projects</h2>
-          <button className="text-gray-500 hover:text-gray-700">
+          <h2 className="text-[32px] font-semibold text-gray-800 dark:text-white/80">Projects</h2>
+          <button className="text-gray-500 hover:text-gray-700 dark:text-white/70">
             View All
           </button>
         </div>
