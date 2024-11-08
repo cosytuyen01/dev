@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/user/home";
 import "./App.css";
 import BottomMenu from "./components/bottomMenu";
+import Projects from "./pages/user/projects";
 
 const UserRoutes = () => {
   return (
@@ -10,6 +11,7 @@ const UserRoutes = () => {
       <div className="flex-grow flex justify-center">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
         </Routes>
       </div>
       <BottomMenu />
