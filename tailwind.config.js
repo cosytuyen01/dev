@@ -10,6 +10,7 @@ export default {
       colors: {
         backgroundPrimary: '#f6f8f9', 
         subBackground: '#ebeeef',
+        bgFocus: '#d5dadc',
         borderColor: "rgba(255, 255, 255, 0.06)",
         primaryColor: '#6F6ADC',
         textColor: "#0e0e10",

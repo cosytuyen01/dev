@@ -10,7 +10,7 @@ const ProductCard = ({ imageSrc, title, category }) => {
           className="w-full h-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"
         />
       </div>
-      <h3 className="mt-4 text-lg font-semibold text-textColor">{title}</h3>
+      <h3 className="mt-2 text-lg font-semibold text-textColor">{title}</h3>
       <p className="text-subText">{category}</p>
     </div>
   );

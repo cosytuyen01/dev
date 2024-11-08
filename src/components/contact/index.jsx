@@ -56,7 +56,7 @@ const Contact = () => {
       <div className="w-full sm:w-1/2 justify-center bg-gray-200 px-4 py-3 rounded-full flex items-center space-x-2">
         <div className="w-2 h-2 rounded-full bg-blue-500"></div>
         <span className="text-gray-500">Local time:</span>
-        <span className="font-medium">{localTime}</span>
+        <span className="font-medium">{localTime || "00:00:00 PM"}</span>
       </div>
     </div>
   );
