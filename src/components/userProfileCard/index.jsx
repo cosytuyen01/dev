@@ -20,13 +20,13 @@ const UserProfileCard = () => {
       {/* User Information */}
       <div className="relative z-10 flex flex-col items-center sm:items-start">
         <div className=" flex items-center text-textColor dark:text-white/90 text-[26px] md:text-[40px] font-bold">
-          Luna Rose
+          Van Pham Trung Tuyen
           <span className="ml-2">
             <SvgIcon name={"check"} height={30} width={30} color={"#2b9cd5"} />
           </span>
         </div>
         <div className="text-subText text-[18px] sm:text-[24px] dark:text-white/60">
-          Product Designer &bull; USA, New York
+          UIUX & Development &bull; Tan Phu, HCM
         </div>
       </div>
     </div>
