@@ -54,7 +54,7 @@ const Contact = () => {
   return (
     <div className="flex items-center flex-col sm:flex-row gap-4 sm:gap-0 justify-between rounded-lg mx-auto w-full ">
       {/* Contact Button and Social Icons */}
-      <div className="flex items-center gap-4  justify-between">
+      <div className="flex items-center gap-4  justify-between w-full sm:w-auto ">
         {/* Contact Button */}
         <button className=" bg-black dark:bg-white text-white px-4 py-3 rounded-full flex items-center space-x-2 hover:bg-gray-800 transition">
           <SvgIcon name={"download"} height={24} width={24} color={iconColor} />

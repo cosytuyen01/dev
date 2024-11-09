@@ -1,7 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import ProductCard from "../productCard";
 
 // eslint-disable-next-line react/prop-types
-const ProductCardList = ({isHome }) => {
+const ProductCardList = ({ isHome }) => {
   const products = [
     {
       imageSrc:
@@ -53,15 +54,19 @@ const ProductCardList = ({isHome }) => {
     },
   ];
 
-  // Nếu isHome tồn tại, chỉ lấy 4 sản phẩm đầu tiên
   const displayedProducts = isHome ? products.slice(0, 4) : products;
-
+  const navigate = useNavigate();
   return (
     <div className="">
       {isHome && (
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-[32px] font-semibold text-gray-800 dark:text-white/80">Projects</h2>
-          <button className="text-gray-500 hover:text-gray-700 dark:text-white/70">
+          <h2 className="text-[32px] font-semibold text-gray-800 dark:text-white/80">
+            Projects
+          </h2>
+          <button
+            onClick={() => navigate("/projects")}
+            className="text-gray-500 hover:text-gray-700 dark:text-white/70"
+          >
             View All
           </button>
         </div>

@@ -3,13 +3,6 @@ import SvgIcon from "../../assets/iconSvg";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState, useEffect } from "react";
 
-const iconData = [
-  { name: "home", navigation: "/" },
-  { name: "product", navigation: "/projects" },
-  { name: "user", navigation: "/user" },
-  { name: "light", navigation: "" }, // Nút chuyển đổi Light/Dark mode
-];
-
 const BottomMenu = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -17,6 +10,37 @@ const BottomMenu = () => {
   const [isMenuVisible, setIsMenuVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  const [iconColor, setIconColor] = useState("light");
+
+  useEffect(() => {
+    // Function to update icon color based on current theme
+    const updateIconColor = () => {
+      if (document.documentElement.classList.contains("dark")) {
+        setIconColor("dark"); // Chế độ tối => màu biểu tượng là đen
+      } else {
+        setIconColor("light"); // Chế độ sáng => màu biểu tượng là trắng
+      }
+    };
+
+    // Run the function initially
+    updateIconColor();
+
+    // Listen for changes in theme
+    const observer = new MutationObserver(updateIconColor);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    // Clean up observer on component unmount
+    return () => observer.disconnect();
+  }, []);
+  const iconData = [
+    { name: "home", navigation: "/" },
+    { name: "product", navigation: "/projects" },
+    { name: "user", navigation: "/about" },
+    { name: "light", navigation: "" }, // Nút chuyển đổi Light/Dark mode
+  ];
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > lastScrollY && latest > 50) {
       setIsMenuVisible(false);
@@ -62,17 +86,21 @@ const BottomMenu = () => {
               key={index}
               className="flex w-1/4 flex-col items-center cursor-pointer"
               onClick={() =>
-                item.name === "light" ? toggleTheme() : navigate(item.navigation)
+                item.name === "light"
+                  ? toggleTheme()
+                  : navigate(item.navigation)
               }
             >
               <div
                 className={`p-4 rounded-full transition duration-200 ease-in-out ${
-                  isActive ? "bg-bgFocus dark:bg-white/20" : "bg-gray-100 hover:bg-gray-200 dark:bg-white/5 dark:hover:bg-white/10"
+                  isActive
+                    ? "bg-bgFocus dark:bg-white/20"
+                    : "bg-gray-100 hover:bg-gray-200 dark:bg-white/5 dark:hover:bg-white/10"
                 }`}
                 tabIndex={0}
               >
                 <SvgIcon
-                  name={item.name}
+                  name={item.name === "light" ? iconColor : item.name}
                   color={"var(--textColor)"}
                   height={24}
                   width={24}
