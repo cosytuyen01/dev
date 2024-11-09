@@ -29,7 +29,7 @@ function Home() {
         <ProductCardList viewAll={true} isHome={true} />
       </div>
       <div className="pt-10">
-      <ExperienceList/>
+        <ExperienceList />
       </div>
     </div>
   );

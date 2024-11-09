@@ -56,7 +56,7 @@ const Contact = () => {
       {/* Contact Button and Social Icons */}
       <div className="flex items-center gap-4  justify-between w-full sm:w-auto ">
         {/* Contact Button */}
-        <button className=" bg-black dark:bg-white text-white px-4 py-3 rounded-full flex items-center space-x-2 hover:bg-gray-800 transition">
+        <button className=" bg-black dark:bg-white text-white px-4 py-3 rounded-full flex items-center space-x-2 hover:bg-gray-800 dark:hover:bg-white/90 transition">
           <SvgIcon name={"download"} height={24} width={24} color={iconColor} />
           <span className="dark:text-black">Download CV</span>
         </button>
@@ -69,7 +69,7 @@ const Contact = () => {
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
-              className=" bg-gray-200 dark:bg-darkSubbg p-3 rounded-full hover:bg-gray-300 transition"
+              className=" bg-gray-200 dark:bg-darkSubbg p-3 rounded-full hover:bg-gray-300 transition dark:hover:bg-darkSubbg/50"
             >
               {item.icon}
             </a>

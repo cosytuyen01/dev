@@ -78,7 +78,7 @@ const BottomMenu = () => {
       transition={{ duration: 0.3 }}
       className="fixed bottom-0 w-[100%] sm:bottom-4 inset-x-0 flex justify-center"
     >
-      <div className="flex px-4 sm:px-2 w-[100%] sm:w-auto sm:gap-4 justify-between p-2 bg-white dark:bg-darkSubbg dark:text-white sm:rounded-full transition-colors duration-300">
+      <div className="flex px-4 sm:px-2 w-[100%] sm:w-auto sm:gap-4 justify-between p-2 bg-white dark:bg-darkSubbg dark:text-white sm:rounded-full transition-colors duration-300 shadow-2xl">
         {iconData.map((item, index) => {
           const isActive = location.pathname === item.navigation;
           return (

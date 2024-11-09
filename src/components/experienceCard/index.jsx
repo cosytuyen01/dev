@@ -3,12 +3,12 @@ function ExperienceCard({ job }) {
   return (
     <div className="p-4 rounded-2xl flex flex-col  items-start gap-2 w-full mx-auto bg-white dark:bg-darkSubbg">
       {/* Icon công ty */}
-      <div className="flex flex-row gap-4 w-full">
-        <div className="rounded-xl flex items-center justify-center">
+      <div className="flex flex-row gap-2 w-full items-start sm:items-center">
+        <div className="rounded-xl w-[40px] h-[40px] flex items-center justify-center">
           <img
             src="https://framerusercontent.com/images/MXAGxs3wsgPaqBlQ5VYmx9fMN4.png"
             alt="Company Logo"
-            className="w-[40px] h-[40px]"
+            className="w-[40px] h-[40px] mt-2 sm:mt-0 object-cover rounded-md"
           />
         </div>
         <div className="flex w-full">

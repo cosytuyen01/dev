@@ -14,7 +14,7 @@ function About() {
         desc={"The journey from imagination to reality."}
       />
       <div className="pt-0 sm:pt-4 flex flex-col items-center justify-center">
-        <div className="flex flex-col sm:flex-row gap-4  w-full ">
+        <div className="flex flex-col sm:flex-row  gap-4  w-full ">
           {/* Hình ảnh xe */}
           <div className="flex flex-1 items-end justify-end ">
             <img
@@ -43,7 +43,7 @@ function About() {
           </div>
         </div>
         <div className="flex flex-col gap-4 pt-8">
-          <p className="text-[18px] sm:text-[24px] text-textLightPrimary text-center md:text-start dark:text-white/90">
+          <p className=" text-[18px] sm:text-[24px] text-textLightPrimary text-center md:text-start dark:text-white/90">
             A visionary product designer with a passion for weaving intuitive
             and immersive user experiences. Adept at translating complex ideas
             into elegant solutions, I constantly push the envelope of design
@@ -54,10 +54,10 @@ function About() {
             cross-functional teamwork to bring even the most ambitious design
             concepts to life.
           </p>
-          <div className="flex gap-2 flex-col sm:flex-row">
-            <div className="text-subText text-[18px] sm:text-[24px] dark:text-white/60">
-              UIUX & Development &bull; Tan Phu, HCM &bull;
-            </div>
+          <div className="flex gap-2 flex-col justify-center">
+            <p className="text-subText text-[18px] sm:text-[24px] text-center md:text-start dark:text-white/60">
+              UIUX & Development &bull; Tan Phu, HCM
+            </p>
             <button className="text-[18px] sm:text-[24px] text-textLightPrimary text-center md:text-start dark:text-white/90">
              DownLoad CV
             </button>

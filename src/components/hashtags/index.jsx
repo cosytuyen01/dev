@@ -1,9 +1,9 @@
 
-const hashtags = ["#Figma", "#Framer", "#ProductDesign", "#Development"];
+const hashtags = ["#Figma", "#Mobile App", "#React Naitve", "#Development", "#ReactJs", "#Web Design","#Ai","#Graphic"];
 
 const HashtagList = () => {
   return (
-    <div className="flex flex-wrap gap-2 w-full">
+    <div className="flex flex-wrap gap-2 w-full justify-center sm:justify-start">
       {hashtags.map((tag, index) => (
         <span
           key={index}

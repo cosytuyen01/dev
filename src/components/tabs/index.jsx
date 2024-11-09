@@ -14,7 +14,7 @@ const Tabs = () => {
           className={`px-4 py-2 rounded-full font-medium transition-all ${
             activeTab === tab
               ? "bg-black text-white dark:bg-white/90 dark:text-black/80"
-              : "bg-gray-200 text-subText hover:bg-gray-300 dark:bg-darkSubbg dark:text-white/80"
+              : "bg-gray-200 text-subText hover:bg-gray-300 dark:bg-darkSubbg dark:text-white/80 dark:hover:bg-darkSubbg/50"
           }`}
         >
           {tab}
