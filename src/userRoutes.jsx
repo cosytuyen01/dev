@@ -5,6 +5,7 @@ import "./App.css";
 import BottomMenu from "./components/bottomMenu";
 import Projects from "./pages/user/projects";
 import About from "./pages/user/about";
+import DetailProject from "./pages/user/projects/detail";
 
 const UserRoutes = () => {
   return (
@@ -13,6 +14,7 @@ const UserRoutes = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="detail/:id" element={<DetailProject />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </div>

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
-const ProductCard = ({ imageSrc, title, category, }) => {
+const ProductCard = ({ imageSrc, title, category,onClick }) => {
   return (
     <motion.div
       className="w-full rounded-xl cursor-pointer"
@@ -9,6 +9,7 @@ const ProductCard = ({ imageSrc, title, category, }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5 }}
+      onClick={onClick}
     >
       <div className="overflow-hidden rounded-xl">
         <img

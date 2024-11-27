@@ -2,41 +2,49 @@ import ExperienceCard from "../experienceCard";
 
 const jobs = [
   {
-    title: 'Senior Product Designer',
-    company: 'TechXperience Inc.',
-    location: 'New York, USA',
-    date: 'Feb. 2016 — Today',
-    description: 'Spearheaded the design team, overseeing the development of cutting-edge user interfaces for a range of tech products, resulting in a 25% increase in user engagement.',
-    icon: 'https://via.placeholder.com/40?text=1'
+    title: "UIUX Designer & Mobile Developer",
+    company: "Công ty cổ phần công nghệ DIP Holding",
+    location: "TP. Nha Trang, Khánh Hòa",
+    date: "11/2022 — Hiện tại",
+    description: `Thiết kế web, app CRM cho cty\nThiết kế các App, Web quản lý tòa nhà, cư dân, booking,...\nThiết kế App Vime giải pháp nông nghiệp\nXây dựng hệ thống Design system\nThiết kế Bộ nhận diện chuỗi hệ thống siêu thị Vime Agrimart\nThiết kế các bảng hiệu, banner, thư mời, banner web,...\nLập trình ứng dụng di động (React native)`,
+    logo: "https://i.ibb.co/HTyjgFj/logo.png",
   },
   {
-    title: 'UX/UI Designer',
-    company: 'CreativeSolutions Co.',
-    location: 'New York, USA',
-    date: 'Jan. 2014 — Feb. 2016',
-    description: 'Spearheaded the design team, overseeing the development of cutting-edge user interfaces for a range of tech products, resulting in a 25% increase in user engagement.',
-    icon: 'https://via.placeholder.com/40?text=2'
+    title: "UX/UI Designer",
+    company: "WORLD CONNECT",
+    location: "Quận 7, TP. Hồ Chí Minh",
+    date: "08/2022 - 11/2022",
+    description: `Thiết kế sàn thương mai điện tử B2B ( Web, app mobile)
+                  Thiết kế admin quản lý hệ thống`,
+    logo: "https://i.ibb.co/QddkY9x/wct-logo.webp",
   },
   {
-    title: 'Freelance Product Designer',
-    company: 'Freelance Design Studio',
-    location: 'New York, USA',
-    date: 'Jan. 2012 — Feb. 2014',
-    description: 'Spearheaded the design team, overseeing the development of cutting-edge user interfaces for a range of tech products, resulting in a 25% increase in user engagement.',
-    icon: 'https://via.placeholder.com/40?text=3'
-  }
+    title: "UI/UX Designer",
+    company: "HANET Technology",
+    location: "Quận 7, TP. Hồ Chí Minh",
+    date: "11/2021 - 8/2022",
+    description: `Nhận ý tưởng từ PM, lên wireframe.
+Thiết kế Web chấm công HANET
+App HANET Karaoke
+App Camera.
+Nghiên cứu phân tích hành vi người dùng
+Xây dựng hệ thống Design system
+Thiết kế UX, UI theo xu hướng.
+Hỗ trợ  team dev fix lỗi UI`,
+    logo: "https://i.ibb.co/txQqcdp/image.png",
+  },
 ];
 
 function ExperienceList() {
   return (
     <div className=" flex flex-col gap-4">
-       <h2 className="text-[32px] font-semibold text-gray-800 dark:text-white/80">
-       Experience
-       </h2>
+      <h2 className="text-[32px] font-semibold text-gray-800 dark:text-white/80">
+        Kinh nghiệm
+      </h2>
       <div className="flex flex-col gap-4">
-      {jobs.map((job, index) => (
-        <ExperienceCard key={index} job={job} />
-      ))}
+        {jobs.map((job, index) => (
+          <ExperienceCard key={index} job={job} />
+        ))}
       </div>
     </div>
   );

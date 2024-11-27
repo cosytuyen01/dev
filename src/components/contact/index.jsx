@@ -29,7 +29,7 @@ const Contact = () => {
     // Clean up observer on component unmount
     return () => observer.disconnect();
   }, []);
-  
+
   // Cập nhật thời gian địa phương mỗi giây
   useEffect(() => {
     const timer = setInterval(() => {
@@ -50,13 +50,20 @@ const Contact = () => {
       url: "https://web.facebook.com/vpttuyen",
     },
   ];
-
+  const handleDownloadCVClick = () => {
+    const cvLink =
+      "https://drive.google.com/file/d/1D21U89Z1Er0uWm5tMIs2KwZ9vUzPgDnQ/view"; // Replace this with your actual Google Drive CV link
+    window.open(cvLink, "_blank"); // Opens in a new tab
+  };
   return (
     <div className="flex items-center flex-col sm:flex-row gap-4 sm:gap-0 justify-between rounded-lg mx-auto w-full ">
       {/* Contact Button and Social Icons */}
       <div className="flex items-center gap-4  justify-between w-full sm:w-auto ">
         {/* Contact Button */}
-        <button className=" bg-black dark:bg-white text-white px-4 py-3 rounded-full flex items-center space-x-2 hover:bg-gray-800 dark:hover:bg-white/90 transition">
+        <button
+          onClick={handleDownloadCVClick}
+          className=" bg-black dark:bg-white text-white px-4 py-3 rounded-full flex items-center space-x-2 hover:bg-gray-800 dark:hover:bg-white/90 transition"
+        >
           <SvgIcon name={"download"} height={24} width={24} color={iconColor} />
           <span className="dark:text-black">Download CV</span>
         </button>
