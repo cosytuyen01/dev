@@ -1,5 +1,39 @@
 export const products = [
   {
+    id: 7,
+    url: "https://i.ibb.co/3zbp7ZN/Frame-427321530.png",
+    images: [
+      "https://i.ibb.co/3zbp7ZN/Frame-427321530.png",
+      "https://i.ibb.co/23zSzyL/Mockup-4.png",
+      "https://i.ibb.co/QH4sjz1/Mockup-15.png",
+      "https://i.ibb.co/xFrnrW1/Mockup-17.png",
+      "https://i.ibb.co/WFdymG7/Mockup-18.png",
+      "https://i.ibb.co/ZHYkPfs/Mockup-14.png",
+      "https://i.ibb.co/0J0hXTz/Mockup-20.png",
+      "https://i.ibb.co/w6GpzDp/mobile-mockup-3.png",
+      "https://i.ibb.co/mTfL1KZ/Mockup-7.png",
+    ],
+    title: "Dip building - Quản lý cư dân",
+    category: "Mobile App",
+    tab: "Mobile",
+    job: "UIUX Designer",
+    description:
+      "Ứng dụng quản lý cư dân tòa nhà là một giải pháp toàn diện giúp ban quản lý tòa nhà tổ chức, theo dõi và điều phối các hoạt động liên quan đến cư dân và cơ sở vật chất. Ứng dụng này cho phép ghi nhận thông tin của từng cư dân, quản lý hợp đồng thuê, theo dõi tình trạng thanh toán phí dịch vụ, và thông báo các tin tức quan trọng như bảo trì, sự kiện, hay vấn đề an ninh. Ngoài ra, ứng dụng còn hỗ trợ quản lý yêu cầu dịch vụ, giải quyết khiếu nại, và tổ chức các cuộc họp cư dân một cách dễ dàng. Với giao diện thân thiện, cư dân có thể dễ dàng cập nhật thông tin cá nhân, theo dõi các khoản thanh toán, và gửi yêu cầu hỗ trợ trực tiếp đến ban quản lý. Đồng thời, ban quản lý cũng có thể nắm bắt tình hình hoạt động của tòa nhà qua các báo cáo và thống kê chi tiết.",
+    tools: [
+      {
+        name: "Figma",
+        sub: "Công cụ",
+        logo: "https://i.ibb.co/d6kSyFz/figma-logo.jpg",
+      },
+      {
+        name: "Adobe Ai",
+        sub: "Công cụ",
+        logo: "https://i.ibb.co/R3GnqCS/adobe-illustrator-logo.png",
+      },
+    ],
+    logo: "https://i.ibb.co/JnKyhvJ/logo.png",
+  },
+  {
     id: 1,
     url: "https://i.ibb.co/9pc8vds/imgVime.png",
     images: [
@@ -163,7 +197,7 @@ export const products = [
     category: "Mobile App",
     job: "UIUX Designer & React Native developer",
     description:
-      "Vime App là ứng dụng chuyên biệt hỗ trợ quản lý nhà vườn, được thiết kế để tối ưu hóa quy trình quản lý và chăm sóc cây trồng. Với các tính năng như theo dõi tình trạng cây trồng, quản lý lịch tưới nước, phân bón, và ghi chép dữ liệu phát triển, Vime giúp người làm vườn dễ dàng kiểm soát và tăng cường hiệu quả sản xuất. Giao diện thân thiện cùng với các công cụ thông minh giúp đơn giản hóa công việc quản lý, đồng thời cải thiện năng suất và chất lượng cây trồng một cách bền vững.",
+      "Ứng dụng CRM (Customer Relationship Management) là công cụ quản lý mối quan hệ khách hàng, giúp doanh nghiệp tương tác hiệu quả với khách hàng, tăng cường sự hài lòng và thúc đẩy doanh thu. Ứng dụng này cho phép lưu trữ thông tin khách hàng, theo dõi lịch sử giao dịch, quản lý các chiến dịch marketing, và tự động hóa quy trình bán hàng. Nó cung cấp các báo cáo chi tiết về hiệu quả công việc, giúp đội ngũ bán hàng đưa ra quyết định chính xác hơn. Với giao diện dễ sử dụng, ứng dụng CRM không chỉ giúp cải thiện hiệu quả công việc mà còn nâng cao trải nghiệm của khách hàng, tạo ra một môi trường làm việc chuyên nghiệp và tối ưu hóa quy trình chăm sóc khách hàng.",
     tools: [
       {
         name: "Figma",
@@ -174,39 +208,6 @@ export const products = [
         name: "React Native",
         sub: "Framework",
         logo: "https://i.ibb.co/gr2hk5Y/image.png",
-      },
-    ],
-    logo: "https://i.ibb.co/JnKyhvJ/logo.png",
-  },
-  {
-    id: 1,
-    url: "https://i.ibb.co/9pc8vds/imgVime.png",
-    images: [
-      "https://i.ibb.co/9pc8vds/imgVime.png",
-      "https://i.ibb.co/fHjKQkD/Mockup-3.png",
-      "https://framerusercontent.com/images/OhqpNK1P4VIsbBvicxCzoqpIBM.png",
-      "https://cdn.dribbble.com/userupload/17349879/file/original-ba9e150c614c49d736289422d7cd66d2.png?resize=752x564&vertical=center",
-      "https://i.ibb.co/F7Tg5Jf/img.png",
-      "https://i.pinimg.com/736x/62/71/1e/62711ef1e80a1b149b9d0de7ac0e7d58.jpg",
-      "https://i.ibb.co/sPmkCPv/img-2.png",
-      "https://framerusercontent.com/images/pX8IVk6sFhrt54HVIukgD0Kolw.png",
-      "https://i.ibb.co/Qfjb8GD/img-4.png",
-    ],
-    title: "Vime app - Giải pháp nông nghiệp",
-    category: "Mobile App",
-    job: "UIUX Designer & React Native developer",
-    description:
-      "Vime App là ứng dụng chuyên biệt hỗ trợ quản lý nhà vườn, được thiết kế để tối ưu hóa quy trình quản lý và chăm sóc cây trồng. Với các tính năng như theo dõi tình trạng cây trồng, quản lý lịch tưới nước, phân bón, và ghi chép dữ liệu phát triển, Vime giúp người làm vườn dễ dàng kiểm soát và tăng cường hiệu quả sản xuất. Giao diện thân thiện cùng với các công cụ thông minh giúp đơn giản hóa công việc quản lý, đồng thời cải thiện năng suất và chất lượng cây trồng một cách bền vững.",
-    tools: [
-      {
-        name: "Figma",
-        sub: "Công cụ",
-        logo: "https://i.ibb.co/d6kSyFz/figma-logo.jpg",
-      },
-      {
-        name: "Adobe Ai",
-        sub: "Công cụ",
-        logo: "https://i.ibb.co/R3GnqCS/adobe-illustrator-logo.png",
       },
     ],
     logo: "https://i.ibb.co/JnKyhvJ/logo.png",

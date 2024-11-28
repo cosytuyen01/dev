@@ -1,5 +1,15 @@
-
-const hashtags = ["#Figma", "#Mobile App", "#React Naitve", "#Development", "#ReactJs", "#Web Design","#Ai","#Graphic"];
+const hashtags = [
+  "#Figma",
+  "Design System",
+  "Product designer",
+  "#Mobile App",
+  "#React Naitve",
+  "#Development",
+  "#ReactJs",
+  "#Web Design",
+  "#Ai",
+  "#Graphic",
+];
 
 const HashtagList = () => {
   return (

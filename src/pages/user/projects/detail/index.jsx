@@ -105,7 +105,7 @@ const DetailProject = () => {
               key={index}
               src={imageUrl}
               alt="Odd Image"
-              className="rounded-2xl bg-black/20 dark:bg-white/20 cursor-pointer w-full object-contain"
+              className="rounded-2xl  cursor-pointer w-full object-contain"
             />
           ))}
         </div>
@@ -115,7 +115,7 @@ const DetailProject = () => {
               key={index}
               src={imageUrl}
               alt="Even Image"
-              className="rounded-2xl bg-black/10 dark:bg-white/10 cursor-pointer w-full object-contain"
+              className="rounded-2xl  cursor-pointer w-full object-contain"
             />
           ))}
         </div>
