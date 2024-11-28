@@ -9,8 +9,8 @@ import DetailProject from "./pages/user/projects/detail";
 
 const UserRoutes = () => {
   return (
-    <div className="bg-backgroundPrimary dark:bg-darkBg flex flex-col justify-center ">
-      <div className="flex-grow flex justify-center">
+    <div className="bg-backgroundPrimary dark:bg-darkBg flex flex-col justify-center h-[100%]">
+      <div className="flex-grow flex justify-center h-[100%]">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />

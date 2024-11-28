@@ -61,7 +61,7 @@ const DetailProject = () => {
         alt="Product Thumbnail"
         className=" rounded-xl mt-4 w-full  object-contain"
       />
-      <div className="flex flex-col items-center sm:items-start  w-full pt-4 border-b-[1px] border-black/10 dark:border-white/10 pb-4">
+      <div className="flex flex-col w-full pt-4 border-b-[1px] border-black/10 dark:border-white/10 pb-4">
         <h1 className="text-center sm:text-start flex items-center text-textColor dark:text-white/90 text-[26px] md:text-[40px] font-bold">
           {productData?.title}
         </h1>
@@ -74,7 +74,7 @@ const DetailProject = () => {
           {/* <p className=" text-[18px] sm:text-[24px] text-textLightPrimary  dark:text-white/90 pb-4">
             {productData?.category}
           </p> */}
-          <p className=" text-[18px] sm:text-[24px] text-textLightPrimary  dark:text-white/90 pb-4">
+          <p className="text-[18px] sm:text-[24px] text-textLightPrimary  dark:text-white/90 pb-4">
             {productData?.job}
           </p>
           {productData.tools.map((tool, index) => (
@@ -94,7 +94,7 @@ const DetailProject = () => {
           ))}
         </div>
 
-        <p className="text-[18px] sm:text-[24px] text-textLightPrimary  dark:text-white/90 pt-4">
+        <p className="text-[16px] sm:text-[24px] text-textLightPrimary  dark:text-white/90 pt-4">
           {productData.description}
         </p>
       </div>
