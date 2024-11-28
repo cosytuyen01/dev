@@ -44,7 +44,7 @@ const DetailProject = () => {
     navigate(-1); // Quay lại trang trước
   };
   return (
-    <div className="px-4 lg:px-0 pt-[40px] flex flex-col items-center w-full lg:w-[752px] h-[100%]">
+    <div className=" sm:pt-[40px] lg:px-0 pt-[20px] flex flex-col items-center w-full lg:w-[752px] h-[100%]">
       <div
         onClick={handleBackClick}
         className="flex items-center gap-2 w-full cursor-pointer"
@@ -75,7 +75,7 @@ const DetailProject = () => {
             {productData?.category}
           </p> */}
           <p className="text-[18px] sm:text-[24px] text-textLightPrimary  dark:text-white/90 pb-4">
-            {productData?.job}
+            Vai trò {productData?.job}
           </p>
           {productData.tools.map((tool, index) => (
             <div key={index} className="flex items-center gap-4 mb-4">

@@ -15,6 +15,7 @@ export const products = [
     ],
     title: "Vime app - Giải pháp nông nghiệp",
     category: "Mobile App",
+    tab: "Mobile",
     job: "UIUX Designer & React Native developer",
     description:
       "Vime App là ứng dụng chuyên biệt hỗ trợ quản lý nhà vườn, được thiết kế để tối ưu hóa quy trình quản lý và chăm sóc cây trồng. Với các tính năng như theo dõi tình trạng cây trồng, quản lý lịch tưới nước, phân bón, và ghi chép dữ liệu phát triển, Vime giúp người làm vườn dễ dàng kiểm soát và tăng cường hiệu quả sản xuất. Giao diện thân thiện cùng với các công cụ thông minh giúp đơn giản hóa công việc quản lý, đồng thời cải thiện năng suất và chất lượng cây trồng một cách bền vững.",
@@ -48,6 +49,7 @@ export const products = [
     ],
     title: "Chấm công HANET",
     category: "Web App",
+    tab: "Website",
     job: "UIUX Designer",
     description:
       "Một hệ thống chấm công tự động sử dụng công nghệ nhận diện khuôn mặt qua camera để ghi nhận thời gian vào và ra của nhân viên. Hệ thống giúp tiết kiệm thời gian, giảm thiểu sai sót trong việc ghi chép thủ công, và dễ dàng theo dõi thông tin chấm công theo thời gian thực. Các tính năng bao gồm nhận diện chính xác, báo cáo chi tiết và tích hợp với hệ thống quản lý nhân sự hiện có.",
@@ -73,6 +75,7 @@ export const products = [
     ],
     title: "Hanet Karaoke",
     category: "Tablet App",
+    tab: "Mobile",
     job: "UIUX Designer",
     description:
       "Phần mềm hát Hanet karaoke là một ứng dụng giải trí giúp người dùng trải nghiệm các bài hát karaoke với chất lượng âm thanh và hình ảnh vượt trội. Tích hợp kho nhạc phong phú với hàng nghìn bài hát Việt Nam và quốc tế, từ các bản hit mới nhất đến những ca khúc kinh điển. Với giao diện thân thiện và dễ sử dụng, người dùng có thể tìm kiếm và chọn bài hát nhanh chóng, điều chỉnh âm lượng, tốc độ và hiệu ứng âm thanh, tạo ra một trải nghiệm karaoke hoàn hảo.",
@@ -106,6 +109,7 @@ export const products = [
     ],
     title: "Poho - Sàn thương mại điện tử",
     category: "Mobile App & Web App",
+    tab: "Website" & "Mobile",
     job: "UIUX Designer",
     description:
       "Sàn thương mại điện tử Poho là một nền tảng trực tuyến được thiết kế để kết nối các doanh nghiệp và người tiêu dùng, cung cấp giải pháp giao dịch và mua bán hàng hóa. Poho tập trung vào việc tối ưu hóa trải nghiệm người dùng thông qua giao diện đơn giản và dễ sử dụng, hỗ trợ các hoạt động thương mại như tìm kiếm sản phẩm, giao dịch và thanh toán trực tuyến. Với Poho, người dùng có thể dễ dàng đăng ký, mua sắm và bán hàng một cách nhanh chóng và tiện lợi.",
@@ -125,9 +129,9 @@ export const products = [
   },
   {
     id: 5,
-    url: "https://i.ibb.co/9pc8vds/imgVime.png",
+    url: "https://framerusercontent.com/images/EQ646BOeUt4TIv2SVtf2B2lA0.png?scale-down-to=512",
     images: [
-      "https://i.ibb.co/9pc8vds/imgVime.png",
+      "https://framerusercontent.com/images/EQ646BOeUt4TIv2SVtf2B2lA0.png?scale-down-to=512",
       "https://tdesigncode.online/assets/images/products/6.webp",
       "https://framerusercontent.com/images/OhqpNK1P4VIsbBvicxCzoqpIBM.png",
       "https://cdn.dribbble.com/userupload/17349879/file/original-ba9e150c614c49d736289422d7cd66d2.png?resize=752x564&vertical=center",
@@ -137,17 +141,12 @@ export const products = [
       "https://framerusercontent.com/images/pX8IVk6sFhrt54HVIukgD0Kolw.png",
       "https://i.ibb.co/Qfjb8GD/img-4.png",
     ],
-    title: "Vime app - Giải pháp nông nghiệp",
-    category: "Mobile App",
+    title: "Một số ấn phẩm thiết kế",
+    category: "Graphic design",
     job: "UIUX Designer & React Native developer",
     description:
-      "Vime App là ứng dụng chuyên biệt hỗ trợ quản lý nhà vườn, được thiết kế để tối ưu hóa quy trình quản lý và chăm sóc cây trồng. Với các tính năng như theo dõi tình trạng cây trồng, quản lý lịch tưới nước, phân bón, và ghi chép dữ liệu phát triển, Vime giúp người làm vườn dễ dàng kiểm soát và tăng cường hiệu quả sản xuất. Giao diện thân thiện cùng với các công cụ thông minh giúp đơn giản hóa công việc quản lý, đồng thời cải thiện năng suất và chất lượng cây trồng một cách bền vững.",
+      "Sàn thương mại điện tử Poho là một nền tảng trực tuyến được thiết kế để kết nối các doanh nghiệp và người tiêu dùng, cung cấp giải pháp giao dịch và mua bán hàng hóa. Poho tập trung vào việc tối ưu hóa trải nghiệm người dùng thông qua giao diện đơn giản và dễ sử dụng, hỗ trợ các hoạt động thương mại như tìm kiếm sản phẩm, giao dịch và thanh toán trực tuyến. Với Poho, người dùng có thể dễ dàng đăng ký, mua sắm và bán hàng một cách nhanh chóng và tiện lợi.",
     tools: [
-      {
-        name: "Figma",
-        image: "figma_tool_image_url.jpg",
-        logo: "https://i.ibb.co/d6kSyFz/figma-logo.jpg",
-      },
       {
         name: "Adobe Ai",
         image: "https://i.ibb.co/R3GnqCS/adobe-illustrator-logo.png",
@@ -157,7 +156,7 @@ export const products = [
     logo: "https://i.ibb.co/JnKyhvJ/logo.png",
   },
   {
-    id: 1,
+    id: 6,
     url: "https://i.ibb.co/9pc8vds/imgVime.png",
     images: [
       "https://i.ibb.co/9pc8vds/imgVime.png",

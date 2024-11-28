@@ -1,16 +1,13 @@
-import { useState } from "react";
-
-const Tabs = () => {
-  const [activeTab, setActiveTab] = useState("All");
-
-  const tabs = ["All", "Websites", "Apps"];
+// eslint-disable-next-line react/prop-types
+const Tabs = ({ activeTab, setActiveTab }) => {
+  const tabs = ["All", "Website", "Mobile"];
 
   return (
     <div className="flex space-x-4 py-4 justify-center">
       {tabs.map((tab) => (
         <button
           key={tab}
-          onClick={() => setActiveTab(tab)}
+          onClick={() => setActiveTab(tab)} // This will update the active tab in parent
           className={`px-4 py-2 rounded-full font-medium transition-all ${
             activeTab === tab
               ? "bg-black text-white dark:bg-white/90 dark:text-black/80"

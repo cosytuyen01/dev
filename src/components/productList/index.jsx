@@ -3,29 +3,36 @@ import ProductCard from "../productCard";
 import { products } from "../../pages/user/projects/data";
 
 // eslint-disable-next-line react/prop-types
-const ProductCardList = ({ isHome }) => {
+const ProductCardList = ({ isHome, activeTab }) => {
   const displayedProducts = isHome ? products.slice(0, 4) : products;
   const navigate = useNavigate();
   const handleCardClick = (id) => {
     navigate(`/detail/${id}`);
   };
+
+  const filteredProducts = products.filter(
+    (product) => activeTab === "All" || product.tab === activeTab
+  );
+
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-full">
       {isHome && (
         <h2 className="text-start w-full mb-6 text-[32px] font-semibold text-gray-800 dark:text-white/80">
           Sản phẩm
         </h2>
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {displayedProducts.map((product, index) => (
-          <ProductCard
-            key={index}
-            imageSrc={product.url}
-            title={product.title}
-            category={product.category}
-            onClick={() => handleCardClick(product.id)}
-          />
-        ))}
+        {(isHome ? displayedProducts : filteredProducts)?.map(
+          (product, index) => (
+            <ProductCard
+              key={index}
+              imageSrc={product.url}
+              title={product.title}
+              category={product.category}
+              onClick={() => handleCardClick(product.id)}
+            />
+          )
+        )}
       </div>
       {isHome && (
         <div className="flex justify-center items-center w-full">
