@@ -4,13 +4,14 @@ export const products = [
     url: "https://i.ibb.co/9pc8vds/imgVime.png",
     images: [
       "https://i.ibb.co/9pc8vds/imgVime.png",
+      "https://i.ibb.co/P4brdyR/font.png",
+      "https://i.ibb.co/0277jFV/color1.png",
       "https://tdesigncode.online/assets/images/products/6.webp",
-      "https://framerusercontent.com/images/OhqpNK1P4VIsbBvicxCzoqpIBM.png",
-      "https://cdn.dribbble.com/userupload/17349879/file/original-ba9e150c614c49d736289422d7cd66d2.png?resize=752x564&vertical=center",
+      "https://i.ibb.co/fXV5wK1/color2.png",
+      "https://framerusercontent.com/images/E39qFeWe3gpNsjj2p8k2n69wXs.png",
       "https://i.ibb.co/F7Tg5Jf/img.png",
-      "https://i.pinimg.com/736x/62/71/1e/62711ef1e80a1b149b9d0de7ac0e7d58.jpg",
+      "https://framerusercontent.com/images/ZLAi4FZJEHriLMrsH7DsLKMaw.png",
       "https://i.ibb.co/sPmkCPv/img-2.png",
-      "https://framerusercontent.com/images/pX8IVk6sFhrt54HVIukgD0Kolw.png",
       "https://i.ibb.co/Qfjb8GD/img-4.png",
     ],
     title: "Vime app - Giải pháp nông nghiệp",
@@ -22,12 +23,12 @@ export const products = [
     tools: [
       {
         name: "Figma",
-        image: "figma_tool_image_url.jpg",
+        sub: "Công cụ",
         logo: "https://i.ibb.co/d6kSyFz/figma-logo.jpg",
       },
       {
         name: "Adobe Ai",
-        image: "https://i.ibb.co/R3GnqCS/adobe-illustrator-logo.png",
+        sub: "Công cụ",
         logo: "https://i.ibb.co/R3GnqCS/adobe-illustrator-logo.png",
       },
     ],
@@ -43,9 +44,6 @@ export const products = [
       "https://framerusercontent.com/images/RODqLiPPlJSpfOgG17O5dyjQo.png",
       "https://framerusercontent.com/images/kTO6E4YtFGyX86ZMnFaY2aezYw4.png",
       "https://framerusercontent.com/images/2BAMqikRW2UktLPrdYs2jNhrI.png",
-      "https://i.ibb.co/sPmkCPv/img-2.png",
-      "https://framerusercontent.com/images/pX8IVk6sFhrt54HVIukgD0Kolw.png",
-      "https://i.ibb.co/Qfjb8GD/img-4.png",
     ],
     title: "Chấm công HANET",
     category: "Web App",
@@ -56,7 +54,7 @@ export const products = [
     tools: [
       {
         name: "Figma",
-        image: "figma_tool_image_url.jpg",
+        sub: "Công cụ",
         logo: "https://i.ibb.co/d6kSyFz/figma-logo.jpg",
       },
     ],
@@ -82,7 +80,7 @@ export const products = [
     tools: [
       {
         name: "Figma",
-        image: "figma_tool_image_url.jpg",
+        sub: "Công cụ",
         logo: "https://i.ibb.co/d6kSyFz/figma-logo.jpg",
       },
     ],
@@ -109,19 +107,19 @@ export const products = [
     ],
     title: "Poho - Sàn thương mại điện tử",
     category: "Mobile App & Web App",
-    tab: "Website" & "Mobile",
+    tab: "Website",
     job: "UIUX Designer",
     description:
       "Sàn thương mại điện tử Poho là một nền tảng trực tuyến được thiết kế để kết nối các doanh nghiệp và người tiêu dùng, cung cấp giải pháp giao dịch và mua bán hàng hóa. Poho tập trung vào việc tối ưu hóa trải nghiệm người dùng thông qua giao diện đơn giản và dễ sử dụng, hỗ trợ các hoạt động thương mại như tìm kiếm sản phẩm, giao dịch và thanh toán trực tuyến. Với Poho, người dùng có thể dễ dàng đăng ký, mua sắm và bán hàng một cách nhanh chóng và tiện lợi.",
     tools: [
       {
         name: "Figma",
-        image: "figma_tool_image_url.jpg",
+        sub: "Công cụ",
         logo: "https://i.ibb.co/d6kSyFz/figma-logo.jpg",
       },
       {
         name: "Adobe Ai",
-        image: "https://i.ibb.co/R3GnqCS/adobe-illustrator-logo.png",
+        sub: "Công cụ",
         logo: "https://i.ibb.co/R3GnqCS/adobe-illustrator-logo.png",
       },
     ],
@@ -132,14 +130,10 @@ export const products = [
     url: "https://framerusercontent.com/images/EQ646BOeUt4TIv2SVtf2B2lA0.png?scale-down-to=512",
     images: [
       "https://framerusercontent.com/images/EQ646BOeUt4TIv2SVtf2B2lA0.png?scale-down-to=512",
-      "https://tdesigncode.online/assets/images/products/6.webp",
+      "https://framerusercontent.com/images/eHOgUmWLuxDHfdplmayaDE8PY.png",
       "https://framerusercontent.com/images/OhqpNK1P4VIsbBvicxCzoqpIBM.png",
-      "https://cdn.dribbble.com/userupload/17349879/file/original-ba9e150c614c49d736289422d7cd66d2.png?resize=752x564&vertical=center",
-      "https://i.ibb.co/F7Tg5Jf/img.png",
-      "https://i.pinimg.com/736x/62/71/1e/62711ef1e80a1b149b9d0de7ac0e7d58.jpg",
-      "https://i.ibb.co/sPmkCPv/img-2.png",
       "https://framerusercontent.com/images/pX8IVk6sFhrt54HVIukgD0Kolw.png",
-      "https://i.ibb.co/Qfjb8GD/img-4.png",
+      "https://mir-s3-cdn-cf.behance.net/project_modules/1400/11ad06135804673.61ee9a907cded.jpg",
     ],
     title: "Một số ấn phẩm thiết kế",
     category: "Graphic design",
@@ -149,7 +143,7 @@ export const products = [
     tools: [
       {
         name: "Adobe Ai",
-        image: "https://i.ibb.co/R3GnqCS/adobe-illustrator-logo.png",
+        sub: "Công cụ",
         logo: "https://i.ibb.co/R3GnqCS/adobe-illustrator-logo.png",
       },
     ],
@@ -157,19 +151,15 @@ export const products = [
   },
   {
     id: 6,
-    url: "https://i.ibb.co/9pc8vds/imgVime.png",
+    url: "https://i.ibb.co/CnBYb6H/Mockup-2.png",
     images: [
-      "https://i.ibb.co/9pc8vds/imgVime.png",
-      "https://tdesigncode.online/assets/images/products/6.webp",
-      "https://framerusercontent.com/images/OhqpNK1P4VIsbBvicxCzoqpIBM.png",
-      "https://cdn.dribbble.com/userupload/17349879/file/original-ba9e150c614c49d736289422d7cd66d2.png?resize=752x564&vertical=center",
-      "https://i.ibb.co/F7Tg5Jf/img.png",
-      "https://i.pinimg.com/736x/62/71/1e/62711ef1e80a1b149b9d0de7ac0e7d58.jpg",
-      "https://i.ibb.co/sPmkCPv/img-2.png",
-      "https://framerusercontent.com/images/pX8IVk6sFhrt54HVIukgD0Kolw.png",
-      "https://i.ibb.co/Qfjb8GD/img-4.png",
+      "https://i.ibb.co/CnBYb6H/Mockup-2.png",
+      "https://i.ibb.co/fHjKQkD/Mockup-3.png",
+      "https://i.ibb.co/xLn57p2/Mockup-13.png",
+      "https://i.ibb.co/7tHhXhJ/Mockup-14.png",
+      "https://i.ibb.co/dJW1NJ5/Mockup-15.png",
     ],
-    title: "Vime app - Giải pháp nông nghiệp",
+    title: "App CRM",
     category: "Mobile App",
     job: "UIUX Designer & React Native developer",
     description:
@@ -177,13 +167,13 @@ export const products = [
     tools: [
       {
         name: "Figma",
-        image: "figma_tool_image_url.jpg",
+        sub: "Công cụ",
         logo: "https://i.ibb.co/d6kSyFz/figma-logo.jpg",
       },
       {
-        name: "Adobe Ai",
-        image: "https://i.ibb.co/R3GnqCS/adobe-illustrator-logo.png",
-        logo: "https://i.ibb.co/R3GnqCS/adobe-illustrator-logo.png",
+        name: "React Native",
+        sub: "Framework",
+        logo: "https://i.ibb.co/gr2hk5Y/image.png",
       },
     ],
     logo: "https://i.ibb.co/JnKyhvJ/logo.png",
@@ -193,7 +183,7 @@ export const products = [
     url: "https://i.ibb.co/9pc8vds/imgVime.png",
     images: [
       "https://i.ibb.co/9pc8vds/imgVime.png",
-      "https://tdesigncode.online/assets/images/products/6.webp",
+      "https://i.ibb.co/fHjKQkD/Mockup-3.png",
       "https://framerusercontent.com/images/OhqpNK1P4VIsbBvicxCzoqpIBM.png",
       "https://cdn.dribbble.com/userupload/17349879/file/original-ba9e150c614c49d736289422d7cd66d2.png?resize=752x564&vertical=center",
       "https://i.ibb.co/F7Tg5Jf/img.png",
@@ -210,12 +200,12 @@ export const products = [
     tools: [
       {
         name: "Figma",
-        image: "figma_tool_image_url.jpg",
+        sub: "Công cụ",
         logo: "https://i.ibb.co/d6kSyFz/figma-logo.jpg",
       },
       {
         name: "Adobe Ai",
-        image: "https://i.ibb.co/R3GnqCS/adobe-illustrator-logo.png",
+        sub: "Công cụ",
         logo: "https://i.ibb.co/R3GnqCS/adobe-illustrator-logo.png",
       },
     ],

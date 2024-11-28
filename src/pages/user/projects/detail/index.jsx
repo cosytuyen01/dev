@@ -44,7 +44,7 @@ const DetailProject = () => {
     navigate(-1); // Quay lại trang trước
   };
   return (
-    <div className=" sm:pt-[40px] lg:px-0 pt-[20px] flex flex-col items-center w-full lg:w-[752px] h-[100%]">
+    <div className="px-4  sm:pt-[40px] lg:px-0 pt-[20px] flex flex-col items-center w-full lg:w-[752px] h-[100%]">
       <div
         onClick={handleBackClick}
         className="flex items-center gap-2 w-full cursor-pointer"
@@ -59,15 +59,15 @@ const DetailProject = () => {
         animate={{ opacity: 1 }}
         src={productData?.images[0]}
         alt="Product Thumbnail"
-        className=" rounded-xl mt-4 w-full  object-contain"
+        className=" rounded-xl mt-4 w-full object-contain"
       />
       <div className="flex flex-col w-full pt-4 border-b-[1px] border-black/10 dark:border-white/10 pb-4">
-        <h1 className="text-center sm:text-start flex items-center text-textColor dark:text-white/90 text-[26px] md:text-[40px] font-bold">
+        <h1 className=" sm:text-start text-textColor dark:text-white/90 text-[26px] md:text-[40px] text-center font-bold w-full">
           {productData?.title}
         </h1>
-        <div className="text-subText text-[18px] sm:text-[24px] dark:text-white/60 text-center sm:text-start font-bold">
+        <p className="text-subText text-[18px] sm:text-[24px] dark:text-white/60 text-center sm:text-start font-bold">
           {productData?.category}
-        </div>
+        </p>
       </div>
       <div className="">
         <div className="pt-4 border-b-[1px] border-black/10 dark:border-white/10">
@@ -88,7 +88,7 @@ const DetailProject = () => {
                 <h3 className="text-lg font-semibold text-gray-800 dark:text-white/80">
                   {tool.name}
                 </h3>
-                <p className="text-gray-800 dark:text-white/80">Design tool</p>
+                <p className="text-gray-800 dark:text-white/80">{tool.sub}</p>
               </div>
             </div>
           ))}
@@ -105,7 +105,7 @@ const DetailProject = () => {
               key={index}
               src={imageUrl}
               alt="Odd Image"
-              className="rounded-2xl bg-gray-50 cursor-pointer w-full object-contain"
+              className="rounded-2xl bg-black/20 dark:bg-white/20 cursor-pointer w-full object-contain"
             />
           ))}
         </div>
@@ -115,7 +115,7 @@ const DetailProject = () => {
               key={index}
               src={imageUrl}
               alt="Even Image"
-              className="rounded-2xl bg-gray-200 cursor-pointer w-full object-contain"
+              className="rounded-2xl bg-black/10 dark:bg-white/10 cursor-pointer w-full object-contain"
             />
           ))}
         </div>
