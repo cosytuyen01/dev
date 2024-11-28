@@ -4,6 +4,8 @@ export const products = [
     url: "https://i.ibb.co/3zbp7ZN/Frame-427321530.png",
     images: [
       "https://i.ibb.co/3zbp7ZN/Frame-427321530.png",
+      "https://i.ibb.co/6JvNtj3/Tr-nh-b-y-s-n-ph-m.pngg",
+      "https://i.ibb.co/MpKxGX4/Moodboard.png",
       "https://i.ibb.co/23zSzyL/Mockup-4.png",
       "https://i.ibb.co/QH4sjz1/Mockup-15.png",
       "https://i.ibb.co/xFrnrW1/Mockup-17.png",
@@ -12,6 +14,7 @@ export const products = [
       "https://i.ibb.co/0J0hXTz/Mockup-20.png",
       "https://i.ibb.co/w6GpzDp/mobile-mockup-3.png",
       "https://i.ibb.co/mTfL1KZ/Mockup-7.png",
+      "https://i.ibb.co/q56sk2z/Mockup-15.png",
     ],
     title: "Dip building - Quản lý cư dân",
     category: "Mobile App",
@@ -195,6 +198,7 @@ export const products = [
     ],
     title: "App CRM",
     category: "Mobile App",
+    tab: "Mobile",
     job: "UIUX Designer & React Native developer",
     description:
       "Ứng dụng CRM (Customer Relationship Management) là công cụ quản lý mối quan hệ khách hàng, giúp doanh nghiệp tương tác hiệu quả với khách hàng, tăng cường sự hài lòng và thúc đẩy doanh thu. Ứng dụng này cho phép lưu trữ thông tin khách hàng, theo dõi lịch sử giao dịch, quản lý các chiến dịch marketing, và tự động hóa quy trình bán hàng. Nó cung cấp các báo cáo chi tiết về hiệu quả công việc, giúp đội ngũ bán hàng đưa ra quyết định chính xác hơn. Với giao diện dễ sử dụng, ứng dụng CRM không chỉ giúp cải thiện hiệu quả công việc mà còn nâng cao trải nghiệm của khách hàng, tạo ra một môi trường làm việc chuyên nghiệp và tối ưu hóa quy trình chăm sóc khách hàng.",
@@ -208,6 +212,36 @@ export const products = [
         name: "React Native",
         sub: "Framework",
         logo: "https://i.ibb.co/gr2hk5Y/image.png",
+      },
+    ],
+    logo: "https://i.ibb.co/JnKyhvJ/logo.png",
+  },
+  {
+    id: 8,
+    url: "https://i.ibb.co/mztwdRX/Frame-427321530.png",
+    images: [
+      "https://i.ibb.co/mztwdRX/Frame-427321530.png",
+      "https://i.ibb.co/fHjKQkD/Mockup-3.png",
+      "https://i.ibb.co/xLn57p2/Mockup-13.png",
+      "https://i.ibb.co/7tHhXhJ/Mockup-14.png",
+      "https://i.ibb.co/dJW1NJ5/Mockup-15.png",
+    ],
+    title: "Smart Edu - Tìm kiếm gia sư",
+    category: "Website",
+    tab: "Website",
+    job: "UIUX Designer",
+    description:
+      "Website tìm kiếm thuê gia sư là nền tảng trực tuyến giúp kết nối học sinh, phụ huynh với gia sư phù hợp dựa trên nhu cầu học tập. Người dùng có thể dễ dàng tìm kiếm gia sư theo môn học, trình độ, khu vực và mức học phí. Các gia sư trên website đều có hồ sơ chi tiết, bao gồm thông tin về kinh nghiệm giảng dạy, phương pháp dạy, và đánh giá từ học viên trước. Website cung cấp công cụ đặt lịch học trực tuyến, giao tiếp giữa gia sư và học viên, cùng với các tính năng hỗ trợ thanh toán an toàn. Đây là giải pháp tiện lợi giúp phụ huynh và học sinh lựa chọn gia sư chất lượng một cách nhanh chóng và hiệu quả.",
+    tools: [
+      {
+        name: "Figma",
+        sub: "Công cụ",
+        logo: "https://i.ibb.co/d6kSyFz/figma-logo.jpg",
+      },
+      {
+        name: "Adobe Ai",
+        sub: "Công cụ",
+        logo: "https://i.ibb.co/R3GnqCS/adobe-illustrator-logo.png",
       },
     ],
     logo: "https://i.ibb.co/JnKyhvJ/logo.png",
