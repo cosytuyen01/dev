@@ -1,78 +1,82 @@
-import { useParams } from "react-router-dom";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect} from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { products } from "../data";
+import SvgIcon from "../../../../assets/iconSvg";
 
 const DetailProject = () => {
   const { pathname } = useLocation();
   const { id } = useParams();
+  const navigate = useNavigate();
+  const [iconColor, setIconColor] = useState("black");
   const productData = products.find((product) => product.id === parseInt(id));
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+  useEffect(() => {
+    // Function to update icon color based on current theme
+    const updateIconColor = () => {
+      if (document.documentElement.classList.contains("dark")) {
+        setIconColor("gray"); // Chế độ tối => màu biểu tượng là đen
+      } else {
+        setIconColor("gray"); // Chế độ sáng => màu biểu tượng là trắng
+      }
+    };
 
-  const { scrollYProgress } = useScroll();
-  const translateY = useTransform(scrollYProgress, [0, 0.5], [0, 0]);
+    // Run the function initially
+    updateIconColor();
 
+    // Listen for changes in theme
+    const observer = new MutationObserver(updateIconColor);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
 
-
-
+    // Clean up observer on component unmount
+    return () => observer.disconnect();
+  }, []);
 
   const oddImages = productData?.images.filter((_, index) => index % 2 === 0);
   const evenImages = productData?.images.filter((_, index) => index % 2 !== 0);
-
+  const handleBackClick = () => {
+    navigate(-1); // Quay lại trang trước
+  };
   return (
-    <div className="pt-[140px] flex flex-col items-center">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="flex flex-col md:flex-row items-center gap-6"
+    <div className="px-4 lg:px-0 pt-[40px] flex flex-col items-center w-full lg:w-[752px] h-[100%]">
+      <div
+        onClick={handleBackClick}
+        className="flex items-center gap-2 w-full cursor-pointer"
       >
-        <img
-          src={productData?.logo}
-          alt={productData?.title}
-          className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-3xl"
-        />
-        <div className="flex flex-col items-center md:items-start">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-textDarkPrimary text-center md:text-left break-words w-full px-4 md:px-0">
-            {productData?.title}
-          </h1>
-          <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-500 font-medium">
-            {productData?.category}
-          </h3>
-        </div>
-      </motion.div>
-
+        <SvgIcon name={"back"} height={24} width={24} color={iconColor} />
+        <p className="text-subText text-[18px] sm:text-[24px] dark:text-white/60 text-center sm:text-start font-medium">
+          Quay lại
+        </p>
+      </div>
       <motion.img
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         src={productData?.images[0]}
         alt="Product Thumbnail"
-        className="border border-gray-200 rounded-2xl mt-8 w-full max-w-[90vw] object-contain"
+        className=" rounded-xl mt-4 w-full  object-contain"
       />
-
-      <div className="mt-12 flex flex-col md:flex-row gap-8 w-full max-w-[1200px] px-6">
-        <motion.div
-          style={{ y: translateY }}
-          transition={{ duration: 1 }}
-          className="border border-gray-200 rounded-xl p-6 flex-1"
-        >
-          <h1 className="text-2xl md:text-3xl lg:text-4xl text-textDarkPrimary border-b border-gray-200 pb-3 mb-4">
-            Overview
-          </h1>
-          <p className="text-gray-700">{productData.description}</p>
-        </motion.div>
-        <motion.div
-          style={{ y: translateY }}
-          transition={{ duration: 1 }}
-          className="border border-gray-200 rounded-xl p-6 flex-1"
-        >
-          <h1 className="text-2xl md:text-3xl lg:text-4xl text-textDarkPrimary border-b border-gray-200 pb-3 mb-4">
-            Tools
-          </h1>
+      <div className="flex flex-col items-center sm:items-start  w-full pt-4 border-b-[1px] border-black/10 dark:border-white/10 pb-4">
+        <h1 className="text-center sm:text-start flex items-center text-textColor dark:text-white/90 text-[26px] md:text-[40px] font-bold">
+          {productData?.title}
+        </h1>
+        <div className="text-subText text-[18px] sm:text-[24px] dark:text-white/60 text-center sm:text-start font-bold">
+          {productData?.category}
+        </div>
+      </div>
+      <div className="">
+        <div className="pt-4 border-b-[1px] border-black/10 dark:border-white/10">
+          {/* <p className=" text-[18px] sm:text-[24px] text-textLightPrimary  dark:text-white/90 pb-4">
+            {productData?.category}
+          </p> */}
+          <p className=" text-[18px] sm:text-[24px] text-textLightPrimary  dark:text-white/90 pb-4">
+            {productData?.job}
+          </p>
           {productData.tools.map((tool, index) => (
             <div key={index} className="flex items-center gap-4 mb-4">
               <img
@@ -81,16 +85,21 @@ const DetailProject = () => {
                 className="w-14 h-14 rounded-md object-cover"
               />
               <div>
-                <h3 className="text-lg font-semibold">{tool.name}</h3>
-                <p className="text-gray-500">Design tool</p>
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white/80">
+                  {tool.name}
+                </h3>
+                <p className="text-gray-800 dark:text-white/80">Design tool</p>
               </div>
             </div>
           ))}
-        </motion.div>
-      </div>
+        </div>
 
-      <div className="flex flex-col sm:flex-row gap-6 w-full max-w-[1200px] mt-10">
-        <div className="flex flex-col gap-6 w-full sm:w-1/2">
+        <p className="text-[18px] sm:text-[24px] text-textLightPrimary  dark:text-white/90 pt-4">
+          {productData.description}
+        </p>
+      </div>
+      <div className="flex flex-col sm:flex-row gap-2 w-full max-w-[1200px] mt-4 pb-20">
+        <div className="flex flex-col gap-2 w-full sm:w-1/2 ">
           {oddImages.map((imageUrl, index) => (
             <motion.img
               key={index}
@@ -100,7 +109,7 @@ const DetailProject = () => {
             />
           ))}
         </div>
-        <div className="flex flex-col gap-6 w-full sm:w-1/2">
+        <div className="flex flex-col gap-2 w-full sm:w-1/2  ">
           {evenImages.map((imageUrl, index) => (
             <motion.img
               key={index}
@@ -111,7 +120,6 @@ const DetailProject = () => {
           ))}
         </div>
       </div>
-
     </div>
   );
 };
