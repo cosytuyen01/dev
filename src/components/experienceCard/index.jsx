@@ -1,7 +1,14 @@
 /* eslint-disable react/prop-types */
+import { motion } from "framer-motion";
 function ExperienceCard({ job }) {
   return (
-    <div className="p-4 rounded-2xl flex flex-col  items-start gap-2 w-full mx-auto bg-white dark:bg-darkSubbg">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.5 }}
+      className="p-4 rounded-2xl flex flex-col  items-start gap-2 w-full mx-auto bg-white dark:bg-darkSubbg"
+    >
       {/* Icon công ty */}
       <div className="flex flex-row gap-2 w-full items-start sm:items-center">
         <div className="rounded w-[40px] h-[40px] flex items-center justify-center dark:bg-white/5 p-1">
@@ -28,7 +35,7 @@ function ExperienceCard({ job }) {
       <p className="text-[16px]  text-subText dark:text-white/70">
         Công việc: {job?.description}
       </p>
-    </div>
+    </motion.div>
   );
 }
 
