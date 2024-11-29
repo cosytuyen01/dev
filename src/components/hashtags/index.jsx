@@ -1,12 +1,15 @@
 const hashtags = [
   "#Figma",
-  "Design System",
-  "Product designer",
+  "#Design System",
+  "#Product designer",
+  "#Sitemap",
+  "#Userflow",
+  "#Wireframe",
   "#Mobile App",
+  "#Web Design",
   "#React Naitve",
   "#Development",
   "#ReactJs",
-  "#Web Design",
   "#Ai",
   "#Graphic",
 ];
