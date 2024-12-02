@@ -27,7 +27,7 @@ function About() {
 
           <div className="flex flex-[2] items-center justify-center">
             <img
-              src="https://scontent.fsgn5-13.fna.fbcdn.net/v/t39.30808-6/327209766_862817568264345_9185622725308031903_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeEgpwgAo3YOjmSJDSo-8mSSy1bcyOo3S8zLVtzI6jdLzDbpEhJgOrU5L-xDjcuRhCLnIhkPjUQY-mxSZVovyiJh&_nc_ohc=xIY79A7kNBsQ7kNvgGyi87N&_nc_zt=23&_nc_ht=scontent.fsgn5-13.fna&_nc_gid=AMkOpcqIt2iJ4hvx9oswkBf&oh=00_AYB5CmN2Pepu-dgtZxz0Wz0WeSlkpf3zWcr4nH8dHknImA&oe=674D139A"
+              src="https://i.ibb.co/nbYg74H/avatar.jpg"
               alt="Woman"
               className="h-[400px] sm:h-[364px] w-full object-cover rounded-tl-3xl rounded-br-3xl"
             />
