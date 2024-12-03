@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
-const ProductCard = ({ imageSrc, title, category,onClick }) => {
+const ProductCard = ({ imageSrc, title, category, onClick }) => {
   return (
     <motion.div
       className="w-full rounded-xl cursor-pointer"
@@ -18,7 +18,9 @@ const ProductCard = ({ imageSrc, title, category,onClick }) => {
           className="w-full h-[300px] object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"
         />
       </div>
-      <h3 className="mt-2 text-lg font-semibold text-textColor dark:text-white/80">{title}</h3>
+      <h3 className="mt-2 text-lg font-semibold text-textColor dark:text-white/80">
+        {title}
+      </h3>
       <p className="text-subText dark:text-white/60">{category}</p>
     </motion.div>
   );

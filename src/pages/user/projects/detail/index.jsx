@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { products } from "../data";
@@ -77,6 +77,13 @@ const DetailProject = () => {
       inline: "center", // Cuộn ảnh vào giữa theo chiều ngang
     });
   };
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]); // Opacity thay đổi từ 1 đến 0
+  const translateY = useTransform(scrollYProgress, [0.1, 0.3], [0, 0]);
+  const opacityTool = useTransform(scrollYProgress, [0.2, 0.4], [1, 0]); // Opacity thay đổi từ 1 đến 0
+  const opacityTitle = useTransform(scrollYProgress, [0.2, 0.3], [1, 0]); // Opacity thay đổi từ 1 đến 0
+  const opacityDecs = useTransform(scrollYProgress, [0.3, 0.6], [1, 0]); // Opacity thay đổi từ 1 đến 0
+
   return (
     <div className="px-4 sm:pt-[40px] lg:px-0 pt-[20px] flex flex-col items-center w-full lg:w-[752px] h-[100%]">
       <div
@@ -91,25 +98,43 @@ const DetailProject = () => {
 
       {/* Image with scroll and fade-in effect */}
       <motion.img
+        transition={{ duration: 0.5, ease: "easeOut" }} // Thời gian chuyển động
+        src={productData?.images[0]}
         initial={{ opacity: 0, y: 50 }} // Vị trí ban đầu (ngầm ở dưới)
         whileInView={{ opacity: 1, y: 0 }} // Khi ảnh vào viewport
-        viewport={{ once: true }} // Chỉ hoạt động một lần khi vào viewport
-        transition={{ duration: 0.6 }} // Thời gian chuyển động
-        src={productData?.images[0]}
+        viewport={{ once: true }}
+        style={{
+          opacity: opacity,
+          translateY: translateY,
+        }}
         alt="Product Thumbnail"
         className="rounded-xl mt-4 w-full object-contain"
       />
 
-      <div className="flex flex-col w-full pt-4 border-b-[1px] border-black/10 dark:border-white/10 pb-4">
+      <motion.div
+        style={{
+          opacity: opacityTitle,
+          translateY: translateY,
+        }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="flex flex-col w-full pt-4 border-b-[1px] border-black/10 dark:border-white/10 pb-4"
+      >
         <h1 className="sm:text-start text-textColor dark:text-white/90 text-[26px] md:text-[40px] text-center font-bold w-full">
           {productData?.title}
         </h1>
         <p className="text-subText text-[18px] sm:text-[24px] dark:text-white/60 text-center sm:text-start font-bold">
           {productData?.category}
         </p>
-      </div>
+      </motion.div>
       <div>
-        <div className="pt-4 border-b-[1px] border-black/10 dark:border-white/10">
+        <motion.div
+          style={{
+            opacity: opacityTool,
+            translateY: translateY,
+          }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="pt-4 border-b-[1px] border-black/10 dark:border-white/10"
+        >
           <p className="text-[18px] sm:text-[24px] text-textLightPrimary dark:text-white/90 pb-4">
             Vai trò {productData?.job}
           </p>
@@ -128,11 +153,18 @@ const DetailProject = () => {
               </div>
             </div>
           ))}
-        </div>
+        </motion.div>
 
-        <p className="text-[16px] sm:text-[24px] text-textLightPrimary dark:text-white/90 pt-4">
+        <motion.p
+          style={{
+            opacity: opacityDecs,
+            translateY: translateY,
+          }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="text-[16px] sm:text-[24px] text-textLightPrimary dark:text-white/90 pt-4"
+        >
           {productData.description}
-        </p>
+        </motion.p>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-2 w-full max-w-[1200px] mt-4 pb-20">

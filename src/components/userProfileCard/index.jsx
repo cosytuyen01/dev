@@ -1,8 +1,22 @@
 import SvgIcon from "../../assets/iconSvg";
 import bgProfile from "../../assets/images/bg-profile.svg";
+import { motion, useScroll, useTransform } from "framer-motion";
+
 const UserProfileCard = () => {
+  const { scrollYProgress } = useScroll();
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+  const translateY = useTransform(scrollYProgress, [0, 0.3], [0, 100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
   return (
-    <div className="relative flex items-center rounded-lg gap-6 flex-col sm:flex-row ">
+    <motion.div
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      style={{
+        scale: scale,
+        opacity: opacity,
+        y: translateY,
+      }}
+      className="relative flex items-center rounded-lg gap-6 flex-col sm:flex-row "
+    >
       {/* Avatar */}
       <img
         src={bgProfile} // Thay link này bằng ảnh đại diện của bạn
@@ -29,7 +43,7 @@ const UserProfileCard = () => {
           UIUX & Developer &bull; Tân Phú, HCM
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

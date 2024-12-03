@@ -37,6 +37,7 @@ const BottomMenu = () => {
   }, []);
   const iconData = [
     { name: "home", navigation: "/" },
+    // { name: "design", navigation: "/procedure" },
     { name: "product", navigation: "/projects" },
     { name: "user", navigation: "/about" },
     { name: "light", navigation: "" }, // Nút chuyển đổi Light/Dark mode
