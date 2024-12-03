@@ -18,7 +18,7 @@ function Projects() {
         desc={"Một số sản phẩm đã làm nhiều năm qua"}
       />
       <div className="pt-0 sm:pt-4 items-center">
-        <div className="pb-4 items-center">
+        <div className="sticky top-0 z-10  dark:bg-darkBg/90 bg-backgroundPrimary/90 backdrop-blur">
           <Tabs activeTab={activeTab} setActiveTab={setActiveTab} data={tabs} />
         </div>
         <ProductCardList activeTab={activeTab} />

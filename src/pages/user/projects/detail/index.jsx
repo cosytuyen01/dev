@@ -88,7 +88,7 @@ const DetailProject = () => {
     <div className="px-4 sm:pt-[40px] lg:px-0 pt-[20px] flex flex-col items-center w-full lg:w-[752px] h-[100%]">
       <div
         onClick={handleBackClick}
-        className="flex items-center gap-2 w-full cursor-pointer"
+        className="flex items-center gap-2 w-full cursor-pointer sticky top-0 z-10  dark:bg-darkBg/90 bg-backgroundPrimary/90 backdrop-blur py-4"
       >
         <SvgIcon name={"back"} height={24} width={24} color={iconColor} />
         <p className="text-subText text-[18px] sm:text-[24px] dark:text-white/60 text-center sm:text-start font-medium">
