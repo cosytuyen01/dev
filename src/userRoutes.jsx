@@ -12,6 +12,7 @@ const UserRoutes = () => {
   return (
     <div className="bg-backgroundPrimary dark:bg-darkBg flex flex-col justify-center h-full">
       <div className="flex-grow flex justify-center">
+        {/* <CustomCursor /> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/procedure" element={<Procedure />} />

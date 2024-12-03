@@ -80,12 +80,12 @@ const DetailProject = () => {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]); // Opacity thay đổi từ 1 đến 0
   const translateY = useTransform(scrollYProgress, [0.1, 0.3], [0, 0]);
-  const opacityTool = useTransform(scrollYProgress, [0.2, 0.4], [1, 0]); // Opacity thay đổi từ 1 đến 0
-  const opacityTitle = useTransform(scrollYProgress, [0.2, 0.3], [1, 0]); // Opacity thay đổi từ 1 đến 0
+  const opacityTool = useTransform(scrollYProgress, [0.2, 0.5], [1, 0]); // Opacity thay đổi từ 1 đến 0
+  const opacityTitle = useTransform(scrollYProgress, [0.2, 0.4], [1, 0]); // Opacity thay đổi từ 1 đến 0
   const opacityDecs = useTransform(scrollYProgress, [0.3, 0.6], [1, 0]); // Opacity thay đổi từ 1 đến 0
 
   return (
-    <div className="px-4 sm:pt-[40px] lg:px-0 pt-[20px] flex flex-col items-center w-full lg:w-[752px] h-[100%]">
+    <div className="px-4 sm:pt-[20px] lg:px-0 pt-[10px] flex flex-col items-center w-full lg:w-[752px] h-[100%]">
       <div
         onClick={handleBackClick}
         className="flex items-center gap-2 w-full cursor-pointer sticky top-0 z-10  dark:bg-darkBg/90 bg-backgroundPrimary/90 backdrop-blur py-4"

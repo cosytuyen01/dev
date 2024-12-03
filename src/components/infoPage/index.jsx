@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 function InfoPage({ title, desc }) {
   const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.8]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
   const translateY = useTransform(scrollYProgress, [0, 0.3], [0, 100]);
   const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
   return (
