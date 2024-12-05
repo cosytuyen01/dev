@@ -24,7 +24,7 @@ const UserRoutes = () => {
           <SwitchTransition>
             <CSSTransition
               key={location.key} // Ensure key changes with location
-              timeout={500}
+              timeout={200}
               classNames="zoom" // Custom class for transition effect
             >
               <Routes location={location}>
