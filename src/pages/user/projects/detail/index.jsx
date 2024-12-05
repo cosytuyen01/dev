@@ -88,7 +88,7 @@ const DetailProject = () => {
     <div className="sm:pt-[20px] lg:px-0 pt-[10px] flex flex-col items-center w-full lg:w-[752px] h-[100%]">
       <div
         onClick={handleBackClick}
-        className={`px-4 md:px-0 flex items-center gap-2 w-full cursor-pointer sticky top-0 z-${
+        className={`px-4  flex items-center gap-2 w-full cursor-pointer sticky top-0 z-${
           isModalOpen ? 0 : 10
         } dark:bg-darkBg/90 bg-backgroundPrimary/90 backdrop-blur py-4`}
       >
