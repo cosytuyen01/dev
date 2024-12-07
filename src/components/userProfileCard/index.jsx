@@ -1,12 +1,29 @@
+import { useState, useEffect } from "react";
 import SvgIcon from "../../assets/iconSvg";
 import bgProfile from "../../assets/images/bg-profile.svg";
 import { motion, useScroll, useTransform } from "framer-motion";
 
+// Skeleton Loader Component
+const SkeletonLoader = () => (
+  <div className="w-full h-full bg-black/10 dark:bg-darkSubbg animate-pulse rounded-full" />
+);
+
 const UserProfileCard = () => {
   const { scrollYProgress } = useScroll();
+  const [loading, setLoading] = useState(true);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
   const translateY = useTransform(scrollYProgress, [0, 0.3], [0, 100]);
   const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+
+  // Đảm bảo rằng ảnh tải thành công hoặc lỗi
+  useEffect(() => {
+    const image = new Image();
+    image.src = "https://i.ibb.co/nbYg74H/avatar.jpg"; // Link ảnh avatar chính
+    image.onload = () => setLoading(false);
+    // Khi có lỗi tải ảnh
+    image.onerror = () => setLoading(false);
+  }, []);
+
   return (
     <motion.div
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -15,20 +32,25 @@ const UserProfileCard = () => {
         opacity: opacity,
         y: translateY,
       }}
-      className="relative flex items-center rounded-lg gap-6 flex-col sm:flex-row "
+      className="relative flex items-center rounded-lg gap-6 flex-col sm:flex-row"
     >
-      {/* Avatar */}
+      {/* Avatar Background */}
       <img
-        src={bgProfile} // Thay link này bằng ảnh đại diện của bạn
+        src={bgProfile}
         alt="Profile"
         className="absolute top-0 left-0 w-full h-full object-cover rounded-lg z-0 dark:opacity-5"
       />
       <div className="relative z-10 w-[150px] h-[150px] sm:w-[164px] sm:h-[164px] rounded-full overflow-hidden">
-        <img
-          src="https://i.ibb.co/nbYg74H/avatar.jpg" // Thay link này bằng ảnh đại diện của bạn
-          alt="Profile"
-          className="object-cover w-full h-full"
-        />
+        {loading ? (
+          <SkeletonLoader />
+        ) : (
+          // Khi ảnh tải thành công
+          <img
+            src="https://i.ibb.co/nbYg74H/avatar.jpg" // Link ảnh avatar chính
+            alt="Profile"
+            className="object-cover w-full h-full"
+          />
+        )}
       </div>
 
       {/* User Information */}

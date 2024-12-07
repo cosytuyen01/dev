@@ -1,15 +1,43 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import InfoPage from "../../../components/infoPage";
 import { useLocation } from "react-router-dom";
 import ExperienceList from "../../../components/ExList";
 import { motion, useScroll, useTransform } from "framer-motion";
+
+const SkeletonLoader = () => (
+  <div className="w-full h-[400px] sm:h-[364px] bg-black/10 dark:bg-darkSubbg animate-pulse rounded-full" />
+);
+
 function About() {
   const { pathname } = useLocation();
+  const [loading, setLoading] = useState(true);
+  // Trạng thái để theo dõi ảnh có đang tải không
+  useEffect(() => {
+    const images = [
+      "https://i.ibb.co/mDdbCjv/photo-1648854006531-361649aa182c-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
+      "https://i.ibb.co/nbYg74H/avatar.jpg",
+      "https://images.unsplash.com/photo-1607706009771-de8808640bcf?q=80&w=1974&auto=format&fit=crop&ixlib=r...",
+    ];
+
+    // Tạo một đối tượng Image để kiểm tra việc tải ảnh
+    const imagePromises = images.map((src) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = resolve;
+        img.onerror = reject;
+      });
+    });
+
+    // Kiểm tra khi tất cả ảnh tải xong
+    Promise.all(imagePromises)
+      .then(() => setLoading(false)) // Cập nhật loading thành false khi tất cả ảnh đã tải xong
+      .catch(() => setLoading(false)); // Nếu có lỗi trong quá trình tải ảnh
+  }, []);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  // Sử dụng scrollYProgress từ Framer Motion
   const { scrollYProgress } = useScroll();
 
   const opacity = useTransform(scrollYProgress, [0.2, 1], [1, 0]);
@@ -19,8 +47,8 @@ function About() {
 
   const handleDownloadCVClick = () => {
     const cvLink =
-      "https://drive.google.com/file/d/1D21U89Z1Er0uWm5tMIs2KwZ9vUzPgDnQ/view"; // Replace this with your actual Google Drive CV link
-    window.open(cvLink, "_blank"); // Opens in a new tab
+      "https://drive.google.com/file/d/1D21U89Z1Er0uWm5tMIs2KwZ9vUzPgDnQ/view"; // Thay thế bằng link CV thực tế
+    window.open(cvLink, "_blank"); // Mở CV trong tab mới
   };
 
   return (
@@ -36,27 +64,39 @@ function About() {
           className="flex flex-col sm:flex-row  gap-4  w-full "
         >
           <div className="flex flex-1 items-end justify-end ">
-            <img
-              src="https://i.ibb.co/mDdbCjv/photo-1648854006531-361649aa182c-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg"
-              alt="Car"
-              className="w-full h-[150px] sm:h-[174px]  object-cover rounded-l-3xl "
-            />
+            {loading ? (
+              <SkeletonLoader /> // Hiển thị Skeleton trong khi ảnh tải
+            ) : (
+              <img
+                src="https://i.ibb.co/mDdbCjv/photo-1648854006531-361649aa182c-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg"
+                alt="Car"
+                className="w-full h-[150px] sm:h-[174px] object-cover rounded-l-3xl"
+              />
+            )}
           </div>
 
           <div className="flex flex-[2] items-center justify-center">
-            <img
-              src="https://i.ibb.co/nbYg74H/avatar.jpg"
-              alt="Woman"
-              className="h-[400px] sm:h-[364px] w-full object-cover rounded-tl-3xl rounded-br-3xl"
-            />
+            {loading ? (
+              <SkeletonLoader /> // Hiển thị Skeleton trong khi ảnh tải
+            ) : (
+              <img
+                src="https://i.ibb.co/nbYg74H/avatar.jpg"
+                alt="Woman"
+                className="h-[400px] sm:h-[364px] w-full object-cover rounded-tl-3xl rounded-br-3xl"
+              />
+            )}
           </div>
 
-          <div className="flex flex-1  justify-start">
-            <img
-              src="https://images.unsplash.com/photo-1607706009771-de8808640bcf?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Dog"
-              className="w-full h-[150px] sm:h-[174px] object-cover rounded-r-3xl"
-            />
+          <div className="flex flex-1 justify-start">
+            {loading ? (
+              <SkeletonLoader /> // Hiển thị Skeleton trong khi ảnh tải
+            ) : (
+              <img
+                src="https://images.unsplash.com/photo-1607706009771-de8808640bcf?q=80&w=1974&auto=format&fit=crop&ixlib=r... "
+                alt="Dog"
+                className="w-full h-[150px] sm:h-[174px] object-cover rounded-r-3xl"
+              />
+            )}
           </div>
         </motion.div>
         <div className="flex flex-col gap-4 pt-8">
@@ -65,7 +105,7 @@ function About() {
             style={{
               opacity: opacityDecs,
             }}
-            className=" text-[18px] sm:text-[24px] text-textLightPrimary text-center md:text-start dark:text-white/90"
+            className="text-[18px] sm:text-[24px] text-textLightPrimary text-center md:text-start dark:text-white/90"
           >
             Với 3 năm kinh nghiệm trong lĩnh vực thiết kế UI/UX và 1 năm lập
             trình mobile, tôi mang đến sự kết hợp giữa thẩm mỹ và công nghệ để
