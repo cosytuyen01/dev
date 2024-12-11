@@ -21,7 +21,6 @@ const useSkills = () => {
       setLoadingSkill(false);
     }
   };
-  console.log("Skills", Skills);
 
   // Hàm thêm sản phẩm mới
   const addSkill = async (newSkill) => {
@@ -39,8 +38,6 @@ const useSkills = () => {
 
   // Hàm sửa thông tin sản phẩm
   const updateSkill = async (updatedSkill) => {
-    console.log("updatedSkill", updatedSkill);
-
     try {
       const { error } = await supabase
         .from("skill")

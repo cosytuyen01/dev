@@ -38,7 +38,7 @@ const Header = () => {
         menu={menuProps}
         placement="bottom"
         icon={<UserOutlined />}
-        overlayClassName="custom-dropdown" // Thêm lớp tùy chỉnh
+        overlayClassName="custom-dropdown"
       >
         <div
           onClick={(e) => e.preventDefault()}

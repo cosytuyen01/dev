@@ -39,10 +39,11 @@ const InfoPage = () => {
   const onCloseAdd = () => {
     setOpen(false);
   };
+
   const handleSave = async (updatedInfo) => {
     try {
-      await updateInfo(updatedInfo); // Gọi hàm updateInfo từ hook
-      setOpen(false); // Đóng giao diện chỉnh sửa sau khi thành công
+      await updateInfo(updatedInfo);
+      setOpen(false);
     } catch (err) {
       console.error("Failed to save info:", err.message);
     }
@@ -56,8 +57,9 @@ const InfoPage = () => {
   };
   const handleSaveContact = async (updatedInfo) => {
     try {
-      await updateInfo(updatedInfo); // Gọi hàm updateInfo từ hook
-      setOpenContact(false); // Đóng giao diện chỉnh sửa sau khi thành công
+      await updateInfo(updatedInfo);
+      message.success("Lưu thông tin liên hệ thành công!");
+      setOpenContact(false);
     } catch (err) {
       console.error("Failed to save info:", err.message);
     }
@@ -123,8 +125,9 @@ const InfoPage = () => {
           </div>
 
           <h1 className="font-bold text-white/90">{Infos?.[0]?.fullname}</h1>
-          <div className="text-white/50">{Infos?.[0]?.job}</div>
-          <div className="text-white/50">{Infos?.[0]?.location}</div>
+          <div className="text-white/50">
+            {Infos?.[0]?.job || "Đang tải..."} &bull; {Infos?.[0]?.location}
+          </div>
           <div className="text-white/50">{Infos?.[0]?.about}</div>
         </motion.div>
       </div>
