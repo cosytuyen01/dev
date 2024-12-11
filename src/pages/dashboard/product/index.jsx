@@ -4,42 +4,39 @@ import CardProduct from "../../../components/cardProduct";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
-
+import useProducts from "../../../hook/useProducts";
 export default function ProductPage() {
-  const [activeTab, setActiveTab] = useState(1);
-  const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
-
+  const [activeTab, setActiveTab] = useState("All");
+  const categories = ["All", "Website", "Mobile"];
   const navigate = useNavigate();
+
+  const { products, loading, error } = useProducts();
 
   const handleMenuClick = () => {
     navigate(`detail`);
   };
 
-  console.log("Products:", products);
-  console.log("Categories:", categories);
-
   return (
     <div className="flex flex-col">
       <div className="flex flex-col w-full p-4 gap-4">
         <div className="flex flex-row  items-center gap-4">
-          <h1 className="font-bold text-textDarkPrimary text-2xl ">
+          <h1 className="font-bold text-white/90 text-2xl ">
             Danh sách sản phẩm
           </h1>
           <Button type="primary" shape="circle" icon={<PlusOutlined />} />
         </div>
         <div className="flex gap-4">
-          {categories.map((tab) => (
+          {categories.map((tab, index) => (
             <ButtonComponent
-              key={tab.id}
-              text={tab.name}
+              key={index}
+              text={tab}
               style={{
-                background: activeTab === tab.id ? "var(--primaryColor)" : "",
+                background: activeTab === tab ? "var(--primaryColor)" : "",
               }}
               textStyle={{
-                color: activeTab === tab.id ? "#fff" : "var(--subTextDark)", // Màu chữ thay đổi theo trạng thái
+                color: activeTab === tab ? "#fff" : "var(--subTextDark)",
               }}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => setActiveTab(tab)}
             />
           ))}
         </div>
@@ -48,10 +45,10 @@ export default function ProductPage() {
         {products?.map((product, index) => (
           <CardProduct
             key={index}
-            title={product.title}
+            title={product.name}
             category={product.category}
             description={product.description}
-            url={product.thumbnail}
+            url={product.image_url}
             onClick={handleMenuClick}
           />
         ))}

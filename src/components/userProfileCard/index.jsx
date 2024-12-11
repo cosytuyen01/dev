@@ -37,7 +37,7 @@ const UserProfileCard = () => {
         ) : (
           // Khi ảnh tải thành công
           <img
-            src={Infos?.[0].avatar} // Link ảnh avatar chính
+            src={Infos?.[0]?.avatar} // Link ảnh avatar chính
             alt="Profile"
             className="object-cover w-full h-full"
           />

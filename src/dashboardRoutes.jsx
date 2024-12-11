@@ -49,13 +49,13 @@ function DashboardApp() {
         style={{ scaleX: scrollY }}
       />
 
-      <div className="h-screen flex bg-[#121212] justify-end">
+      <div className="flex bg-[#121212] justify-end pb-10">
         <div className="fixed top-0 left-0  hidden-custom w-[210px]">
           <Sidebar />
         </div>
         <div className="w-[calc(100%-210px)] custom-content">
           <motion.div
-            className="z-10 fixed custom-width bg-subBackground/85 backdrop-blur-md"
+            className="z-10 fixed custom-width backdrop-blur-md"
             initial={{ y: 0 }}
             animate={{ y: isHeaderVisible || !isMobile ? 0 : -100 }}
             transition={{ duration: 0.3 }}

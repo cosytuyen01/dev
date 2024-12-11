@@ -6,7 +6,6 @@ import UserProfileCard from "../../../components/userProfileCard";
 import { useEffect } from "react";
 import ExperienceList from "../../../components/ExList";
 import { useScroll, useTransform, motion } from "framer-motion";
-import useProducts from "../../../hook/useProducts";
 
 function Home() {
   const { pathname } = useLocation();
@@ -17,10 +16,6 @@ function Home() {
   }, [pathname]);
   const opacityDecs = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const opacityHashtag = useTransform(scrollYProgress, [0.3, 0.5], [1, 0]);
-
-  const { products, loading, error } = useProducts();
-  console.log(loading);
-  console.log(products);
 
   return (
     <div className="pt-16 mx-auto pb-10 px-4 sm:px-6 lg:px-8 w-full lg:w-[752px]  dark:text-white transition-colors duration-300">

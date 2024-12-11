@@ -6,7 +6,7 @@ const useInfo = () => {
   const [loading, setLoading] = useState(true); // Trạng thái đang tải dữ liệu
   const [error, setError] = useState(null); // Lỗi khi lấy dữ liệu (nếu có)
 
-  // Hàm fetch dữ liệu sản phẩm từ Supabase
+  // Hàm fetch dữ liệu
   const fetchInfos = async () => {
     try {
       setLoading(true);
@@ -20,20 +20,21 @@ const useInfo = () => {
     }
   };
 
-  // Hàm sửa thông tin sản phẩm
+  // Hàm sửa thông tin
   const updateInfo = async (updatedInfo) => {
     try {
       const { data, error } = await supabase
         .from("info")
-        .update(updatedInfo)
+        .update(updatedInfo, { returning: "representation" })
         .eq("id", updatedInfo.id); // Giả sử id là trường duy nhất để xác định sản phẩm
 
       if (error) throw error;
 
-      // Cập nhật lại danh sách sản phẩm sau khi sửa
+      // Cập nhật lại
       setInfos((prevInfos) =>
-        prevInfos.map((Info) => (Info.id === updatedInfo.id ? data[0] : Info))
+        prevInfos.map((Info) => (Info.id === updatedInfo.id ? data?.[0] : Info))
       );
+      fetchInfos();
     } catch (err) {
       setError("Failed to update Info: " + err.message);
     }
