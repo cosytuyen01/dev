@@ -97,9 +97,9 @@ const InfoPage = () => {
     }
   };
   return (
-    <div className="h-screen grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
-      <div className="p-4 bg-black/95 rounded-2xl overflow-hidden">
-        <div className="flex flex-row justify-between items-center pb-4 border-b-2 border-borderColor mb-6">
+    <div className="h-none md:h-screen  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
+      <div className="flex flex-col p-4 bg-black/95 rounded-2xl ">
+        <div className=" flex flex-row justify-between items-center pb-4 border-b-2 border-borderColor mb-6">
           <h1 className="font-bold text-white/90 text-2xl ">
             Thông tin cá nhân
           </h1>
