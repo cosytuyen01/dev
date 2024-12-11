@@ -14,7 +14,6 @@
 }
 .gradient-border-button p {
   font-size: 16px;
-  color: var(--subTextDark); /* Màu chữ */
 }
 .gradient-border-button::before {
   content: "";

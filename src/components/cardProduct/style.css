@@ -1,0 +1,108 @@
+.card-container {
+  width: 489px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-content: center;
+  cursor: pointer;
+  position: relative;
+  height: 450px;
+}
+
+.img-product {
+  width:400px;
+  height: 400px;
+  object-fit: contain;
+  transition: all 0.6s ease;
+}
+
+.info-product {
+  padding: 16px;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  position: absolute; /* Cố định thẻ này bên dưới trong .card-container */
+  bottom: 0; /* Đặt nó ở dưới cùng của thẻ cha */
+  left: 0; /* Canh lề trái */
+  right: 0; /* Canh lề phải, để info rộng bằng thẻ cha */
+  z-index: 3;
+}
+.info-product div {
+  color: var(--textDarkPrimary);
+   
+  font-size: 12px;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  display: inline-block;
+}
+.info-product h2 {
+  color: var(--textDarkPrimary);
+   
+}
+.info-product p {
+  color: var(--subTextDark);
+   
+  width: 489px;
+  font-size: 12px;
+}
+.shadow {
+  width: 150px;
+  height: 150px;
+  border-radius: 30%;
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  margin-top: 50px;
+  transition: all 1s ease; /* Hiệu ứng chuyển tiếp mượt mà */
+}
+.card-container:hover .shadow {
+  filter: blur(100px);
+  background:   var(--primaryColor);
+  transform: translateY(-50px);
+}
+.card-container:hover .img-product {
+  transform: translateY(-10px) scale(1.1);
+}
+@media only screen and (max-width: 1023px){
+  .card-container {
+    width: 400px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
+    cursor: pointer;
+    position: relative;
+  }
+}
+@media only screen and (max-width: 840px) {
+  .card-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
+    cursor: pointer;
+    position: relative;
+    height: 450px;
+  }
+}
+@media only screen and (max-width: 412px) {
+  .card-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
+    cursor: pointer;
+    position: relative;
+    width: 90vw;
+  }
+  .shadow {
+    filter: blur(100px);
+    background:   var(--primaryColor);
+    transform: translateY(-50px);
+  }
+  .img-product {
+    transform: translateY(-10px) scale(1.2);
+  }
+}

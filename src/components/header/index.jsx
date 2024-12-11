@@ -1,106 +1,58 @@
-import "./style.css";
-import Logo from "../../assets/images/Logo.svg";
+import { DownOutlined, UserOutlined } from "@ant-design/icons";
+import { Dropdown } from "antd";
 import SvgIcon from "../../assets/iconSvg";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import Button from "../button";
+import avatar from "../../assets/images/avatar.png";
+import Logo from "../../assets/images/Logo.svg";
+
+import "./style.css";
+// Danh sách menu cho dropdown
+const handleMenuClick = () => {};
+
+const items = [
+  {
+    label: <p className="text-red ml-2">Đăng xuất</p>,
+    key: "1",
+    icon: (
+      <SvgIcon name={"logOut"} color={"var(--red)"} height={24} width={24} />
+    ),
+    onClick: () => {
+      console.log("Tuyến");
+    },
+  },
+];
+
+const menuProps = {
+  items,
+  onClick: handleMenuClick,
+};
+
 const Header = () => {
-  const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.8]);
-  const translateY = useTransform(scrollYProgress, [0, 0.3], [0, 50]);
-  const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 1]);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  // Điều hướng và lưu trữ ID phần tử cần cuộn
-  const navigateAndScroll = (path, sectionId) => {
-    localStorage.setItem("scrollToSectionId", sectionId);
-    navigate(path);
-    setIsMobileMenuOpen(false);
-  };
-
-  // Tự động cuộn đến phần đã lưu trong localStorage sau khi chuyển trang
-  useEffect(() => {
-    const sectionId = localStorage.getItem("scrollToSectionId");
-    if (sectionId && location.pathname === "/") {
-      setTimeout(() => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
-          localStorage.removeItem("scrollToSectionId");
-        }
-      }, 200);
-    }
-  }, [location]);
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
   return (
-    <motion.div
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      // style={{
-      //   scale: scale,
-      //   opacity: opacity,
-      //   y: translateY,
-      // }}
-      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-[780px]  mx-auto mt-10 px-4"
-    >
-      <div
-        onClick={() => navigateAndScroll("/", "")}
-        className="flex flex-col cursor-pointer"
+    <div className="bg-black px-4 py-3 z-10 relative flex items-center custom-header">
+      <img src={Logo} className="h-10 w-50 logoHeader " />
+      <Dropdown
+        menu={menuProps}
+        placement="bottom"
+        icon={<UserOutlined />}
+        overlayClassName="custom-dropdown" // Thêm lớp tùy chỉnh
       >
-        <img className="w-24" src={Logo} alt="Logo" />
-        <p className="text-sm italic text-gray-400 mt-1">UIUX Designer</p>
-      </div>
-      <div className="flex items-center gap-4">
-        <div onClick={toggleMobileMenu} className="p-2 rounded-md bg-gray-200 lg:hidden cursor-pointer">
-          <SvgIcon
-            name={isMobileMenuOpen ? "close" : "menu"}
-            height={24}
-            width={24}
-            color={"var(--textDarkPrimary)"}
+        <div
+          onClick={(e) => e.preventDefault()}
+          className="flex items-center justify-center cursor-pointer" // Thêm cursor-pointer để cải thiện UX
+        >
+          <img
+            className="w-8 h-8 rounded-full object-cover mr-2"
+            src={avatar}
+            alt="User Avatar"
           />
-        </div>
-        {isMobileMenuOpen && (
-          <div className="fixed top-16 right-0 w-full p-6 bg-black/50 backdrop-blur-md flex flex-col z-40 lg:hidden">
-            <Button
-              text="Work"
-              onClick={() => navigateAndScroll("/", "work-section")}
-              className="mb-2"
-            />
-            <Button
-              text="Resume"
-              onClick={() => navigateAndScroll("/", "resume-section")}
-              className="mb-2"
-            />
-            <Button
-              text="Contact"
-              onClick={() => navigateAndScroll("/", "contact-section")}
-              className="mb-2"
-            />
+          <div className="flex flex-col items-start">
+            <span className="text-sm leading-5 text-white/90">Admin</span>
+            <span className="text-sm text-white/50 leading-5">Quản lý</span>
           </div>
-        )}
-        <div className="hidden lg:flex gap-4">
-          <Button
-            text="Work"
-            onClick={() => navigateAndScroll("/", "work-section")}
-          />
-          <Button
-            text="Resume"
-            onClick={() => navigateAndScroll("/", "resume-section")}
-          />
-          <Button
-            text="Contact"
-            onClick={() => navigateAndScroll("/", "contact-section")}
-          />
+          <DownOutlined className="ml-1 text-white/90" />
         </div>
-      </div>
-    </motion.div>
+      </Dropdown>
+    </div>
   );
 };
 

@@ -3,7 +3,11 @@ import "./style.css"; // Tạo file css để tùy chỉnh style
 // eslint-disable-next-line react/prop-types
 const Button = ({ onClick, text, icon, ...style }) => {
   return (
-    <button style={style} onClick={onClick} className="gradient-border-button backdrop-blur-2xl">
+    <button
+      style={style}
+      onClick={onClick}
+      className="gradient-border-button backdrop-blur-2xl"
+    >
       {icon && (
         <SvgIcon
           name={icon}
@@ -12,7 +16,7 @@ const Button = ({ onClick, text, icon, ...style }) => {
           height={24}
         />
       )}
-      <p>{text}</p>
+      <p className="text-white/60">{text}</p>
     </button>
   );
 };

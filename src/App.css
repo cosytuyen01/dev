@@ -20,3 +20,35 @@
   transform: scale(0.9);
   transition: opacity 500ms, transform 500ms;
 }
+.custom-width {
+  width: calc(100% - 210px);
+}
+.logoHeader{
+  display: none;
+}
+.custom-menuBottom{
+  display: none;
+}
+.custom-header{
+  justify-content: end ;
+}
+@media (max-width: 1200px) {
+  .hidden-custom {
+    display: none;
+  }
+  .custom-width {
+    width: calc(100%);
+  }
+  .custom-content {
+    width: 100% !important;
+  }
+  .custom-menuBottom{
+    display: block;
+  }
+  .logoHeader{
+    display: block;
+  }
+  .custom-header{
+    justify-content:space-between ;
+  }
+}

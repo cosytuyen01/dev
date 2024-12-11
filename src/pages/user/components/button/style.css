@@ -1,0 +1,26 @@
+/* Kiểu cho button */
+.custom-button {
+  background-color: #4caf50; /* Màu nền xanh */
+  border: none;
+  color: white; /* Màu chữ */
+  padding: 15px 32px; /* Khoảng cách trong và ngoài */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px; /* Bo tròn góc */
+  cursor: pointer;
+  transition: all 0.3s ease; /* Hiệu ứng chuyển động khi hover */
+}
+
+/* Thêm hiệu ứng hover */
+.custom-button:hover {
+  background-color: #45a049; /* Màu nền khi hover */
+  transform: scale(1.1); /* Tăng kích thước một chút */
+}
+
+/* Thêm hiệu ứng focus */
+.custom-button:focus {
+  outline: none; /* Xóa viền khi focus */
+  box-shadow: 0 0 10px rgba(72, 177, 106, 0.6); /* Viền sáng khi focus */
+}
