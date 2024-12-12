@@ -2,18 +2,51 @@ import { useState } from "react";
 import ButtonComponent from "../../../components/button";
 import CardProduct from "../../../components/cardProduct";
 import { PlusOutlined } from "@ant-design/icons";
-import { Button } from "antd";
-import { useNavigate } from "react-router-dom";
+import { Button, message } from "antd";
 import useProducts from "../../../hook/useProducts";
+import EditProduct from "../product/edit";
+import Loading from "../../../components/loading";
+
 export default function ProductPage() {
   const [activeTab, setActiveTab] = useState("All");
   const categories = ["All", "Website", "Mobile"];
-  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const [data, setData] = useState(null);
+  const {
+    products,
+    loading,
+    updateProduct,
+    addProduct,
+    deleteProduct,
+    fetchProducts,
+  } = useProducts();
 
-  const { products, loading, error } = useProducts();
-
-  const handleMenuClick = () => {
-    navigate(`detail`);
+  const handleEdit = (data) => {
+    setOpen(true);
+    setData(data);
+  };
+  const handleDelete = async () => {
+    try {
+      await deleteProduct(data.id);
+      message.success("Xóa sản phẩm thành công");
+      setOpen(false);
+      fetchProducts();
+    } catch (err) {
+      message.error("Có lỗi khi xóa kỹ năng", err); // Thông báo lỗi nếu có
+    }
+  };
+  const handleSave = async (product) => {
+    try {
+      (await data?.id) ? updateProduct(product) : addProduct(product);
+      setOpen(false);
+      message.success("Thêm sản phẩm thành công!");
+    } catch (err) {
+      console.error("Failed to save info:", err.message);
+    }
+  };
+  const onCloseAdd = () => {
+    setOpen(false);
+    setData(null);
   };
 
   return (
@@ -23,7 +56,12 @@ export default function ProductPage() {
           <h1 className="font-bold text-white/90 text-2xl ">
             Danh sách sản phẩm
           </h1>
-          <Button type="primary" shape="circle" icon={<PlusOutlined />} />
+          <Button
+            onClick={() => setOpen(true)}
+            type="primary"
+            shape="circle"
+            icon={<PlusOutlined />}
+          />
         </div>
         <div className="flex gap-4">
           {categories.map((tab, index) => (
@@ -41,18 +79,30 @@ export default function ProductPage() {
           ))}
         </div>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-4 px-4 pb-10">
-        {products?.map((product, index) => (
-          <CardProduct
-            key={index}
-            title={product.name}
-            category={product.category}
-            description={product.description}
-            url={product.image_url}
-            onClick={handleMenuClick}
-          />
-        ))}
-      </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-4 px-4 pb-10">
+          {products?.map((product, index) => (
+            <CardProduct
+              key={index}
+              title={product.name}
+              category={product.category}
+              description={product.description}
+              url={product.thumb}
+              onClick={() => handleEdit(product)}
+            />
+          ))}
+        </div>
+      )}
+
+      <EditProduct
+        isOpen={open}
+        onClose={onCloseAdd}
+        data={data}
+        onSave={handleSave}
+        onDelete={handleDelete}
+      />
     </div>
   );
 }

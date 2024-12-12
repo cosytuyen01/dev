@@ -45,7 +45,7 @@ function DashboardApp() {
   return (
     <ConfigProvider theme={customTheme}>
       <motion.div
-        className="fixed top-0 left-0 h-1 bg-green-500 origin-left z-20"
+        className="fixed top-0 left-0 h-1 origin-left z-20"
         style={{ scaleX: scrollY }}
       />
 

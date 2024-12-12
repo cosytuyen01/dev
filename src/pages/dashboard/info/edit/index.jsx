@@ -4,12 +4,14 @@ import { Button, Drawer, Form, Input, Upload, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import supabase from "../../../../supabaseClient";
+import SvgIcon from "../../../../assets/iconSvg";
 
-function EditInfo({ isOpen, onClose, data, onSave }) {
+function EditProduct({ isOpen, onClose, data, onSave }) {
   const [form] = Form.useForm();
   const [uploading, setUploading] = useState(false); // Trạng thái tải ảnh
   const [fileList, setFileList] = useState([]); // Quản lý danh sách file
   const [previewImage, setPreviewImage] = useState(data?.avatar); // Lưu ảnh preview từ thiết bị
+
   useEffect(() => {
     setPreviewImage(data?.avatar);
   }, [isOpen]);
@@ -99,20 +101,6 @@ function EditInfo({ isOpen, onClose, data, onSave }) {
         onFinish={onFinish}
       >
         <Form.Item
-          label="Họ & tên"
-          name="fullname"
-          rules={[
-            {
-              required: true,
-              message: "Vui lòng nhập họ tên của bạn!",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-
-        {/* Trường Avatar - chọn ảnh từ thiết bị */}
-        <Form.Item
           label="Avatar"
           name="avatar"
           rules={[
@@ -129,19 +117,36 @@ function EditInfo({ isOpen, onClose, data, onSave }) {
             showUploadList={false} // Không hiển thị danh sách ảnh đã tải lên
             onChange={handleFileChange} // Hàm xử lý khi chọn ảnh
           >
-            <Button icon={<UploadOutlined />} disabled={uploading}>
-              {uploading ? "Uploading..." : "Chọn ảnh avatar"}
-            </Button>
+            <div className="bg-black/5 relative mt-4 w-[150px] h-[150px] sm:w-[164px] sm:h-[164px] rounded-full">
+              <img
+                src={previewImage} // Link ảnh avatar chính
+                alt="Profile"
+                className="object-cover  w-[150px] h-[150px] sm:w-[164px] sm:h-[164px] rounded-full overflow-hidden"
+              />
+              <div className="absolute right-4 bottom-0 bg-white p-1 rounded-full cursor-pointer">
+                <SvgIcon
+                  name={"image"}
+                  color={"#6F6ADC"}
+                  height={24}
+                  width={24}
+                />
+              </div>
+            </div>
           </Upload>
         </Form.Item>
 
-        <div style={{ marginBottom: "16px" }}>
-          <img
-            src={previewImage} // Link ảnh avatar chính
-            alt="Profile"
-            className="object-cover  w-[150px] h-[150px] sm:w-[164px] sm:h-[164px] rounded-full overflow-hidden"
-          />
-        </div>
+        <Form.Item
+          label="Họ & tên"
+          name="fullname"
+          rules={[
+            {
+              required: true,
+              message: "Vui lòng nhập họ tên của bạn!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
 
         <Form.Item
           label="Nghề nghiệp"
@@ -179,11 +184,11 @@ function EditInfo({ isOpen, onClose, data, onSave }) {
             },
           ]}
         >
-          <Input.TextArea />
+          <Input.TextArea style={{ height: 100 }} />
         </Form.Item>
       </Form>
     </Drawer>
   );
 }
 
-export default EditInfo;
+export default EditProduct;

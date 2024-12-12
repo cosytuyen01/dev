@@ -23,14 +23,9 @@ const useProducts = () => {
   // Hàm thêm sản phẩm mới
   const addProduct = async (newProduct) => {
     try {
-      const { data, error } = await supabase
-        .from("products")
-        .insert([newProduct]);
-
+      const { error } = await supabase.from("products").insert([newProduct]);
       if (error) throw error;
-
-      // Cập nhật lại danh sách sản phẩm sau khi thêm
-      setProducts((prevProducts) => [...prevProducts, data[0]]);
+      fetchProducts();
     } catch (err) {
       setError("Failed to add product: " + err.message);
     }
@@ -39,19 +34,13 @@ const useProducts = () => {
   // Hàm sửa thông tin sản phẩm
   const updateProduct = async (updatedProduct) => {
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from("products")
         .update(updatedProduct)
         .eq("id", updatedProduct.id); // Giả sử id là trường duy nhất để xác định sản phẩm
 
       if (error) throw error;
-
-      // Cập nhật lại danh sách sản phẩm sau khi sửa
-      setProducts((prevProducts) =>
-        prevProducts.map((product) =>
-          product.id === updatedProduct.id ? data[0] : product
-        )
-      );
+      fetchProducts();
     } catch (err) {
       setError("Failed to update product: " + err.message);
     }
@@ -81,7 +70,15 @@ const useProducts = () => {
     fetchProducts();
   }, []);
 
-  return { products, loading, error, addProduct, updateProduct, deleteProduct };
+  return {
+    products,
+    loading,
+    error,
+    addProduct,
+    updateProduct,
+    deleteProduct,
+    fetchProducts,
+  };
 };
 
 export default useProducts;

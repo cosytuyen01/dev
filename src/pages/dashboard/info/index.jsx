@@ -9,6 +9,7 @@ import EditContact from "./editContact";
 import useSkills from "../../../hook/useSkill";
 import EditSkill from "./editSkill";
 import { message } from "antd";
+import Loading from "../../../components/loading";
 
 const SkeletonLoader = () => (
   <div className="w-full h-full bg-black/10 dark:bg-darkSubbg animate-pulse rounded-full" />
@@ -113,7 +114,7 @@ const InfoPage = () => {
         >
           <div className="relative z-10 w-[150px] h-[150px] sm:w-[164px] sm:h-[164px] rounded-full overflow-hidden">
             {loading ? (
-              <SkeletonLoader />
+              <Loading />
             ) : (
               // Khi ảnh tải thành công
               <img
