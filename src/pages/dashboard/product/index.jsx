@@ -50,7 +50,7 @@ export default function ProductPage() {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-screen">
       <div className="flex flex-col w-full p-4 gap-4">
         <div className="flex flex-row  items-center gap-4">
           <h1 className="font-bold text-white/90 text-2xl ">
@@ -89,7 +89,7 @@ export default function ProductPage() {
               title={product.name}
               category={product.category}
               description={product.description}
-              url={product.thumb}
+              imageSrc={product.thumb}
               onClick={() => handleEdit(product)}
             />
           ))}

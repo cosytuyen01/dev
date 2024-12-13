@@ -8,14 +8,21 @@ import SvgIcon from "../../../../assets/iconSvg";
 
 function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
   const [form] = Form.useForm();
-  const [uploading, setUploading] = useState(false); // Trạng thái tải ảnh
   const [fileList, setFileList] = useState([]); // Quản lý danh sách file
   const [previewImage, setPreviewImage] = useState(data?.thumb); // Lưu ảnh preview từ thiết bị
   const [fileListDetailImages, setFileListDetailImages] = useState(
-    data?.img_detail
+    data?.img_detail || []
   );
   const [previewImages, setPreviewImages] = useState(data?.img_detail);
-
+  useEffect(() => {
+    form.setFieldsValue({
+      name: data?.name || "",
+      thumb: data?.thumb || "",
+      img_detail: data?.img_detail || [],
+      category: data?.category || "",
+      description: data?.description || "",
+    });
+  }, [data, form]);
   useEffect(() => {
     setPreviewImage(data?.thumb);
     setFileListDetailImages(data?.img_detail);
@@ -27,12 +34,11 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
     let updatedInfo = { ...data, ...values };
 
     // Upload ảnh đại diện nếu có ảnh mới
-    if (fileList.length > 0) {
+    if (Array.isArray(fileList) && fileList.length > 0) {
       const file = fileList[0].originFileObj;
       const fileName = `${Date.now()}-${file.name}`;
 
       try {
-        setUploading(true);
         const { data, error } = await supabase.storage
           .from("image")
           .upload(fileName, file, { cacheControl: "3600", upsert: false });
@@ -44,74 +50,91 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
         form.setFieldsValue({
           thumb: publicURL,
         });
-        message.success("Avatar uploaded successfully");
 
         updatedInfo.thumb = publicURL;
       } catch (error) {
         message.error("Error uploading avatar: " + error.message);
-      } finally {
-        setUploading(false);
       }
     }
-
-    // Upload danh sách ảnh chi tiết
     const uploadedImages = await Promise.all(
-      fileListDetailImages?.map(async (file) => {
-        // Kiểm tra nếu file là URL thì bỏ qua
-        if (typeof file === "string") {
-          return file;
-        }
+      (Array.isArray(fileListDetailImages) ? fileListDetailImages : []).map(
+        async (file) => {
+          if (typeof file === "string") {
+            return file; // Ảnh cũ, giữ nguyên URL
+          }
+          try {
+            const fileName = `${Date.now()}-${file.name}`;
+            const { error } = await supabase.storage
+              .from("image")
+              .upload(fileName, file.originFileObj, {
+                cacheControl: "3600",
+                upsert: false,
+              });
 
-        const fileName = `${Date.now()}-${file.originFileObj.name}`;
-        try {
-          const { error } = await supabase.storage
-            .from("image")
-            .upload(fileName, file.originFileObj, {
-              cacheControl: "3600",
-              upsert: false,
-            });
+            if (error) {
+              console.error(
+                `Upload failed for ${file.originFileObj.name}:`,
+                error.message
+              );
+              return null;
+            }
 
-          if (error) {
-            message.error(`Error uploading image: ${file.originFileObj.name}`);
+            return `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`;
+          } catch (error) {
+            console.error(
+              `Unexpected error for ${file.originFileObj.name}:`,
+              error.message
+            );
             return null;
           }
-
-          const publicURL = `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`;
-          return publicURL;
-        } catch (error) {
-          message.error(
-            `Error uploading image: ${file.originFileObj.name} - ${error.message}`
-          );
-          return null;
         }
-      })
+      )
     );
 
     const validUploadedImages = uploadedImages.filter((url) => url !== null);
-    form.setFieldsValue({
-      img_detail: validUploadedImages,
-    });
-
-    updatedInfo.img_detail = validUploadedImages;
+    if (validUploadedImages.length > 0) {
+      form.setFieldsValue({ img_detail: validUploadedImages });
+      updatedInfo.img_detail = validUploadedImages;
+    } else {
+      message.warning("No detail images were successfully uploaded.");
+    }
 
     // Gọi hàm onSave với dữ liệu đã cập nhật
     onSave(updatedInfo);
   };
 
   const handleDetailImagesChange = ({ fileList }) => {
-    setFileListDetailImages(fileList);
+    const currentFiles = Array.isArray(fileListDetailImages)
+      ? fileListDetailImages
+      : [];
 
-    // Tạo danh sách preview URL cho các ảnh được chọn
-    const newPreviews = fileList?.map((file) => {
-      return {
-        url: URL.createObjectURL(file.originFileObj),
-        uid: file.uid,
-        name: file.name,
-        status: "done",
-      };
+    // Lấy danh sách file mới và loại bỏ trùng lặp
+    const newFiles = fileList.filter(
+      (file) =>
+        !currentFiles.some((existingFile) => existingFile.uid === file.uid)
+    );
+
+    // Cập nhật danh sách file
+    const updatedFileList = [...currentFiles, ...newFiles];
+    setFileListDetailImages(updatedFileList);
+
+    // Tạo danh sách preview URL
+    const newPreviews = newFiles.map((file) => ({
+      url: URL.createObjectURL(file.originFileObj),
+      uid: file.uid,
+      name: file.name,
+      status: "done",
+    }));
+
+    // Kiểm tra và cập nhật previewImages
+    setPreviewImages((prevPreviewImages) => {
+      const safePreviewImages = Array.isArray(prevPreviewImages)
+        ? prevPreviewImages
+        : [];
+      return [...safePreviewImages, ...newPreviews];
     });
-    setPreviewImages(newPreviews);
   };
+
   const handleDeleteImage = (index) => {
     setFileListDetailImages((prevList) =>
       prevList.filter((_, i) => i !== index)
@@ -142,7 +165,7 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
       open={isOpen}
       extra={
         <div className="flex gap-4 ">
-          <Button onClick={onDelete}>Xóa</Button>
+          {data?.id && <Button onClick={onDelete}>Xóa</Button>}
           <Button type="primary" onClick={() => form.submit()}>
             Lưu
           </Button>
@@ -181,9 +204,9 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
           <Upload
             name="thumb"
             accept="image/*"
-            fileList={fileList} // Sử dụng fileList để quản lý các file đã chọn
-            showUploadList={false} // Không hiển thị danh sách ảnh đã tải lên
-            onChange={handleFileChange} // Hàm xử lý khi chọn ảnh
+            fileList={fileList}
+            showUploadList={false}
+            onChange={handleFileChange}
           >
             <div className="bg-black/5 relative mt-4 w-[150px] h-[150px] sm:w-[164px] sm:h-[164px] rounded-xl">
               <img
@@ -234,7 +257,7 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
         </Form.Item>
 
         <Form.Item
-          label="Mô tả giới thiệu"
+          label="Mô tả"
           name="description"
           rules={[
             {
@@ -258,34 +281,37 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
             name="img_detail"
             accept="image/*"
             multiple
-            fileList={fileList} // Sử dụng fileList để quản lý các file đã chọn
+            fileList={fileListDetailImages} // Sử dụng fileList để quản lý các file đã chọn
             showUploadList={false} // Không hiển thị danh sách ảnh đã tải lên
             onChange={handleDetailImagesChange} // Hàm xử lý khi chọn ảnh
           >
             <Button icon={<UploadOutlined />}>Chọn ảnh chi tiết</Button>
           </Upload>
         </Form.Item>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-4">
-          {previewImages?.map((file, index) => (
-            <div key={index} className="relative">
-              <img
-                src={file?.url || file}
-                alt={file?.name || file}
-                className="object-cover w-[150px] h-[150px] sm:w-[164px] sm:h-[164px] rounded-xl"
-              />
-              <div
-                onClick={() => handleDeleteImage(index)}
-                className="bg-black/20 absolute right-2 top-2  p-1 rounded-full cursor-pointer"
-              >
-                <SvgIcon
-                  name={"close"}
-                  color={"black"}
-                  height={24}
-                  width={24}
+        <div className="flex flex-wrap gap-2 mt-4">
+          {previewImages?.map((file, index) => {
+            const src = typeof file === "string" ? file : file?.url;
+            return (
+              <div key={index} className="relative">
+                <img
+                  src={src}
+                  alt={file?.name || `Image ${index}`}
+                  className="object-cover w-[150px] h-[150px] sm:w-[164px] sm:h-[164px] rounded-xl"
                 />
+                <div
+                  onClick={() => handleDeleteImage(index)}
+                  className="bg-white/80 absolute right-2 top-2 p-1 rounded-full cursor-pointer"
+                >
+                  <SvgIcon
+                    name={"close"}
+                    color={"black"}
+                    height={24}
+                    width={24}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </Form>
     </Drawer>
