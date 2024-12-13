@@ -2,8 +2,6 @@
 import { motion } from "framer-motion";
 
 function ExperienceCard({ job, onClick }) {
-  console.log("job", job);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

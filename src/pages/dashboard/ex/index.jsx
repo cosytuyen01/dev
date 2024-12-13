@@ -17,7 +17,6 @@ function Experience() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-  console.log("work", work);
 
   const handleEdit = (data) => {
     setOpen(true);
@@ -34,11 +33,10 @@ function Experience() {
     }
   };
   const handleSave = async (product) => {
-    console.log("product", product);
-
     try {
       (await data?.id) ? updateWork(product) : addWork(product);
       setOpen(false);
+      setData(null);
       message.success(`Thêm kinh nghiệm thành công!`);
     } catch (err) {
       console.error("Failed to save info:", err.message);

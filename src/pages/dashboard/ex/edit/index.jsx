@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { Button, Drawer, Form, Input, Upload, message, DatePicker } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import supabase from "../../../../supabaseClient";
 import SvgIcon from "../../../../assets/iconSvg";
@@ -14,20 +12,29 @@ function EditWork({ isOpen, onClose, data, onSave, onDelete }) {
   const [form] = Form.useForm();
   const [uploading, setUploading] = useState(false); // Trạng thái tải ảnh
   const [fileList, setFileList] = useState([]); // Quản lý danh sách file
-  const [previewImage, setPreviewImage] = useState(data?.logo); // Lưu ảnh preview từ thiết bị
+  const [previewImage, setPreviewImage] = useState(null); // Lưu ảnh preview từ thiết bị
+  const [date, setDate] = useState(null); // Quản lý danh sách file
 
   useEffect(() => {
-    if (isOpen) {
-      form.setFieldsValue({
-        title: data?.title || "",
-        company: data?.company || "",
-        date: data?.date || "",
-        logo: data?.logo || "",
-        desc: data?.desc || "",
-      });
-    }
-    setPreviewImage(data?.logo);
-  }, [isOpen, data]); // Khi isOpen hoặc data thay đổi, cập nhật form
+    const dateRange = data?.date
+      ? [
+          dayjs(data?.date?.startDate, "MM/YYYY"),
+          dayjs(data?.date?.endDate, "MM/YYYY"),
+        ]
+      : [dayjs(), dayjs()];
+
+    setDate(dateRange);
+
+    form.setFieldsValue({
+      title: data?.title || "",
+      company: data?.company || "",
+      date: dateRange,
+      logo: data?.logo || "",
+      desc: data?.desc || "",
+    });
+
+    setPreviewImage(data ? data?.logo : null);
+  }, [isOpen, data]);
 
   // Hàm xử lý submit form
   const onFinish = async (values) => {
@@ -48,31 +55,28 @@ function EditWork({ isOpen, onClose, data, onSave, onDelete }) {
       ...data,
       ...values,
       date: { startDate, endDate }, // Lưu ngày dưới dạng object với tháng-năm
-      logo: file
-        ? `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`
-        : data?.logo, // URL của ảnh nếu có thay đổi, nếu không thì giữ lại logo cũ
+      logo: `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`,
     };
+    console.log("updatedInfo", updatedInfo);
 
     try {
       setUploading(true);
 
       if (file) {
         // Upload ảnh nếu có file
-        const { data, error } = await supabase.storage
+        const { error } = await supabase.storage
           .from("image")
           .upload(fileName, file, { cacheControl: "3600", upsert: false });
 
         if (error) throw error;
 
-        // Lấy public URL của ảnh vừa tải lên
-        const { publicURL, error: urlError } = supabase.storage
+        const { error: urlError } = supabase.storage
           .from("image")
           .getPublicUrl(fileName);
 
         if (urlError) throw urlError;
 
-        // Cập nhật lại thông tin nếu ảnh đã tải lên
-        updatedInfo.logo = publicURL;
+        updatedInfo.logo = `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`;
       }
 
       // Gọi onSave để lưu thông tin công việc đã cập nhật
@@ -122,7 +126,7 @@ function EditWork({ isOpen, onClose, data, onSave, onDelete }) {
         initialValues={{
           title: data?.title || "",
           company: data?.company || "",
-          date: data?.date || "",
+          date: date,
           logo: data?.logo || "",
           desc: data?.desc || "",
         }}
@@ -139,7 +143,7 @@ function EditWork({ isOpen, onClose, data, onSave, onDelete }) {
           name="logo"
           rules={[
             {
-              required: false,
+              required: true,
               message: "Vui lòng thêm logo!",
             },
           ]}
