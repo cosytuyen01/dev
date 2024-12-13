@@ -48,7 +48,10 @@ export default function ProductPage() {
     setOpen(false);
     setData(null);
   };
-
+  const filteredProducts =
+    activeTab === "All"
+      ? products
+      : products.filter((product) => product.category === activeTab);
   return (
     <div className="flex flex-col h-screen">
       <div className="flex flex-col w-full p-4 gap-4">
@@ -69,7 +72,7 @@ export default function ProductPage() {
               key={index}
               text={tab}
               style={{
-                background: activeTab === tab ? "var(--primaryColor)" : "",
+                background: activeTab === tab ? "#6F6ADC" : "",
               }}
               textStyle={{
                 color: activeTab === tab ? "#fff" : "var(--subTextDark)",
@@ -83,7 +86,7 @@ export default function ProductPage() {
         <Loading />
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-4 px-4 pb-10">
-          {products?.map((product, index) => (
+          {filteredProducts?.map((product, index) => (
             <CardProduct
               key={index}
               title={product.name}

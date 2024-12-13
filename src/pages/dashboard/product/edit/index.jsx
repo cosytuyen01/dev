@@ -5,9 +5,11 @@ import { UploadOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import supabase from "../../../../supabaseClient";
 import SvgIcon from "../../../../assets/iconSvg";
+import Loading from "../../../../components/loading";
 
 function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
   const [form] = Form.useForm();
+  const [uploading, setUploading] = useState(false); // Trạng thái tải ảnh
   const [fileList, setFileList] = useState([]); // Quản lý danh sách file
   const [previewImage, setPreviewImage] = useState(data?.thumb); // Lưu ảnh preview từ thiết bị
   const [fileListDetailImages, setFileListDetailImages] = useState(
@@ -18,6 +20,7 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
     form.setFieldsValue({
       name: data?.name || "",
       thumb: data?.thumb || "",
+      tools: data?.tools || [],
       img_detail: data?.img_detail || [],
       category: data?.category || "",
       description: data?.description || "",
@@ -28,69 +31,73 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
     setFileListDetailImages(data?.img_detail);
     setPreviewImages(data?.img_detail);
   }, [isOpen]);
-  console.log("data", data);
 
   const onFinish = async (values) => {
     let updatedInfo = { ...data, ...values };
+    setUploading(true); // Bắt đầu trạng thái loading
 
-    // Upload ảnh đại diện nếu có ảnh mới
+    // Định nghĩa một mảng promises để upload tất cả ảnh
+    const uploadPromises = [];
+
+    // Nếu có ảnh đại diện mới, thêm vào mảng uploadPromises
     if (Array.isArray(fileList) && fileList.length > 0) {
       const file = fileList[0].originFileObj;
-      const fileName = `${Date.now()}-${file.name}`;
+      const fileName = `${Date.now()}`;
 
-      try {
-        const { data, error } = await supabase.storage
+      uploadPromises.push(
+        supabase.storage
           .from("image")
-          .upload(fileName, file, { cacheControl: "3600", upsert: false });
+          .upload(fileName, file, { cacheControl: "3600", upsert: false })
+          .then(({ data, error }) => {
+            if (error) throw error;
 
-        if (error) throw error;
-
-        const publicURL = `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`;
-
-        form.setFieldsValue({
-          thumb: publicURL,
-        });
-
-        updatedInfo.thumb = publicURL;
-      } catch (error) {
-        message.error("Error uploading avatar: " + error.message);
-      }
+            const publicURL = `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`;
+            form.setFieldsValue({ thumb: publicURL });
+            updatedInfo.thumb = publicURL;
+          })
+          .catch((error) => {
+            message.error("Error uploading thumb: " + error.message);
+          })
+      );
     }
+
+    // Upload ảnh chi tiết nếu có
     const uploadedImages = await Promise.all(
       (Array.isArray(fileListDetailImages) ? fileListDetailImages : []).map(
-        async (file) => {
+        (file) => {
           if (typeof file === "string") {
             return file; // Ảnh cũ, giữ nguyên URL
           }
-          try {
-            const fileName = `${Date.now()}-${file.name}`;
-            const { error } = await supabase.storage
-              .from("image")
-              .upload(fileName, file.originFileObj, {
-                cacheControl: "3600",
-                upsert: false,
-              });
+          const fileName = `${Date.now()}`;
 
-            if (error) {
+          return supabase.storage
+            .from("image")
+            .upload(fileName, file.originFileObj, {
+              cacheControl: "3600",
+              upsert: false,
+            })
+            .then(({ error }) => {
+              if (error) {
+                console.error(
+                  `Thêm file thất bại: ${file.originFileObj.name}:`,
+                  error.message
+                );
+                return null;
+              }
+              return `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`;
+            })
+            .catch((error) => {
               console.error(
-                `Upload failed for ${file.originFileObj.name}:`,
+                `Unexpected error for ${file.originFileObj.name}:`,
                 error.message
               );
               return null;
-            }
-
-            return `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`;
-          } catch (error) {
-            console.error(
-              `Unexpected error for ${file.originFileObj.name}:`,
-              error.message
-            );
-            return null;
-          }
+            });
         }
       )
     );
 
+    // Lọc những ảnh upload thành công và cập nhật lại
     const validUploadedImages = uploadedImages.filter((url) => url !== null);
     if (validUploadedImages.length > 0) {
       form.setFieldsValue({ img_detail: validUploadedImages });
@@ -99,8 +106,15 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
       message.warning("No detail images were successfully uploaded.");
     }
 
-    // Gọi hàm onSave với dữ liệu đã cập nhật
-    onSave(updatedInfo);
+    // Chờ tất cả các ảnh upload hoàn tất
+    try {
+      await Promise.all(uploadPromises); // Chờ tất cả các promise (upload ảnh) hoàn tất
+    } catch (error) {
+      console.error("Có lỗi trong quá trình upload:", error);
+    } finally {
+      setUploading(false); // Kết thúc trạng thái loading
+      onSave(updatedInfo); // Gọi hàm onSave sau khi mọi thứ đã hoàn tất
+    }
   };
 
   const handleDetailImagesChange = ({ fileList }) => {
@@ -172,6 +186,7 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
         </div>
       }
     >
+      {uploading && <Loading />}
       <Form
         form={form}
         name="basic"
@@ -255,7 +270,23 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
             <Select.Option value="Graphic">Graphic</Select.Option>
           </Select>
         </Form.Item>
-
+        <Form.Item
+          label="Công cụ sử dụng"
+          name="tools"
+          rules={[
+            {
+              required: false,
+              message: "Vui lòng chọn công cụ!",
+            },
+          ]}
+        >
+          <Select mode="multiple" placeholder="Chọn công cụ">
+            <Select.Option value="Figma">Figma</Select.Option>
+            <Select.Option value="Adobe Ai">Adobe Ai</Select.Option>
+            <Select.Option value="Adobe Pts">Adobe Pts</Select.Option>
+            <Select.Option value="Adobe Xd">Adobe Ai</Select.Option>
+          </Select>
+        </Form.Item>
         <Form.Item
           label="Mô tả"
           name="description"

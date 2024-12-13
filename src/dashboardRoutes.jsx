@@ -6,6 +6,8 @@ import Sidebar from "./components/sideBar";
 import Header from "./components/header";
 import InfoPage from "./pages/dashboard/info";
 import ProductPage from "./pages/dashboard/product";
+import BottomMenu from "./components/bottomMenuDashboard";
+import Experience from "./pages/dashboard/ex";
 
 function DashboardApp() {
   const { scrollY } = useScroll();
@@ -66,7 +68,11 @@ function DashboardApp() {
             <Routes>
               <Route path="/" element={<InfoPage />} />
               <Route path="/products" element={<ProductPage />} />
+              <Route path="/work" element={<Experience />} />
             </Routes>
+          </div>
+          <div className={`${isMobile ? "block" : "hidden"}`}>
+            <BottomMenu />
           </div>
         </div>
       </div>

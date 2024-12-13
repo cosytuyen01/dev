@@ -1,56 +1,62 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { Button, Drawer, Form, Input, Upload, message } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import supabase from "../../../../supabaseClient";
 import SvgIcon from "../../../../assets/iconSvg";
-
-function EditProduct({ isOpen, onClose, data, onSave }) {
+import Loading from "../../../../components/loading";
+function EditInfo({ isOpen, onClose, data, onSave }) {
   const [form] = Form.useForm();
   const [uploading, setUploading] = useState(false); // Trạng thái tải ảnh
   const [fileList, setFileList] = useState([]); // Quản lý danh sách file
   const [previewImage, setPreviewImage] = useState(data?.avatar); // Lưu ảnh preview từ thiết bị
+  console.log("data", data);
 
   useEffect(() => {
     setPreviewImage(data?.avatar);
   }, [isOpen]);
   // Hàm xử lý submit form
   const onFinish = async (values) => {
-    // Nếu có ảnh mới, upload ảnh lên Supabase
-    if (fileList.length > 0) {
-      const file = fileList[0].originFileObj;
-      const fileName = `${Date.now()}-${file.name}`;
-      const updatedInfo = {
-        ...data,
-        ...values,
-        avatar: `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`,
-      };
+    if (fileList.length === 0) {
+      message.error("Vui lòng thêm avatar!");
+      return;
+    }
 
-      try {
-        setUploading(true);
-        const { data, error } = await supabase.storage
-          .from("image") // Tên bucket "image"
-          .upload(fileName, file, { cacheControl: "3600", upsert: false });
+    const file = fileList[0].originFileObj;
+    const fileName = `${Date.now()}-${file.name}`;
+    const updatedInfo = {
+      ...data,
+      ...values,
+      avatar: `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`,
+    };
 
-        if (error) throw error;
+    try {
+      setUploading(true);
+      const { data, error } = await supabase.storage
+        .from("image")
+        .upload(fileName, file, { cacheControl: "3600", upsert: false });
 
-        const { publicURL, error: urlError } = supabase.storage
-          .from("image")
-          .getPublicUrl(fileName);
+      if (error) throw error;
 
-        if (urlError) throw urlError;
+      const { publicURL, error: urlError } = supabase.storage
+        .from("image")
+        .getPublicUrl(fileName);
 
-        form.setFieldsValue({
-          avatar: publicURL,
-        });
-        message.success("Avatar uploaded successfully");
-      } catch (error) {
-        message.error("Error uploading avatar: " + error.message);
-      } finally {
-        setUploading(false);
-        onSave(updatedInfo);
-      }
+      if (urlError) throw urlError;
+
+      // Cập nhật avatar vào form
+      form.setFieldsValue({
+        avatar: publicURL, // Cập nhật lại avatar ở đây
+      });
+
+      message.success("Chỉnh sửa thông tin thành công");
+
+      // Lưu thông tin đã cập nhật
+      onSave(updatedInfo);
+    } catch (error) {
+      message.error("Chỉnh sửa thất bại: " + error.message);
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -81,6 +87,7 @@ function EditProduct({ isOpen, onClose, data, onSave }) {
         </Button>
       }
     >
+      {uploading && <Loading />}
       <Form
         form={form}
         name="basic"
@@ -105,7 +112,7 @@ function EditProduct({ isOpen, onClose, data, onSave }) {
           name="avatar"
           rules={[
             {
-              required: true,
+              required: false,
               message: "Vui lòng thêm avatar!",
             },
           ]}
@@ -117,7 +124,7 @@ function EditProduct({ isOpen, onClose, data, onSave }) {
             showUploadList={false} // Không hiển thị danh sách ảnh đã tải lên
             onChange={handleFileChange} // Hàm xử lý khi chọn ảnh
           >
-            <div className="bg-black/5 relative mt-4 w-[150px] h-[150px] sm:w-[164px] sm:h-[164px] rounded-full">
+            <div className="cursor-pointer bg-black/5 relative mt-4 w-[150px] h-[150px] sm:w-[164px] sm:h-[164px] rounded-full">
               <img
                 src={previewImage} // Link ảnh avatar chính
                 alt="Profile"
@@ -191,4 +198,4 @@ function EditProduct({ isOpen, onClose, data, onSave }) {
   );
 }
 
-export default EditProduct;
+export default EditInfo;
