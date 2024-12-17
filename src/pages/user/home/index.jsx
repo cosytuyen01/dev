@@ -24,7 +24,7 @@ function Home() {
 
   return (
     <div
-      className={`bg-backgroundPrimary dark:bg-darkBg pt-16 mx-auto pb-10 px-4 sm:px-6 lg:px-8 w-full lg:w-[752px] dark:text-white transition-colors duration-300 ${
+      className={`pt-16 mx-auto pb-10 px-4 sm:px-6 lg:px-8 w-full lg:w-[752px] dark:text-white transition-colors duration-300 ${
         loading ? "h-screen" : "h-full"
       }`}
     >
