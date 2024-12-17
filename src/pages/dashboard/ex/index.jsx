@@ -6,6 +6,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import useWork from "../../../hook/useWork";
 import Loading from "../../../components/loading";
 import EditWork from "./edit";
+import dayjs from "dayjs";
 
 function Experience() {
   const { pathname } = useLocation();
@@ -22,6 +23,14 @@ function Experience() {
     setOpen(true);
     setData(data);
   };
+  const sortedData = work.sort((a, b) => {
+    // So sánh `startDate` của 2 đối tượng
+    const dateA = dayjs(a.date.startDate, "MM/YYYY");
+    const dateB = dayjs(b.date.startDate, "MM/YYYY");
+
+    return dateB.isBefore(dateA) ? -1 : 1; // Nếu dateB < dateA, b đứng trước
+  });
+
   const handleDelete = async () => {
     try {
       await deleteWork(data.id);
@@ -60,7 +69,7 @@ function Experience() {
         />
       </div>
       {loading && <Loading />}
-      {work?.map((work, index) => (
+      {sortedData?.map((work, index) => (
         <ExperienceCard
           onClick={() => handleEdit(work)}
           key={index}

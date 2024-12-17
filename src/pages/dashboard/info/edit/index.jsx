@@ -14,20 +14,20 @@ function EditInfo({ isOpen, onClose, data, onSave }) {
 
   useEffect(() => {
     setPreviewImage(data?.avatar);
+    form.setFieldsValue({
+      avatar: data?.avatar || "",
+    });
   }, [isOpen]);
   // Hàm xử lý submit form
   const onFinish = async (values) => {
-    if (fileList.length === 0) {
-      message.error("Vui lòng thêm avatar!");
-      return;
-    }
-
-    const file = fileList[0].originFileObj;
-    const fileName = `${Date.now()}-${file.name}`;
+    const file = fileList[0]?.originFileObj;
+    const fileName = `${Date.now()}-${file?.name}`;
     const updatedInfo = {
       ...data,
       ...values,
-      avatar: `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`,
+      avatar:
+        previewImage ||
+        `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`,
     };
 
     try {
@@ -112,7 +112,7 @@ function EditInfo({ isOpen, onClose, data, onSave }) {
           name="avatar"
           rules={[
             {
-              required: false,
+              required: true,
               message: "Vui lòng thêm avatar!",
             },
           ]}

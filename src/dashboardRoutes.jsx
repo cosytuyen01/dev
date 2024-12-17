@@ -11,7 +11,6 @@ import Experience from "./pages/dashboard/ex";
 
 function DashboardApp() {
   const { scrollY } = useScroll();
-  const [isMenuVisible, setIsMenuVisible] = useState(true);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -27,10 +26,8 @@ function DashboardApp() {
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > lastScrollY && latest > 50) {
-      setIsMenuVisible(false);
       setIsHeaderVisible(false);
     } else if (latest < lastScrollY) {
-      setIsMenuVisible(true);
       setIsHeaderVisible(true);
     }
     setLastScrollY(latest);

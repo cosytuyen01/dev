@@ -24,7 +24,9 @@ function ExperienceCard({ job }) {
               <h3 className="text-lg font-semibold text-textLightPrimary dark:text-white/90">
                 {job.title}
               </h3>
-              <span className="text-[16px] text-gray-400">{job.date}</span>
+              <span className="text-[16px] text-gray-400">
+                {job.date.startDate} - {job.date.endDate}
+              </span>
             </div>
             <p className="text-subText dark:text-white/70 text-[16px]">
               {job.company}
@@ -33,7 +35,7 @@ function ExperienceCard({ job }) {
         </div>
       </div>
       <p className="text-[16px]  text-subText dark:text-white/70">
-        Công việc: {job?.description}
+        Công việc: {job?.desc}
       </p>
     </motion.div>
   );

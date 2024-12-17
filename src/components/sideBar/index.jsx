@@ -1,10 +1,11 @@
 import { Menu } from "antd";
 import {
   UserOutlined,
-  SettingOutlined,
+  LaptopOutlined,
   ProductOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+
 import Logo from "../../assets/images/Logo.svg";
 const Sidebar = () => {
   const navigate = useNavigate(); // Sử dụng hook điều hướng
@@ -37,9 +38,9 @@ const Sidebar = () => {
             label: "Sản phẩm",
           },
           {
-            key: "settings",
-            icon: <SettingOutlined />,
-            label: "Cài đặt",
+            key: "work",
+            icon: <LaptopOutlined />,
+            label: "Kinh nghiệm",
           },
         ]}
       />

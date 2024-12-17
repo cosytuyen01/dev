@@ -52,8 +52,10 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
             if (error) throw error;
 
             const publicURL = `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`;
-            form.setFieldsValue({ thumb: publicURL });
-            updatedInfo.thumb = publicURL;
+            form.setFieldsValue({
+              thumb: previewImage || (file ? publicURL : ""),
+            });
+            updatedInfo.thumb = previewImage || (file ? publicURL : "");
           })
           .catch((error) => {
             message.error("Error uploading thumb: " + error.message);
@@ -118,11 +120,12 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
   };
 
   const handleDetailImagesChange = ({ fileList }) => {
+    // Danh sách file hiện tại
     const currentFiles = Array.isArray(fileListDetailImages)
       ? fileListDetailImages
       : [];
 
-    // Lấy danh sách file mới và loại bỏ trùng lặp
+    // Lấy danh sách file mới và loại bỏ trùng lặp với các file đã có
     const newFiles = fileList.filter(
       (file) =>
         !currentFiles.some((existingFile) => existingFile.uid === file.uid)
@@ -132,7 +135,7 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
     const updatedFileList = [...currentFiles, ...newFiles];
     setFileListDetailImages(updatedFileList);
 
-    // Tạo danh sách preview URL
+    // Tạo danh sách preview URL cho các file mới
     const newPreviews = newFiles.map((file) => ({
       url: URL.createObjectURL(file.originFileObj),
       uid: file.uid,
@@ -140,12 +143,22 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
       status: "done",
     }));
 
-    // Kiểm tra và cập nhật previewImages
+    // Cập nhật previewImages với các ảnh mới, đảm bảo không trùng lặp
     setPreviewImages((prevPreviewImages) => {
       const safePreviewImages = Array.isArray(prevPreviewImages)
         ? prevPreviewImages
         : [];
-      return [...safePreviewImages, ...newPreviews];
+
+      // Loại bỏ các ảnh đã có trong previewImages
+      const updatedPreviewImages = [
+        ...safePreviewImages.filter(
+          (preview) =>
+            !newPreviews.some((newPreview) => newPreview.uid === preview.uid)
+        ),
+        ...newPreviews,
+      ];
+
+      return updatedPreviewImages;
     });
   };
 
@@ -284,7 +297,7 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
             <Select.Option value="Figma">Figma</Select.Option>
             <Select.Option value="Adobe Ai">Adobe Ai</Select.Option>
             <Select.Option value="Adobe Pts">Adobe Pts</Select.Option>
-            <Select.Option value="Adobe Xd">Adobe Ai</Select.Option>
+            <Select.Option value="Adobe Xd">Adobe Xd</Select.Option>
           </Select>
         </Form.Item>
         <Form.Item

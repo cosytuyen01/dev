@@ -2,10 +2,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { products } from "../data";
 import SvgIcon from "../../../../assets/iconSvg";
 import Modal from "react-modal";
 import "./style.css";
+import useProducts from "../../../../hook/useProducts";
 Modal.setAppElement("#root");
 const DetailProject = () => {
   const { pathname } = useLocation();
@@ -14,6 +14,7 @@ const DetailProject = () => {
   const [iconColor, setIconColor] = useState("black");
   const [selectedImage, setSelectedImage] = useState(0); // Ảnh đang được chọn
   const [isModalOpen, setIsModalOpen] = useState(false); // Trạng thái hiển thị modal
+  const { products, loading } = useProducts();
   const productData = products.find((product) => product.id === parseInt(id));
 
   useEffect(() => {
@@ -52,8 +53,12 @@ const DetailProject = () => {
     return () => observer.disconnect();
   }, []);
 
-  const oddImages = productData?.images.filter((_, index) => index % 2 === 0);
-  const evenImages = productData?.images.filter((_, index) => index % 2 !== 0);
+  const oddImages = productData?.img_detail.filter(
+    (_, index) => index % 2 === 0
+  );
+  const evenImages = productData?.img_detail.filter(
+    (_, index) => index % 2 !== 0
+  );
 
   const handleBackClick = () => {
     navigate(-1);
@@ -102,7 +107,7 @@ const DetailProject = () => {
       <div className="px-4">
         <motion.img
           transition={{ duration: 0.5, ease: "easeOut" }} // Thời gian chuyển động
-          src={productData?.images[0]}
+          src={productData?.thumb}
           initial={{ opacity: 0, y: 50 }} // Vị trí ban đầu (ngầm ở dưới)
           whileInView={{ opacity: 1, y: 0 }} // Khi ảnh vào viewport
           viewport={{ once: true }}
@@ -141,16 +146,16 @@ const DetailProject = () => {
             <p className="text-[18px] sm:text-[24px] text-textLightPrimary dark:text-white/90 pb-4">
               Vai trò {productData?.job}
             </p>
-            {productData.tools.map((tool, index) => (
+            {productData?.tools.map((tool, index) => (
               <div key={index} className="flex items-center gap-4 mb-4">
                 <img
-                  src={tool.logo}
+                  src={tool?.logo}
                   alt={tool.name}
                   className="w-14 h-14 rounded-md object-cover"
                 />
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800 dark:text-white/80">
-                    {tool.name}
+                    {tool}
                   </h3>
                   <p className="text-gray-800 dark:text-white/80">{tool.sub}</p>
                 </div>
@@ -166,14 +171,14 @@ const DetailProject = () => {
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="text-[16px] sm:text-[24px] text-textLightPrimary dark:text-white/90 pt-4"
           >
-            {productData.description}
+            {productData?.description}
           </motion.p>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-2 w-full max-w-[1200px] mt-4 pb-20">
           {/* Odd Images with Scroll Effect */}
           <div className="flex flex-col gap-2 w-full sm:w-1/2">
-            {oddImages.map((imageUrl, index) => (
+            {oddImages?.map((imageUrl, index) => (
               <motion.img
                 key={index}
                 src={imageUrl}
@@ -190,7 +195,7 @@ const DetailProject = () => {
 
           {/* Even Images with Scroll Effect */}
           <div className="flex flex-col gap-2 w-full sm:w-1/2">
-            {evenImages.map((imageUrl, index) => (
+            {evenImages?.map((imageUrl, index) => (
               <motion.img
                 key={index}
                 src={imageUrl}
@@ -223,12 +228,12 @@ const DetailProject = () => {
                 />
               </button>
               <img
-                src={productData?.images[selectedImage]}
+                src={productData?.img_detail[selectedImage]}
                 alt={`image-${selectedImage}`}
                 className="w-[100vw] h-[80vh] object-contain rounded-lg "
               />
               <div className="mt-4 flex gap-2  scroll-container hide-scrollbar">
-                {productData?.images.map((image, index) => (
+                {productData?.img_detail.map((image, index) => (
                   <img
                     key={index}
                     src={image}

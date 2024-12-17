@@ -22,7 +22,7 @@ function EditWork({ isOpen, onClose, data, onSave, onDelete }) {
           dayjs(data?.date?.endDate, "MM/YYYY"),
         ]
       : [dayjs(), dayjs()];
-
+    setPreviewImage(data?.logo);
     setDate(dateRange);
 
     form.setFieldsValue({
@@ -32,8 +32,6 @@ function EditWork({ isOpen, onClose, data, onSave, onDelete }) {
       logo: data?.logo || "",
       desc: data?.desc || "",
     });
-
-    setPreviewImage(data ? data?.logo : null);
   }, [isOpen, data]);
 
   // Hàm xử lý submit form
@@ -55,9 +53,12 @@ function EditWork({ isOpen, onClose, data, onSave, onDelete }) {
       ...data,
       ...values,
       date: { startDate, endDate }, // Lưu ngày dưới dạng object với tháng-năm
-      logo: `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`,
+      logo:
+        previewImage ||
+        (file
+          ? `https://supabase.co/storage/v1/object/public/image/${fileName}`
+          : ""),
     };
-    console.log("updatedInfo", updatedInfo);
 
     try {
       setUploading(true);
@@ -76,7 +77,11 @@ function EditWork({ isOpen, onClose, data, onSave, onDelete }) {
 
         if (urlError) throw urlError;
 
-        updatedInfo.logo = `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`;
+        updatedInfo.logo =
+          previewImage ||
+          (file
+            ? `https://supabase.co/storage/v1/object/public/image/${fileName}`
+            : "");
       }
 
       // Gọi onSave để lưu thông tin công việc đã cập nhật
