@@ -1,11 +1,19 @@
+/* eslint-disable no-unused-vars */
 import { useNavigate, useParams } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import SvgIcon from "../../../../assets/iconSvg";
+
 import Modal from "react-modal";
 import "./style.css";
 import useProducts from "../../../../hook/useProducts";
+
+import Figma from "../../../../assets/images/Figma.png";
+import Ai from "../../../../assets/images/Adobe Ai.png";
+import Pts from "../../../../assets/images/Adobe pts.png";
+import Xd from "../../../../assets/images/Adobe Xd.png";
+
 Modal.setAppElement("#root");
 const DetailProject = () => {
   const { pathname } = useLocation();
@@ -88,9 +96,20 @@ const DetailProject = () => {
   const opacityTool = useTransform(scrollYProgress, [0.3, 1], [1, 0]); // Opacity thay đổi từ 1 đến 0
   const opacityTitle = useTransform(scrollYProgress, [0.3, 1], [1, 0]); // Opacity thay đổi từ 1 đến 0
   const opacityDecs = useTransform(scrollYProgress, [0.4, 1], [1, 0]); // Opacity thay đổi từ 1 đến 0
+  const toolImages = {
+    Figma: Figma,
+    "Adobe Ai": Ai,
+    "Adobe Pts": Pts,
+    "Adobe Xd": Xd,
+  };
+  console.log("toolImages[tool.name]", toolImages["Figma"]);
 
   return (
-    <div className="sm:pt-[20px] lg:px-0 pt-[10px] flex flex-col items-center w-full lg:w-[752px] h-[100%]">
+    <div
+      className={`sm:pt-[20px] lg:px-0 pt-[10px] flex flex-col items-center w-full lg:w-[752px] h-[100%] ${
+        loading ? "h-screen" : "h-full"
+      }`}
+    >
       <div
         onClick={handleBackClick}
         className={`px-4  flex items-center gap-2 w-full cursor-pointer sticky top-0 z-${
@@ -128,7 +147,7 @@ const DetailProject = () => {
           className="flex flex-col w-full pt-4 border-b-[1px] border-black/10 dark:border-white/10 pb-4"
         >
           <h1 className="sm:text-start text-textColor dark:text-white/90 text-[26px] md:text-[40px] text-center font-bold w-full">
-            {productData?.title}
+            {productData?.name}
           </h1>
           <p className="text-subText text-[18px] sm:text-[24px] dark:text-white/60 text-center sm:text-start font-bold">
             {productData?.category}
@@ -144,14 +163,14 @@ const DetailProject = () => {
             className="pt-4 border-b-[1px] border-black/10 dark:border-white/10"
           >
             <p className="text-[18px] sm:text-[24px] text-textLightPrimary dark:text-white/90 pb-4">
-              Vai trò {productData?.job}
+              Vai trò {productData?.role}
             </p>
             {productData?.tools.map((tool, index) => (
               <div key={index} className="flex items-center gap-4 mb-4">
                 <img
-                  src={tool?.logo}
-                  alt={tool.name}
-                  className="w-14 h-14 rounded-md object-cover"
+                  src={toolImages[tool] || Figma}
+                  alt={tool}
+                  className="w-14 h-14 rounded-mdss object-cover"
                 />
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800 dark:text-white/80">

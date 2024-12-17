@@ -11,10 +11,11 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
   const [form] = Form.useForm();
   const [uploading, setUploading] = useState(false); // Trạng thái tải ảnh
   const [fileList, setFileList] = useState([]); // Quản lý danh sách file
-  const [previewImage, setPreviewImage] = useState(data?.thumb); // Lưu ảnh preview từ thiết bị
+  const [previewImage, setPreviewImage] = useState(""); // Lưu ảnh preview từ thiết bị
   const [fileListDetailImages, setFileListDetailImages] = useState(
     data?.img_detail || []
   );
+
   const [previewImages, setPreviewImages] = useState(data?.img_detail);
   useEffect(() => {
     form.setFieldsValue({
@@ -43,20 +44,17 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
     if (Array.isArray(fileList) && fileList.length > 0) {
       const file = fileList[0].originFileObj;
       const fileName = `${Date.now()}`;
-
+      const publicURL = `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`;
+      updatedInfo.thumb =
+        data?.thumb === previewImage ? previewImage : publicURL;
       uploadPromises.push(
         supabase.storage
           .from("image")
           .upload(fileName, file, { cacheControl: "3600", upsert: false })
           .then(({ data, error }) => {
             if (error) throw error;
-
-            const publicURL = `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`;
-            form.setFieldsValue({
-              thumb: previewImage || (file ? publicURL : ""),
-            });
-            updatedInfo.thumb = previewImage || (file ? publicURL : "");
           })
+
           .catch((error) => {
             message.error("Error uploading thumb: " + error.message);
           })
@@ -191,7 +189,7 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
       onClose={onClose}
       open={isOpen}
       extra={
-        <div className="flex gap-4 ">
+        <div className="flex gap-2 ">
           {data?.id && <Button onClick={onDelete}>Xóa</Button>}
           <Button type="primary" onClick={() => form.submit()}>
             Lưu
@@ -206,6 +204,7 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
         layout="vertical"
         initialValues={{
           name: data?.name || "",
+          role: data?.role || "",
           thumb: data?.thumb || "",
           img_detail: data?.img_detail || "",
           category: data?.category || "",
@@ -282,6 +281,18 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
             <Select.Option value="Website">Website</Select.Option>
             <Select.Option value="Graphic">Graphic</Select.Option>
           </Select>
+        </Form.Item>
+        <Form.Item
+          label="Vai trò trong dự án"
+          name="role"
+          rules={[
+            {
+              required: true,
+              message: "Vui lòng nhập tên sản phẩm!",
+            },
+          ]}
+        >
+          <Input placeholder="Vd: UIUX Designer" />
         </Form.Item>
         <Form.Item
           label="Công cụ sử dụng"

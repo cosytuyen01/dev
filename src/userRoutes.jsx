@@ -5,6 +5,7 @@ import BottomMenu from "./components/bottomMenu";
 import Projects from "./pages/user/projects";
 import About from "./pages/user/about";
 import DetailProject from "./pages/user/projects/detail";
+import "react-loading-skeleton/dist/skeleton.css";
 import {
   TransitionGroup,
   CSSTransition,
@@ -17,7 +18,7 @@ const UserRoutes = () => {
 
   return (
     <div className="bg-backgroundPrimary dark:bg-darkBg flex flex-col justify-center h-full">
-      <div className="flex-grow flex justify-center">
+      <div className="flex-grow flex justify-center ">
         {/* Apply transitions to all pages */}
         <TransitionGroup>
           <SwitchTransition>

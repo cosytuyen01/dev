@@ -22,14 +22,12 @@ function EditInfo({ isOpen, onClose, data, onSave }) {
   const onFinish = async (values) => {
     const file = fileList[0]?.originFileObj;
     const fileName = `${Date.now()}-${file?.name}`;
+    const publicURL = `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`;
     const updatedInfo = {
       ...data,
       ...values,
-      avatar:
-        previewImage ||
-        `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`,
     };
-
+    updatedInfo.avatar = publicURL !== previewImage ? publicURL : previewImage;
     try {
       setUploading(true);
       const { data, error } = await supabase.storage

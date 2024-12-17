@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import SvgIcon from "../../assets/iconSvg";
 import bgProfile from "../../assets/images/bg-profile.svg";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -11,18 +12,20 @@ const SkeletonLoader = () => (
 const UserProfileCard = () => {
   const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
-  const translateY = useTransform(scrollYProgress, [0, 0.3], [0, 100]);
+  const translateY = useTransform(scrollYProgress, [0, 0.3], [0, 0]);
   const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
   const { Infos, loading } = useInfo();
   return (
     <motion.div
       transition={{ duration: 0.5, ease: "easeOut" }}
-      style={{
-        scale: scale,
-        opacity: opacity,
-        y: translateY,
-      }}
+      style={
+        {
+          // scale: scale,
+          // opacity: opacity,
+          // y: translateY,
+        }
+      }
       className="relative flex items-center rounded-lg gap-6 flex-col sm:flex-row"
     >
       {/* Avatar Background */}

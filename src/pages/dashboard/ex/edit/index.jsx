@@ -12,7 +12,7 @@ function EditWork({ isOpen, onClose, data, onSave, onDelete }) {
   const [form] = Form.useForm();
   const [uploading, setUploading] = useState(false); // Trạng thái tải ảnh
   const [fileList, setFileList] = useState([]); // Quản lý danh sách file
-  const [previewImage, setPreviewImage] = useState(null); // Lưu ảnh preview từ thiết bị
+  const [previewImage, setPreviewImage] = useState(""); // Lưu ảnh preview từ thiết bị
   const [date, setDate] = useState(null); // Quản lý danh sách file
 
   useEffect(() => {
@@ -33,6 +33,7 @@ function EditWork({ isOpen, onClose, data, onSave, onDelete }) {
       desc: data?.desc || "",
     });
   }, [isOpen, data]);
+  console.log("data", data);
 
   // Hàm xử lý submit form
   const onFinish = async (values) => {
@@ -53,13 +54,9 @@ function EditWork({ isOpen, onClose, data, onSave, onDelete }) {
       ...data,
       ...values,
       date: { startDate, endDate }, // Lưu ngày dưới dạng object với tháng-năm
-      logo:
-        previewImage ||
-        (file
-          ? `https://supabase.co/storage/v1/object/public/image/${fileName}`
-          : ""),
     };
-
+    const publicURL = `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`;
+    updatedInfo.logo = data?.logo === previewImage ? previewImage : publicURL;
     try {
       setUploading(true);
 
@@ -76,20 +73,14 @@ function EditWork({ isOpen, onClose, data, onSave, onDelete }) {
           .getPublicUrl(fileName);
 
         if (urlError) throw urlError;
-
-        updatedInfo.logo =
-          previewImage ||
-          (file
-            ? `https://supabase.co/storage/v1/object/public/image/${fileName}`
-            : "");
       }
 
       // Gọi onSave để lưu thông tin công việc đã cập nhật
-      onSave(updatedInfo);
     } catch (error) {
       message.error("Chỉnh sửa thất bại: " + error.message);
     } finally {
       setUploading(false);
+      onSave(updatedInfo);
     }
   };
 
@@ -115,7 +106,7 @@ function EditWork({ isOpen, onClose, data, onSave, onDelete }) {
       onClose={onClose}
       open={isOpen}
       extra={
-        <div className="flex gap-4">
+        <div className="flex gap-2">
           {data?.id && <Button onClick={onDelete}>Xóa</Button>}
           <Button type="primary" onClick={() => form.submit()}>
             Lưu
