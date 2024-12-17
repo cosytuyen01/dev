@@ -9,20 +9,20 @@ import "./style.css";
 const handleMenuClick = () => {};
 
 const items = [
-  {
-    label: <p className="text-red ml-2">Đổi mật khẩu</p>,
-    key: "1",
-    icon: <SvgIcon name={"pass"} color={"var(--red)"} height={24} width={24} />,
-    onClick: () => {},
-  },
-  {
-    label: <p className="text-red ml-2">Đăng xuất</p>,
-    key: "2",
-    icon: (
-      <SvgIcon name={"logOut"} color={"var(--red)"} height={24} width={24} />
-    ),
-    onClick: () => {},
-  },
+  // {
+  //   label: <p className="text-red ml-2">Đổi mật khẩu</p>,
+  //   key: "1",
+  //   icon: <SvgIcon name={"pass"} color={"var(--red)"} height={24} width={24} />,
+  //   onClick: () => {},
+  // },
+  // {
+  //   label: <p className="text-red ml-2">Đăng xuất</p>,
+  //   key: "2",
+  //   icon: (
+  //     <SvgIcon name={"logOut"} color={"var(--red)"} height={24} width={24} />
+  //   ),
+  //   onClick: () => {},
+  // },
 ];
 
 const menuProps = {

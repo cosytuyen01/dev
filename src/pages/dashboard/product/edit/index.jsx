@@ -43,7 +43,9 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
     // Nếu có ảnh đại diện mới, thêm vào mảng uploadPromises
     if (Array.isArray(fileList) && fileList.length > 0) {
       const file = fileList[0].originFileObj;
-      const fileName = `${Date.now()}`;
+      const fileName = `${Date.now()}-${Math.random()
+        .toString(36)
+        .substr(2, 9)}`;
       const publicURL = `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`;
       updatedInfo.thumb =
         data?.thumb === previewImage ? previewImage : publicURL;
@@ -68,7 +70,9 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
           if (typeof file === "string") {
             return file; // Ảnh cũ, giữ nguyên URL
           }
-          const fileName = `${Date.now()}`;
+          const fileName = `${Date.now()}-${Math.random()
+            .toString(36)
+            .substr(2, 9)}`;
 
           return supabase.storage
             .from("image")

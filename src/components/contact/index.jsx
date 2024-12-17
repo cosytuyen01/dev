@@ -90,7 +90,9 @@ const Contact = () => {
         <span className="text-gray-500 dark:text-white/50">
           Giờ địa phương:
         </span>
-        <span className="font-medium">{localTime || "00:00:00"}</span>
+        <span className="font-medium text-black dark:text-white/80">
+          {localTime || "00:00:00"}
+        </span>
       </div>
     </div>
   );
