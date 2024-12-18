@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useNavigate, useParams } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -61,12 +62,7 @@ const DetailProject = () => {
     return () => observer.disconnect();
   }, []);
 
-  const oddImages = productData?.img_detail.filter(
-    (_, index) => index % 2 === 0
-  );
-  const evenImages = productData?.img_detail.filter(
-    (_, index) => index % 2 !== 0
-  );
+  const allImages = productData?.img_detail || [];
 
   const handleBackClick = () => {
     navigate(-1);
@@ -131,6 +127,7 @@ const DetailProject = () => {
           <div className="w-full h-64 bg-gray-200 dark:bg-darkSubbg animate-pulse rounded-xl mt-4"></div>
         ) : (
           <motion.img
+            loading="lazy"
             transition={{ duration: 0.5, ease: "easeOut" }}
             src={productData?.thumb}
             initial={{ opacity: 0, y: 50 }}
@@ -150,10 +147,12 @@ const DetailProject = () => {
           <div className="w-full mt-4 bg-gray-200 dark:bg-darkSubbg animate-pulse h-8 rounded-lg"></div>
         ) : (
           <motion.div
-            style={{
-              opacity: opacityTitle,
-              translateY: translateY,
-            }}
+            style={
+              {
+                // opacity: opacityTitle,
+                // translateY: translateY,
+              }
+            }
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="flex flex-col w-full pt-4 border-b-[1px] border-black/10 dark:border-white/10 pb-4"
           >
@@ -183,10 +182,12 @@ const DetailProject = () => {
             </div>
           ) : (
             <motion.div
-              style={{
-                opacity: opacityTool,
-                translateY: translateY,
-              }}
+              style={
+                {
+                  // opacity: opacityTool,
+                  // translateY: translateY,
+                }
+              }
               transition={{ duration: 0.5, ease: "easeOut" }}
               className="pt-4 border-b-[1px] border-black/10 dark:border-white/10"
             >
@@ -196,6 +197,7 @@ const DetailProject = () => {
               {productData?.tools.map((tool, index) => (
                 <div key={index} className="flex items-center gap-4 mb-4">
                   <img
+                    loading="lazy"
                     src={toolImages[tool] || Figma}
                     alt={tool}
                     className="w-14 h-14 rounded-mdss object-cover"
@@ -218,10 +220,12 @@ const DetailProject = () => {
             <div className="h-4 bg-gray-200 dark:bg-darkSubbg animate-pulse rounded-md w-full mt-4"></div>
           ) : (
             <motion.p
-              style={{
-                opacity: opacityDecs,
-                translateY: translateY,
-              }}
+              style={
+                {
+                  // opacity: opacityDecs,
+                  // translateY: translateY,
+                }
+              }
               transition={{ duration: 0.5, ease: "easeOut" }}
               className="text-[16px] sm:text-[24px] text-textLightPrimary dark:text-white/90 pt-4"
             >
@@ -230,15 +234,15 @@ const DetailProject = () => {
           )}
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-2 w-full max-w-[1200px] mt-4 pb-20">
-          {/* Odd Images with Scroll Effect */}
-          <div className="flex flex-col gap-2 w-full sm:w-1/2">
-            {oddImages?.map((imageUrl, index) => (
+        <div className="flex sm:flex-row gap-2 w-full max-w-[1200px] mt-4 pb-20  ">
+          <div className="flex flex-wrap gap-4">
+            {allImages?.map((imageUrl, index) => (
               <motion.img
+                loading="lazy"
                 key={index}
                 src={imageUrl}
-                alt="Odd Image"
-                className="rounded-2xl cursor-pointer w-full object-contain"
+                alt={`Image-${index}`}
+                className="rounded-2xl cursor-pointer w-full sm:w-[calc(50%-8px)] object-contain"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
@@ -248,22 +252,6 @@ const DetailProject = () => {
             ))}
           </div>
 
-          {/* Even Images with Scroll Effect */}
-          <div className="flex flex-col gap-2 w-full sm:w-1/2">
-            {evenImages?.map((imageUrl, index) => (
-              <motion.img
-                key={index}
-                src={imageUrl}
-                alt="Even Image"
-                className="rounded-2xl cursor-pointer w-full object-contain"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5 }}
-                onClick={() => openModal(index)}
-              />
-            ))}
-          </div>
           <Modal
             isOpen={isModalOpen}
             onRequestClose={closeModal}
@@ -293,7 +281,7 @@ const DetailProject = () => {
                     key={index}
                     src={image}
                     alt={`image-${index}`}
-                    className={`w-16 h-16 object-cover cursor-pointer transition-all duration-100 rounded-lg ${
+                    className={`w-[64px] h-[64px] object-cover cursor-pointer transition-all duration-100 rounded-lg ${
                       selectedImage === index
                         ? "border-4 border-blue-500 shadow-lg"
                         : "opacity-50"
