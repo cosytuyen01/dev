@@ -4,14 +4,7 @@ import Skeleton from "react-loading-skeleton"; // Import Skeleton
 // eslint-disable-next-line react/prop-types
 const ProductCard = ({ imageSrc, title, category, onClick, loading }) => {
   return (
-    <motion.div
-      className="w-full rounded-xl cursor-pointer"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5 }}
-      onClick={onClick}
-    >
+    <motion.div className="w-full rounded-xl cursor-pointer" onClick={onClick}>
       <div className="overflow-hidden rounded-xl">
         {/* Skeleton loader for image */}
         {loading ? (

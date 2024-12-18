@@ -17,8 +17,8 @@ const UserRoutes = () => {
   const location = useLocation(); // Hook to get the current path
 
   return (
-    <div className="bg-backgroundPrimary dark:bg-darkBg flex flex-col justify-center">
-      <div className="flex-grow flex justify-center ">
+    <div className="bg-backgroundPrimary dark:bg-darkBg flex flex-col justify-center ">
+      <div className="flex-grow flex justify-center">
         {/* Apply transitions to all pages */}
         <TransitionGroup>
           <SwitchTransition>

@@ -16,7 +16,7 @@ const ProductCardList = ({ isHome, activeTab }) => {
   const displayedProducts = isHome ? products.slice(0, 4) : products;
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col">
       {isHome && (
         <h2 className="text-start w-full mb-6 text-[32px] font-semibold text-gray-800 dark:text-white/80">
           Sản phẩm
