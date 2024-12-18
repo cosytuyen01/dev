@@ -3,6 +3,7 @@ import SvgIcon from "../../assets/iconSvg";
 import bgProfile from "../../assets/images/bg-profile.svg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import useInfo from "../../hook/useInfo";
+import { Helmet } from "react-helmet";
 
 // Skeleton Loader Component
 const SkeletonLoader = () => (
@@ -27,6 +28,10 @@ const UserProfileCard = () => {
       }}
       className="relative flex items-center rounded-lg gap-6 flex-col sm:flex-row"
     >
+      <Helmet>
+        <title> {Infos?.[0]?.fullname || "Portfolio"}</title>
+        <link rel="icon" href={Infos?.[0]?.avatar} type="image/png" />
+      </Helmet>
       {/* Avatar Background */}
       <img
         src={bgProfile}

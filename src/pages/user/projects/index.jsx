@@ -3,6 +3,7 @@ import InfoPage from "../../../components/infoPage";
 import ProductCardList from "../../../components/productList";
 import Tabs from "../../../components/tabs";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 
 function Projects() {
   const [activeTab, setActiveTab] = useState("All");
@@ -14,6 +15,9 @@ function Projects() {
 
   return (
     <div className="pt-16 mx-auto pb-10  sm:px-6 lg:px-8 w-full lg:w-[752px] ">
+      <Helmet>
+        <title>Danh sách sản phẩm</title>
+      </Helmet>
       <InfoPage
         title={"Sản phẩm"}
         desc={"Một số sản phẩm đã làm nhiều năm qua"}

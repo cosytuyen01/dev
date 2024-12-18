@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import ExperienceList from "../../../components/ExList";
 import { motion, useScroll, useTransform } from "framer-motion";
 import useInfo from "../../../hook/useInfo";
+import { Helmet } from "react-helmet";
 
 function About() {
   const { pathname } = useLocation();
@@ -28,6 +29,10 @@ function About() {
     <div
       className={`pt-16 mx-auto pb-10 px-4 sm:px-6 lg:px-8 w-full lg:w-[752px] `}
     >
+      <Helmet>
+        <title>Giới thiệu về {Infos?.[0]?.fullname || "Portfolio"}</title>
+        <link rel="icon" href={Infos?.[0]?.avatar} type="image/png" />
+      </Helmet>
       {/* Title and Description */}
       <InfoPage title={"Giới thiệu"} desc={"Thông tin giới thiệu chi tiết"} />
 
