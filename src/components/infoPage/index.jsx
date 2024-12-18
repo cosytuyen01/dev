@@ -11,13 +11,11 @@ function InfoPage({ title, desc }) {
   return (
     <motion.div
       transition={{ duration: 0.5, ease: "easeOut" }}
-      style={
-        {
-          // scale: scale,
-          // opacity: opacity,
-          // y: translateY,
-        }
-      }
+      style={{
+        scale: scale,
+        opacity: opacity,
+        y: translateY,
+      }}
       className="relative flex items-center rounded-lg gap-6 flex-col w-[100%] h-[120px]"
     >
       <img

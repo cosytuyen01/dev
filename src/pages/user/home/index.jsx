@@ -3,7 +3,7 @@ import Contact from "../../../components/contact";
 import HashtagList from "../../../components/hashtags";
 import ProductCardList from "../../../components/productList";
 import UserProfileCard from "../../../components/userProfileCard";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ExperienceList from "../../../components/ExList";
 import { useScroll, useTransform, motion } from "framer-motion";
 import useInfo from "../../../hook/useInfo";
@@ -22,9 +22,7 @@ function Home() {
 
   return (
     <div
-      className={`pt-16 mx-auto pb-10 px-4 sm:px-6 lg:px-8 w-full lg:w-[752px] transition-colors duration-300 ${
-        loading ? "h-screen" : "h-full"
-      }`}
+      className={`pt-16 mx-auto pb-10 px-4 sm:px-6 lg:px-8 w-full lg:w-[752px] transition-colors duration-300 `}
     >
       <UserProfileCard />
 

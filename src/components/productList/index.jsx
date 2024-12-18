@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import ProductCard from "../productCard";
 import useProducts from "../../hook/useProducts";
-import Loading from "../loading";
 
 // eslint-disable-next-line react/prop-types
 const ProductCardList = ({ isHome, activeTab }) => {
@@ -26,16 +25,23 @@ const ProductCardList = ({ isHome, activeTab }) => {
           </h2>
         )}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {/* Skeleton Loader when loading */}
           {(isHome ? displayedProducts : filteredProducts)?.map(
             (product, index) => (
-              <ProductCard
-                key={index}
-                loading={loading}
-                imageSrc={product.thumb}
-                title={product.name}
-                category={product.category}
-                onClick={() => handleCardClick(product.id)}
-              />
+              <div key={index} className="relative">
+                {loading ? (
+                  <div className="animate-pulse bg-gray-200 dark:bg-darkSubbg rounded-md h-64 w-full"></div>
+                ) : (
+                  <ProductCard
+                    key={product.id}
+                    loading={loading}
+                    imageSrc={product.thumb}
+                    title={product.name}
+                    category={product.category}
+                    onClick={() => handleCardClick(product.id)}
+                  />
+                )}
+              </div>
             )
           )}
         </div>

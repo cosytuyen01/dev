@@ -16,16 +16,15 @@ const UserProfileCard = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
   const { Infos, loading } = useInfo();
+
   return (
     <motion.div
       transition={{ duration: 0.5, ease: "easeOut" }}
-      style={
-        {
-          // scale: scale,
-          // opacity: opacity,
-          // y: translateY,
-        }
-      }
+      style={{
+        scale: scale,
+        opacity: opacity,
+        y: translateY,
+      }}
       className="relative flex items-center rounded-lg gap-6 flex-col sm:flex-row"
     >
       {/* Avatar Background */}
@@ -34,11 +33,12 @@ const UserProfileCard = () => {
         alt="Profile"
         className="absolute top-0 left-0 w-full h-full object-cover rounded-lg z-0 dark:opacity-5"
       />
+
+      {/* Avatar */}
       <div className="relative z-10 w-[150px] h-[150px] sm:w-[164px] sm:h-[164px] rounded-full overflow-hidden">
         {loading ? (
           <SkeletonLoader />
         ) : (
-          // Khi ảnh tải thành công
           <img
             src={Infos?.[0]?.avatar} // Link ảnh avatar chính
             alt="Profile"
@@ -49,14 +49,34 @@ const UserProfileCard = () => {
 
       {/* User Information */}
       <div className="relative z-10 flex flex-col items-center sm:items-start">
+        {/* User Fullname */}
         <div className="text-center sm:text-start flex items-center text-textColor dark:text-white/90 text-[26px] md:text-[40px] font-bold">
-          {Infos?.[0]?.fullname || "Đang tải..."}
-          <span className="ml-2">
-            <SvgIcon name={"check"} height={30} width={30} color={"#2b9cd5"} />
-          </span>
+          {loading ? (
+            <div className="animate-pulse bg-gray-200 dark:bg-darkSubbg rounded-md h-6 w-[200px] mx-auto"></div>
+          ) : (
+            <>
+              {Infos?.[0]?.fullname}
+              <span className="ml-2">
+                <SvgIcon
+                  name={"check"}
+                  height={30}
+                  width={30}
+                  color={"#2b9cd5"}
+                />
+              </span>
+            </>
+          )}
         </div>
+
+        {/* Job & Location */}
         <div className="text-subText text-[18px] sm:text-[24px] dark:text-white/60 text-center sm:text-start">
-          {Infos?.[0]?.job || "Đang tải..."} &bull; {Infos?.[0]?.location}
+          {loading ? (
+            <div className="animate-pulse bg-gray-200 dark:bg-darkSubbg rounded-md h-5 w-[150px] mx-auto mt-2"></div>
+          ) : (
+            <p className="text-subText text-[18px] sm:text-[24px] text-center md:text-start dark:text-white/60">
+              {Infos?.[0]?.job || "Đang tải..."} &bull; {Infos?.[0]?.location}
+            </p>
+          )}
         </div>
       </div>
     </motion.div>
