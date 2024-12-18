@@ -1,6 +1,5 @@
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
 import { Dropdown } from "antd";
-import SvgIcon from "../../assets/iconSvg";
 import avatar from "../../assets/images/avatar.png";
 import Logo from "../../assets/images/Logo.svg";
 
