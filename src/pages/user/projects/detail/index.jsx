@@ -10,7 +10,7 @@ import "./style.css";
 import useProducts from "../../../../hook/useProducts";
 
 import Figma from "../../../../assets/images/Figma.png";
-import Ai from "../../../../assets/images/Adobe Ai.png";
+import Ai from "../../../../assets/images/Adobe Ai.webp";
 import Pts from "../../../../assets/images/Adobe pts.png";
 import Xd from "../../../../assets/images/Adobe Xd.png";
 import { Helmet } from "react-helmet";
@@ -87,7 +87,7 @@ const DetailProject = () => {
   };
 
   const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   const translateY = useTransform(scrollYProgress, [0.1, 0.3], [0, 0]);
   const opacityTool = useTransform(scrollYProgress, [0.3, 1], [1, 0]);
   const opacityTitle = useTransform(scrollYProgress, [0.3, 1], [1, 0]);
@@ -159,7 +159,7 @@ const DetailProject = () => {
             <h1 className="sm:text-start text-textColor dark:text-white/90 text-[26px] md:text-[40px] text-center font-bold w-full">
               {productData?.name}
             </h1>
-            <p className="text-subText text-[18px] sm:text-[24px] dark:text-white/60 text-center sm:text-start font-bold">
+            <p className="text-subText text-[18px] sm:text-[24px] dark:text-white/80 text-center sm:text-start font-bold">
               {productData?.category}
             </p>
           </motion.div>

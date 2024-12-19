@@ -23,14 +23,14 @@
 .custom-width {
   width: calc(100% - 210px);
 }
-.logoHeader{
+.logoHeader {
   display: none;
 }
-.custom-menuBottom{
+.custom-menuBottom {
   display: none;
 }
-.custom-header{
-  justify-content: end ;
+.custom-header {
+  justify-content: end;
 }
 @media (max-width: 1200px) {
   .hidden-custom {
@@ -42,13 +42,25 @@
   .custom-content {
     width: 100% !important;
   }
-  .custom-menuBottom{
+  .custom-menuBottom {
     display: block;
   }
-  .logoHeader{
+  .logoHeader {
     display: block;
   }
-  .custom-header{
-    justify-content:space-between ;
+  .custom-header {
+    justify-content: space-between;
   }
+}
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #6f6adc;
+  border-radius: 100px;
+  transform-origin: 0%;
+  z-index: 100;
+  background-color: #6f6adc;
 }

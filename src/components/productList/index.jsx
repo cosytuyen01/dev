@@ -34,7 +34,6 @@ const ProductCardList = ({ isHome, activeTab }) => {
               ) : (
                 <ProductCard
                   key={product.id}
-                  loading={loading}
                   imageSrc={product.thumb}
                   title={product.name}
                   category={product.category}
