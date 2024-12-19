@@ -55,7 +55,7 @@ function EditWork({ isOpen, onClose, data, onSave, onDelete }) {
       ...values,
       date: { startDate, endDate }, // Lưu ngày dưới dạng object với tháng-năm
     };
-    const publicURL = `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`;
+    const publicURL = `https://fcijucimrhbtywyadqlb.supabase.co/storage/v1/object/public/image/${fileName}`;
     updatedInfo.logo = data?.logo === previewImage ? previewImage : publicURL;
     try {
       setUploading(true);

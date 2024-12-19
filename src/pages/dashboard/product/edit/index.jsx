@@ -46,7 +46,7 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
       const fileName = `${Date.now()}-${Math.random()
         .toString(36)
         .substr(2, 9)}`;
-      const publicURL = `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`;
+      const publicURL = `https://fcijucimrhbtywyadqlb.supabase.co/storage/v1/object/public/image/${fileName}`;
       updatedInfo.thumb =
         data?.thumb === previewImage ? previewImage : publicURL;
       uploadPromises.push(
@@ -88,7 +88,7 @@ function EditInfo({ isOpen, onClose, data, onSave, onDelete }) {
                 );
                 return null;
               }
-              return `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`;
+              return `https://fcijucimrhbtywyadqlb.supabase.co/storage/v1/object/public/image/${fileName}`;
             })
             .catch((error) => {
               console.error(

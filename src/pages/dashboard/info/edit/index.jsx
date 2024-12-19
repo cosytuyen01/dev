@@ -22,7 +22,7 @@ function EditInfo({ isOpen, onClose, data, onSave }) {
   const onFinish = async (values) => {
     const file = fileList[0]?.originFileObj;
     const fileName = `${Date.now()}-${file?.name}`;
-    const publicURL = `https://uvfozqvlvnitqnhykkqr.supabase.co/storage/v1/object/public/image/${fileName}`;
+    const publicURL = `https://fcijucimrhbtywyadqlb.supabase.co/storage/v1/object/public/image/${fileName}`;
     const updatedInfo = {
       ...data,
       ...values,
@@ -51,6 +51,7 @@ function EditInfo({ isOpen, onClose, data, onSave }) {
 
       // Lưu thông tin đã cập nhật
       onSave(updatedInfo);
+      console.log("updatedInfo", updatedInfo);
     } catch (error) {
       message.error("Chỉnh sửa thất bại: " + error.message);
     } finally {

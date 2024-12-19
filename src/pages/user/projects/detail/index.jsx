@@ -194,7 +194,7 @@ const DetailProject = () => {
               <p className="text-[18px] sm:text-[24px] text-textLightPrimary dark:text-white/90 pb-4">
                 Vai trò {productData?.role}
               </p>
-              {productData?.tools.map((tool, index) => (
+              {productData?.tools?.map((tool, index) => (
                 <div key={index} className="flex items-center gap-4 mb-4">
                   <img
                     loading="lazy"

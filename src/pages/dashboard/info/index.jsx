@@ -11,9 +11,6 @@ import EditSkill from "./editSkill";
 import { message } from "antd";
 import Loading from "../../../components/loading";
 
-const SkeletonLoader = () => (
-  <div className="w-full h-full bg-black/10 dark:bg-darkSubbg animate-pulse rounded-full" />
-);
 const InfoPage = () => {
   const [open, setOpen] = useState(false);
   const [openContact, setOpenContact] = useState(false);
@@ -65,6 +62,7 @@ const InfoPage = () => {
       console.error("Failed to save info:", err.message);
     }
   };
+  console.log("Infos", Infos);
 
   const handleEditSkill = (data) => {
     setOpenSkill(true);
