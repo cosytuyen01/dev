@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useLocation } from "react-router-dom";
 import InfoPage from "../../../components/infoPage";
 import ProductCardList from "../../../components/productList";
@@ -15,7 +16,7 @@ const SkeletonInfoPage = () => (
 );
 
 const SkeletonTabs = () => (
-  <div className="flex space-x-4">
+  <div className="mx-[-36px] sm:mx-0 flex space-x-4 ">
     <div className="w-24 h-8 bg-gray-200 dark:bg-darkSubbg animate-pulse rounded-md"></div>
     <div className="w-24 h-8 bg-gray-200 dark:bg-darkSubbg animate-pulse rounded-md"></div>
     <div className="w-24 h-8 bg-gray-200 dark:bg-darkSubbg animate-pulse rounded-md"></div>
@@ -23,7 +24,7 @@ const SkeletonTabs = () => (
 );
 
 const SkeletonProductCardList = () => (
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mt-8">
+  <div className="mx-[-36px]  sm:mx-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mt-4">
     {[...Array(6)].map((_, index) => (
       <div
         key={index}

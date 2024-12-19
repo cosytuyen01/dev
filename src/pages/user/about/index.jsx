@@ -62,7 +62,7 @@ function About() {
             ) : (
               <img
                 src={Infos?.[0]?.avatar}
-                alt="Woman"
+                alt="avatar"
                 className="h-[400px] sm:h-[364px] w-full object-cover rounded-tl-3xl rounded-br-3xl"
               />
             )}
