@@ -12,9 +12,9 @@ const SkeletonLoader = () => (
 
 const UserProfileCard = () => {
   const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
-  const translateY = useTransform(scrollYProgress, [0, 0.3], [0, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.8], [1, 0.8]);
+  const translateY = useTransform(scrollYProgress, [0, 0.5], [0, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   const { Infos, loading } = useInfo();
 

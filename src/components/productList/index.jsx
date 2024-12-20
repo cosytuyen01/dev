@@ -8,7 +8,7 @@ const ProductCardList = ({ isHome, activeTab }) => {
   const handleCardClick = (id) => {
     navigate(`/detail/${id}`);
   };
-  const { products, loading } = useProducts();
+  const { products } = useProducts();
 
   const filteredProducts = products?.filter(
     (product) => activeTab === "All" || product.category === activeTab
@@ -25,27 +25,20 @@ const ProductCardList = ({ isHome, activeTab }) => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {/* Hiển thị Skeleton Loading hoặc sản phẩm thật */}
-        {(isHome ? displayedProducts : filteredProducts)?.map(
-          (product, index) => (
-            <div key={index} className="relative">
-              {loading ? (
-                // Skeleton Loading khi dữ liệu đang tải
-                <div className="animate-pulse bg-gray-200 dark:bg-darkSubbg rounded-md h-64 w-full"></div>
-              ) : (
-                <ProductCard
-                  key={product.id}
-                  imageSrc={product.thumb}
-                  title={product.name}
-                  category={product.category}
-                  onClick={() => handleCardClick(product.id)}
-                />
-              )}
-            </div>
-          )
-        )}
+        {products?.map((product, index) => (
+          <div key={index} className="relative">
+            <ProductCard
+              key={product.id}
+              imageSrc={product.thumb}
+              title={product.name}
+              category={product.category}
+              onClick={() => handleCardClick(product.id)}
+            />
+          </div>
+        ))}
       </div>
 
-      {isHome && (
+      {/* {isHome && (
         <div className="flex justify-center items-center w-full">
           <button
             onClick={() => navigate("/projects")}
@@ -54,7 +47,7 @@ const ProductCardList = ({ isHome, activeTab }) => {
             Xem tất cả
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

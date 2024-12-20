@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import ExperienceList from "../../../components/ExList";
 import { useScroll, useTransform, motion } from "framer-motion";
 import useInfo from "../../../hook/useInfo";
+import BlogList from "../../../components/BlogList";
 
 function Home() {
   const { pathname } = useLocation();
@@ -16,8 +17,8 @@ function Home() {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  const opacityDecs = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const opacityHashtag = useTransform(scrollYProgress, [0.3, 0.5], [1, 0]);
+  const opacityDecs = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const opacityHashtag = useTransform(scrollYProgress, [0.3, 0.8], [1, 0]);
   const { Infos, loading } = useInfo();
 
   return (
@@ -65,6 +66,14 @@ function Home() {
           >
             <HashtagList />
           </motion.div>
+        )}
+      </div>
+
+      <div className="pt-8 sm:pt-16">
+        {loading ? (
+          <div className="animate-pulse bg-gray-200 dark:bg-darkSubbg rounded-md h-64 w-full mt-4"></div>
+        ) : (
+          <BlogList isHome={true} />
         )}
       </div>
 
