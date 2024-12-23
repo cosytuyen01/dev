@@ -110,7 +110,7 @@ const DetailBlog = () => {
       className={`sm:pt-[20px] lg:px-0 pt-[10px] flex flex-col items-center w-full lg:w-[752px] h-[100%] pb-10`}
     >
       <Helmet>
-        <title>{"Bài viết " + productData?.title || "Chi tiết bài viết"}</title>
+        <title>{"Blog about " + productData?.title || "Blog about..."}</title>
         <link rel="icon" href={productData?.thumb} type="image/png" />
       </Helmet>
       <div
@@ -121,7 +121,7 @@ const DetailBlog = () => {
       >
         <SvgIcon name={"back"} height={24} width={24} color={iconColor} />
         <p className="text-subText text-[18px] sm:text-[24px] dark:text-white/60 text-center sm:text-start font-medium">
-          Quay lại
+          Go back
         </p>
       </div>
 

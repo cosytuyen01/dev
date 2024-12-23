@@ -43,10 +43,10 @@ function BlogList({ isHome }) {
       {isHome && (
         <div className="flex justify-center items-center w-full">
           <button
-            onClick={() => navigate("/projects")}
+            onClick={() => navigate("/blog")}
             className="font-medium transition-all px-4 py-2 text-gray-500 hover:text-gray-700 dark:text-white/90 bg-subBackground dark:bg-darkSubbg rounded-3xl dark:hover:bg-darkSubbg/50 mt-8"
           >
-            Xem tất cả
+            View All
           </button>
         </div>
       )}

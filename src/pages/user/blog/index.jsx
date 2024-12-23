@@ -50,7 +50,7 @@ function Blogs() {
       className={`pt-16 mx-auto pb-10 px-2 sm:px-6 lg:px-8 w-full lg:w-[752px] `}
     >
       <Helmet>
-        <title>Danh sách sản phẩm</title>
+        <title>My blogs</title>
       </Helmet>
       <InfoPage title={"My blogs"} desc={"Some blog share experiences"} />
       <div className="pt-0 sm:pt-4 items-center">
