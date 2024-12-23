@@ -12,6 +12,8 @@ import {
 } from "react-transition-group";
 import { motion, useScroll } from "framer-motion";
 import Components from "./pages/user/components";
+import Blogs from "./pages/user/blog";
+import DetailBlog from "./pages/user/blog/detail";
 
 const UserRoutes = () => {
   const location = useLocation(); // Hook to get the current path
@@ -37,6 +39,8 @@ const UserRoutes = () => {
                 <Route path="/components" element={<Components />} />
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/blog" element={<Blogs />} />
+                <Route path="/detail_blog/:id" element={<DetailBlog />} />
                 <Route path="/detail/:id" element={<DetailProject />} />
               </Routes>
             </CSSTransition>

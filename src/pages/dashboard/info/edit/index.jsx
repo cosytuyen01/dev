@@ -10,7 +10,7 @@ function EditInfo({ isOpen, onClose, data, onSave }) {
   const [uploading, setUploading] = useState(false); // Trạng thái tải ảnh
   const [fileList, setFileList] = useState([]); // Quản lý danh sách file
   const [previewImage, setPreviewImage] = useState(data?.avatar); // Lưu ảnh preview từ thiết bị
-  console.log("data", data);
+  console.log("data", data?.avatar);
 
   useEffect(() => {
     setPreviewImage(data?.avatar);
@@ -27,7 +27,8 @@ function EditInfo({ isOpen, onClose, data, onSave }) {
       ...data,
       ...values,
     };
-    updatedInfo.avatar = publicURL !== previewImage ? publicURL : previewImage;
+    updatedInfo.avatar =
+      data?.avatar === previewImage ? previewImage : publicURL;
     try {
       setUploading(true);
       const { data, error } = await supabase.storage

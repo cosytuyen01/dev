@@ -8,6 +8,8 @@ import InfoPage from "./pages/dashboard/info";
 import ProductPage from "./pages/dashboard/product";
 import BottomMenu from "./components/bottomMenuDashboard";
 import Experience from "./pages/dashboard/ex";
+import BlogList from "./components/BlogList";
+import BlogPage from "./pages/dashboard/blog";
 
 function DashboardApp() {
   const { scrollY } = useScroll();
@@ -66,6 +68,7 @@ function DashboardApp() {
               <Route path="/" element={<InfoPage />} />
               <Route path="/products" element={<ProductPage />} />
               <Route path="/work" element={<Experience />} />
+              <Route path="/blog" element={<BlogPage />} />
             </Routes>
           </div>
           <div className={`${isMobile ? "block" : "hidden"}`}>

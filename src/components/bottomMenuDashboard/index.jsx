@@ -12,6 +12,7 @@ const BottomMenu = () => {
 
   const iconData = [
     { name: "user", navigation: "" },
+    { name: "blog", navigation: "blog" },
     { name: "product", navigation: "products" },
     { name: "work", navigation: "work" },
   ];

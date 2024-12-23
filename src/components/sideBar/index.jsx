@@ -7,6 +7,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 import Logo from "../../assets/images/Logo.svg";
+import { BiNews } from "react-icons/bi";
 const Sidebar = () => {
   const navigate = useNavigate(); // Sử dụng hook điều hướng
 
@@ -31,6 +32,11 @@ const Sidebar = () => {
             key: "",
             icon: <UserOutlined />,
             label: "Thông tin",
+          },
+          {
+            key: "blog",
+            icon: <BiNews />,
+            label: "Blog",
           },
           {
             key: "products",

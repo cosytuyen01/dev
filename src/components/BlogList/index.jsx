@@ -9,7 +9,9 @@ function BlogList({ isHome }) {
   const { blog } = useBlog();
   const navigate = useNavigate();
   const handleCardClick = (id) => {
-    navigate(`/detail/${id}`);
+    console.log("id", id);
+
+    navigate(`/detail_blog/${id}`);
   };
   // const sortedData = blog.sort((a, b) => {
   //   // So sánh `startDate` của 2 đối tượng
@@ -30,7 +32,7 @@ function BlogList({ isHome }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {blog.map((blog, index) => (
           <CardBlog
-            onClick={handleCardClick}
+            onClick={() => handleCardClick(blog.id)}
             imageSrc={blog?.thumb}
             key={index}
             date={blog?.created_at}
