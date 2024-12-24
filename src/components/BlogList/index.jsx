@@ -10,7 +10,6 @@ function BlogList({ isHome }) {
   const navigate = useNavigate();
 
   const handleCardClick = (id) => {
-    console.log("id", id);
     navigate(`/detail_blog/${id}`);
   };
 

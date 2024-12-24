@@ -33,7 +33,6 @@ function EditWork({ isOpen, onClose, data, onSave, onDelete }) {
       desc: data?.desc || "",
     });
   }, [isOpen, data]);
-  console.log("data", data);
 
   // Hàm xử lý submit form
   const onFinish = async (values) => {

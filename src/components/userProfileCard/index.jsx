@@ -1,14 +1,7 @@
-/* eslint-disable no-unused-vars */
+import { motion, useScroll, useTransform } from "framer-motion";
 import SvgIcon from "../../assets/iconSvg";
 import bgProfile from "../../assets/images/bg-profile.svg";
-import { motion, useScroll, useTransform } from "framer-motion";
-import useInfo from "../../hook/useInfo";
 import { Helmet } from "react-helmet";
-
-// Skeleton Loader Component
-const SkeletonLoader = () => (
-  <div className="w-full h-full bg-black/10 dark:bg-darkSubbg animate-pulse rounded-full" />
-);
 
 const UserProfileCard = (data, loading) => {
   const { scrollYProgress } = useScroll();
@@ -27,9 +20,10 @@ const UserProfileCard = (data, loading) => {
       className="relative flex items-center rounded-lg gap-6 flex-col sm:flex-row"
     >
       <Helmet>
-        <title> {data?.data?.fullname || "Portfolio"}</title>
+        <title>{data?.data?.fullname || "Portfolio"}</title>
         <link rel="icon" href={data?.data?.avatar} type="image/png" />
       </Helmet>
+
       {/* Avatar Background */}
       <img
         src={bgProfile}
@@ -40,7 +34,7 @@ const UserProfileCard = (data, loading) => {
       {/* Avatar */}
       <div className="relative z-10 w-[150px] h-[150px] sm:w-[164px] sm:h-[164px] rounded-full overflow-hidden">
         {!loading ? (
-          <SkeletonLoader />
+          <div className="w-full h-full bg-black/10 dark:bg-darkSubbg animate-pulse rounded-full" />
         ) : (
           <img
             src={data?.data?.avatar} // Link ảnh avatar chính
@@ -77,7 +71,7 @@ const UserProfileCard = (data, loading) => {
             <div className="animate-pulse bg-gray-200 dark:bg-darkSubbg rounded-md h-5 w-[150px] mx-auto mt-2"></div>
           ) : (
             <p className="text-subText text-[18px] sm:text-[24px] text-center md:text-start dark:text-white/60">
-              {data?.data?.job || "Đang tải..."} &bull; {data?.data?.location}
+              {data?.data?.job} &bull; {data?.data?.location}
             </p>
           )}
         </div>

@@ -8,6 +8,7 @@ import ExperienceList from "../../../components/ExList";
 import { useScroll, useTransform, motion } from "framer-motion";
 import useInfo from "../../../hook/useInfo";
 import BlogList from "../../../components/BlogList";
+import UserProfileCardSkeleton from "../../../components/userProfileSkeleton";
 
 function Home() {
   const { pathname } = useLocation();
@@ -25,7 +26,11 @@ function Home() {
     <div
       className={`pt-16 mx-auto pb-10 px-4 sm:px-6 lg:px-8 w-full lg:w-[752px] transition-colors duration-300 `}
     >
-      <UserProfileCard data={Infos?.[0]} loading={loading} />
+      {loading ? (
+        <UserProfileCardSkeleton />
+      ) : (
+        <UserProfileCard data={Infos?.[0]} loading={loading} />
+      )}
 
       <div className="flex flex-col pt-8 sm:pt-16 gap-4 sm:px-0">
         {/* Skeleton cho Contact */}
