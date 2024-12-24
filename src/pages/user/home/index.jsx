@@ -78,13 +78,13 @@ function Home() {
       </div>
 
       {/* Skeleton cho ProductCardList */}
-      <div className="pt-8 sm:pt-16">
+      {/* <div className="pt-8 sm:pt-16">
         {loading ? (
           <div className="animate-pulse bg-gray-200 dark:bg-darkSubbg rounded-md h-64 w-full mt-4"></div>
         ) : (
           <ProductCardList viewAll={true} isHome={true} />
         )}
-      </div>
+      </div> */}
 
       {/* Skeleton cho ExperienceList */}
       <div className="pt-10">

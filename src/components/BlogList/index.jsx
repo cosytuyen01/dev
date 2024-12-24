@@ -8,28 +8,24 @@ import dayjs from "dayjs";
 function BlogList({ isHome }) {
   const { blog } = useBlog();
   const navigate = useNavigate();
+
   const handleCardClick = (id) => {
     console.log("id", id);
-
     navigate(`/detail_blog/${id}`);
   };
-  // const sortedData = blog.sort((a, b) => {
-  //   // So sánh `startDate` của 2 đối tượng
-  //   const dateA = dayjs(a.date.startDate, "MM/YYYY");
-  //   const dateB = dayjs(b.date.startDate, "MM/YYYY");
 
-  //   return dateB.isBefore(dateA) ? -1 : 1; // Nếu dateB < dateA, b đứng trước
-  // });
+  // Cắt 4 item đầu tiên khi isHome là true
+  const displayBlogs = isHome ? blog.slice(0, 4) : blog;
 
   return (
-    <div className=" flex flex-col">
+    <div className="flex flex-col">
       {isHome && (
         <h2 className="text-start w-full mb-6 text-[32px] font-semibold text-gray-800 dark:text-white/80">
           My blogs
         </h2>
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {blog.map((blog, index) => (
+        {displayBlogs.map((blog, index) => (
           <CardBlog
             onClick={() => handleCardClick(blog.id)}
             imageSrc={blog?.thumb}

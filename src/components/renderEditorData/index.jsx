@@ -1,3 +1,4 @@
+import SvgIcon from "../../assets/iconSvg";
 import "./style.css";
 
 const RenderEditorData = ({ editorData }) => {
@@ -32,10 +33,22 @@ const RenderEditorData = ({ editorData }) => {
               {block.data.items.map((item, index) => (
                 <li
                   key={item.content || index}
-                  className={item.meta.checked ? "checked" : ""}
+                  className={
+                    item.meta.checked
+                      ? "text-black/80 dark:text-white/80"
+                      : "text-black/50 dark:text-white/50"
+                  }
                 >
-                  <input type="checkbox" checked={item.meta.checked} readOnly />
-                  <span dangerouslySetInnerHTML={{ __html: item.content }} />
+                  <SvgIcon
+                    name={"done"}
+                    height={20}
+                    width={20}
+                    color={item.meta.checked ? "#6F6ADC" : "gray"}
+                  />
+                  <span
+                    className="ml-2"
+                    dangerouslySetInnerHTML={{ __html: item.content }}
+                  />
                 </li>
               ))}
             </ul>

@@ -67,7 +67,6 @@ function EditBlog({ isOpen, onClose, data, onSave, onDelete }) {
     try {
       // Lưu nội dung từ EditorJS vào desc
       const editorData = await editor.save(); // Lưu nội dung từ EditorJS
-      console.log("editorData", editorData);
       updatedInfo.desc = editorData; // Gắn giá trị editorData vào desc
 
       // Upload ảnh đại diện nếu có
@@ -83,14 +82,13 @@ function EditBlog({ isOpen, onClose, data, onSave, onDelete }) {
         if (uploadError) {
           throw new Error(`Error uploading thumb: ${uploadError.message}`);
         }
-
-        updatedInfo.thumb = `https://fcijucimrhbtywyadqlb.supabase.co/storage/v1/object/public/image/${fileName}`;
+        const publicURL = `https://fcijucimrhbtywyadqlb.supabase.co/storage/v1/object/public/image/${fileName}`;
+        updatedInfo.thumb =
+          data?.thumb === previewImage ? previewImage : publicURL;
       } else if (!data?.thumb) {
         // Nếu không có thumb cũ và cũng không có thumb mới
         throw new Error("Thumb is required but not provided.");
       }
-
-      console.log("updatedInfo", updatedInfo);
 
       // Gọi hàm onSave với thông tin đã cập nhật
       onSave(updatedInfo);

@@ -38,7 +38,7 @@ const BottomMenu = () => {
   const iconData = [
     { name: "home", navigation: "/" },
     { name: "blog", navigation: "/blog" },
-    { name: "product", navigation: "/projects" },
+    // { name: "product", navigation: "/projects" },
     { name: "user", navigation: "/about" },
 
     // { name: "design", navigation: "/components" },
