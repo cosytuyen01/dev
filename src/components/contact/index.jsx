@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import SvgIcon from "../../assets/iconSvg";
 import { FaFacebook } from "react-icons/fa";
 import { FaSkype } from "react-icons/fa";
-const Contact = () => {
+const Contact = (data) => {
   const [localTime, setLocalTime] = useState("");
   const [iconColor, setIconColor] = useState("white");
-
   useEffect(() => {
     // Function to update icon color based on current theme
     const updateIconColor = () => {
@@ -43,16 +42,15 @@ const Contact = () => {
   const socialMedia = [
     {
       icon: <FaSkype size={24} className="text-black dark:text-white/90" />,
-      url: "https://join.skype.com/invite/vFQzDGABfKVw",
+      url: data?.data?.skype,
     },
     {
       icon: <FaFacebook size={24} className="text-black dark:text-white/90" />,
-      url: "https://web.facebook.com/vpttuyen",
+      url: data?.data?.fb,
     },
   ];
   const handleDownloadCVClick = () => {
-    const cvLink =
-      "https://drive.google.com/file/d/1D21U89Z1Er0uWm5tMIs2KwZ9vUzPgDnQ/view"; // Replace this with your actual Google Drive CV link
+    const cvLink = data?.data?.cv; // Replace this with your actual Google Drive CV link
     window.open(cvLink, "_blank"); // Opens in a new tab
   };
   return (

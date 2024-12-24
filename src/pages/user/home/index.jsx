@@ -25,14 +25,14 @@ function Home() {
     <div
       className={`pt-16 mx-auto pb-10 px-4 sm:px-6 lg:px-8 w-full lg:w-[752px] transition-colors duration-300 `}
     >
-      <UserProfileCard />
+      <UserProfileCard data={Infos?.[0]} loading={loading} />
 
       <div className="flex flex-col pt-8 sm:pt-16 gap-4 sm:px-0">
         {/* Skeleton cho Contact */}
         {loading ? (
           <div className="animate-pulse bg-gray-200 dark:bg-darkSubbg rounded-md h-8 w-full"></div>
         ) : (
-          <Contact />
+          <Contact data={Infos?.[0]} />
         )}
 
         {/* Skeleton cho phần giới thiệu nếu đang loading */}

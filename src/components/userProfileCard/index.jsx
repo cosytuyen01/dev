@@ -10,13 +10,11 @@ const SkeletonLoader = () => (
   <div className="w-full h-full bg-black/10 dark:bg-darkSubbg animate-pulse rounded-full" />
 );
 
-const UserProfileCard = () => {
+const UserProfileCard = (data, loading) => {
   const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 0.8], [1, 0.8]);
   const translateY = useTransform(scrollYProgress, [0, 0.5], [0, 0]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-  const { Infos, loading } = useInfo();
 
   return (
     <motion.div
@@ -29,8 +27,8 @@ const UserProfileCard = () => {
       className="relative flex items-center rounded-lg gap-6 flex-col sm:flex-row"
     >
       <Helmet>
-        <title> {Infos?.[0]?.fullname || "Portfolio"}</title>
-        <link rel="icon" href={Infos?.[0]?.avatar} type="image/png" />
+        <title> {data?.data?.fullname || "Portfolio"}</title>
+        <link rel="icon" href={data?.data?.avatar} type="image/png" />
       </Helmet>
       {/* Avatar Background */}
       <img
@@ -41,11 +39,11 @@ const UserProfileCard = () => {
 
       {/* Avatar */}
       <div className="relative z-10 w-[150px] h-[150px] sm:w-[164px] sm:h-[164px] rounded-full overflow-hidden">
-        {loading ? (
+        {!loading ? (
           <SkeletonLoader />
         ) : (
           <img
-            src={Infos?.[0]?.avatar} // Link ảnh avatar chính
+            src={data?.data?.avatar} // Link ảnh avatar chính
             alt="Profile"
             className="object-cover w-full h-full"
           />
@@ -56,11 +54,11 @@ const UserProfileCard = () => {
       <div className="relative z-10 flex flex-col items-center sm:items-start">
         {/* User Fullname */}
         <div className="text-center sm:text-start flex items-center text-textColor dark:text-white/90 text-[26px] md:text-[40px] font-bold">
-          {loading ? (
+          {!loading ? (
             <div className="animate-pulse bg-gray-200 dark:bg-darkSubbg rounded-md h-6 w-[200px] mx-auto"></div>
           ) : (
             <>
-              {Infos?.[0]?.fullname}
+              {data?.data?.fullname}
               <span className="ml-2">
                 <SvgIcon
                   name={"check"}
@@ -75,11 +73,11 @@ const UserProfileCard = () => {
 
         {/* Job & Location */}
         <div className="text-subText text-[18px] sm:text-[24px] dark:text-white/60 text-center sm:text-start">
-          {loading ? (
+          {!loading ? (
             <div className="animate-pulse bg-gray-200 dark:bg-darkSubbg rounded-md h-5 w-[150px] mx-auto mt-2"></div>
           ) : (
             <p className="text-subText text-[18px] sm:text-[24px] text-center md:text-start dark:text-white/60">
-              {Infos?.[0]?.job || "Đang tải..."} &bull; {Infos?.[0]?.location}
+              {data?.data?.job || "Đang tải..."} &bull; {data?.data?.location}
             </p>
           )}
         </div>
