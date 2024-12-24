@@ -2,8 +2,6 @@ import SvgIcon from "../../assets/iconSvg";
 import "./style.css";
 
 const RenderEditorData = ({ editorData }) => {
-  console.log("editorData", editorData); // Kiểm tra xem dữ liệu có đúng không
-
   if (!editorData || !editorData?.blocks) {
     return <p>Không có dữ liệu để hiển thị</p>; // Tránh lỗi nếu không có data
   }

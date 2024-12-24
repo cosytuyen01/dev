@@ -18,8 +18,6 @@ function EditBlog({ isOpen, onClose, data, onSave, onDelete }) {
   const editorRef = useRef(null);
   const [editor, setEditor] = useState(null);
 
-  console.log("data", data);
-
   useEffect(() => {
     if (isOpen && !editor) {
       const editorInstance = new EditorJS({

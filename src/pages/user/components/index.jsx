@@ -14,9 +14,7 @@ function Components() {
     window.scrollTo(0, 0);
   }, [pathname]);
   const tabs = ["Button", "Modal", "Loading", "Input", "Card"];
-  const handleClick = (type) => {
-    console.log(`${type} button clicked!`);
-  };
+  const handleClick = (type) => {};
   return (
     <div className="pt-16 mx-auto pb-10  sm:px-6 lg:px-8 w-full lg:w-[752px] h-full">
       <InfoPage title={"Components"} desc={"Một số component thường sử dụng"} />

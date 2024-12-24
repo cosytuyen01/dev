@@ -10,7 +10,6 @@ function EditInfo({ isOpen, onClose, data, onSave }) {
   const [uploading, setUploading] = useState(false); // Trạng thái tải ảnh
   const [fileList, setFileList] = useState([]); // Quản lý danh sách file
   const [previewImage, setPreviewImage] = useState(data?.avatar); // Lưu ảnh preview từ thiết bị
-  console.log("data", data?.avatar);
 
   useEffect(() => {
     setPreviewImage(data?.avatar);
@@ -52,7 +51,6 @@ function EditInfo({ isOpen, onClose, data, onSave }) {
 
       // Lưu thông tin đã cập nhật
       onSave(updatedInfo);
-      console.log("updatedInfo", updatedInfo);
     } catch (error) {
       message.error("Chỉnh sửa thất bại: " + error.message);
     } finally {
