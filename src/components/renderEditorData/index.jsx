@@ -8,24 +8,40 @@ const RenderEditorData = ({ editorData }) => {
     return <p>Không có dữ liệu để hiển thị</p>; // Tránh lỗi nếu không có data
   }
 
+  // Hàm để thay thế thẻ <a> trong văn bản với màu sắc cho liên kết
+  const renderTextWithLinks = (text) => {
+    // Tìm tất cả các thẻ <a> trong text và gắn màu cho chúng
+    return text.replace(/<a href="([^"]+)">([^<]+)<\/a>/g, (match, p1, p2) => {
+      // Gắn style trực tiếp cho thẻ <a> để thay đổi màu sắc
+      return `<a href="${p1}" style="color: #6F6ADC; " target="_blank">${p2}</a>`;
+    });
+  };
+
   return editorData.blocks?.map((block) => {
     switch (block.type) {
       case "paragraph":
         return (
           <p
+            className="text-[16px] sm:text-[24px]"
             key={block.id || Math.random()} // Dùng id nếu có, nếu không tạo ngẫu nhiên
-            dangerouslySetInnerHTML={{ __html: block.data.text }}
+            dangerouslySetInnerHTML={{
+              __html: renderTextWithLinks(block.data.text),
+            }}
           />
         );
+
       case "header":
         return (
-          <h1
+          <h2
+            className="text-[16px] sm:text-[24px]"
             key={block.id || Math.random()} // Dùng id nếu có, nếu không tạo ngẫu nhiên
-            dangerouslySetInnerHTML={{ __html: block.data.text }}
+            dangerouslySetInnerHTML={{
+              __html: renderTextWithLinks(block.data.text),
+            }}
           />
         );
+
       case "list":
-        // Xử lý các kiểu danh sách (unordered, ordered, checklist)
         if (block.data.style === "checklist") {
           // Hiển thị checklist (danh sách có checkbox)
           return (
@@ -46,8 +62,10 @@ const RenderEditorData = ({ editorData }) => {
                     color={item.meta.checked ? "#6F6ADC" : "gray"}
                   />
                   <span
-                    className="ml-2"
-                    dangerouslySetInnerHTML={{ __html: item.content }}
+                    className="text-[16px] sm:text-[24px] ml-2"
+                    dangerouslySetInnerHTML={{
+                      __html: renderTextWithLinks(item.content),
+                    }}
                   />
                 </li>
               ))}
@@ -59,8 +77,11 @@ const RenderEditorData = ({ editorData }) => {
             <ol key={block.id || Math.random()}>
               {block.data.items.map((item, index) => (
                 <li
+                  className="text-[16px] sm:text-[24px]"
                   key={item.content || index}
-                  dangerouslySetInnerHTML={{ __html: item.content }}
+                  dangerouslySetInnerHTML={{
+                    __html: renderTextWithLinks(item.content),
+                  }}
                 />
               ))}
             </ol>
@@ -71,13 +92,17 @@ const RenderEditorData = ({ editorData }) => {
             <ul key={block.id || Math.random()}>
               {block.data.items.map((item, index) => (
                 <li
+                  className="text-[16px] sm:text-[24px]"
                   key={item.content || index}
-                  dangerouslySetInnerHTML={{ __html: item.content }}
+                  dangerouslySetInnerHTML={{
+                    __html: renderTextWithLinks(item.content),
+                  }}
                 />
               ))}
             </ul>
           );
         }
+
       default:
         return null;
     }

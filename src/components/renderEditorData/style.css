@@ -21,8 +21,6 @@
 }
 
 .checklist li span {
-  font-size: 16px;
-  line-height: 1.5;
 }
 
 /* Định dạng cho danh sách có số (ordered list) */
@@ -33,8 +31,6 @@ ol {
 }
 
 ol li {
-  font-size: 16px;
-  line-height: 1.5;
   margin-bottom: 8px;
 }
 
