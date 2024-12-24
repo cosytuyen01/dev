@@ -5,7 +5,7 @@ const UserProfileCardSkeleton = () => (
     <div className="absolute top-0 left-0 w-full h-full  animate-pulse rounded-lg z-0" />
 
     {/* Avatar Skeleton */}
-    <div className="relative z-10 w-[150px] h-[150px] sm:w-[164px] sm:h-[164px] rounded-full overflow-hidden bg-gray-300 animate-pulse" />
+    <div className="relative z-10 w-[150px] h-[150px] sm:w-[164px] sm:h-[164px] rounded-full overflow-hidden bg-gray-200 dark:bg-darkSubbg animate-pulse" />
 
     {/* User Information Skeleton */}
     <div className="relative z-10 flex flex-col items-center sm:items-start">
