@@ -50,11 +50,11 @@ function Projects() {
       className={`pt-16 mx-auto pb-10 px-2 sm:px-6 lg:px-8 w-full lg:w-[752px] `}
     >
       <Helmet>
-        <title>Danh sách sản phẩm</title>
+        <title>Projects</title>
       </Helmet>
       <InfoPage
-        title={"Sản phẩm"}
-        desc={"Một số sản phẩm đã làm nhiều năm qua"}
+        title={"Projects"}
+        desc={"Some projects have been done for many years"}
       />
       <div className="pt-0 sm:pt-4 items-center">
         <div className="px-2 sticky top-0 z-10 dark:bg-darkBg/90 bg-backgroundPrimary/90 backdrop-blur">

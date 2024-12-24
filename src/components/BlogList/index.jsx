@@ -20,13 +20,12 @@ function BlogList({ isHome }) {
 
   //   return dateB.isBefore(dateA) ? -1 : 1; // Nếu dateB < dateA, b đứng trước
   // });
-  console.log("blog", blog);
 
   return (
     <div className=" flex flex-col">
       {isHome && (
         <h2 className="text-start w-full mb-6 text-[32px] font-semibold text-gray-800 dark:text-white/80">
-          Blog của tôi
+          My blogs
         </h2>
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

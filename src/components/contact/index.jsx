@@ -87,9 +87,7 @@ const Contact = () => {
       {/* Local Time Display */}
       <div className="w-full sm:w-1/2 justify-center dark:bg-darkSubbg bg-gray-200 px-4 py-3 rounded-full flex items-center space-x-2">
         <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-        <span className="text-gray-500 dark:text-white/50">
-          Giờ địa phương:
-        </span>
+        <span className="text-gray-500 dark:text-white/50">Local time:</span>
         <span className="font-medium text-black dark:text-white/80">
           {localTime || "00:00:00"}
         </span>

@@ -154,7 +154,7 @@ const DetailBlog = () => {
             <h1 className=" text-textColor dark:text-white/90 text-[26px] md:text-[40px] font-bold w-full">
               {productData?.title}
             </h1>
-            <p className="text-subText text-[18px] sm:text-[24px] dark:text-white/80 text-center sm:text-start font-bold">
+            <p className="text-subText text-[18px] sm:text-[24px] dark:text-white/80  font-bold">
               {formattedDate}
             </p>
           </motion.div>

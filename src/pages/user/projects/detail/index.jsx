@@ -105,7 +105,7 @@ const DetailProject = () => {
       className={`sm:pt-[20px] lg:px-0 pt-[10px] flex flex-col items-center w-full lg:w-[752px] h-[100%] `}
     >
       <Helmet>
-        <title> {"Sản phẩm " + productData?.name || "Chi tiết sản phẩm"}</title>
+        <title> {"Project " + productData?.name || "Chi tiết sản phẩm"}</title>
         <link rel="icon" href={productData?.thumb} type="image/png" />
       </Helmet>
       <div
@@ -116,7 +116,7 @@ const DetailProject = () => {
       >
         <SvgIcon name={"back"} height={24} width={24} color={iconColor} />
         <p className="text-subText text-[18px] sm:text-[24px] dark:text-white/60 text-center sm:text-start font-medium">
-          Quay lại
+          Go back
         </p>
       </div>
 
@@ -192,7 +192,7 @@ const DetailProject = () => {
               className="pt-4 border-b-[1px] border-black/10 dark:border-white/10"
             >
               <p className="text-[18px] sm:text-[24px] text-textLightPrimary dark:text-white/90 pb-4">
-                Vai trò {productData?.role}
+                Role {productData?.role}
               </p>
               {productData?.tools?.map((tool, index) => (
                 <div key={index} className="flex items-center gap-4 mb-4">

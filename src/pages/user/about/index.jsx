@@ -30,11 +30,11 @@ function About() {
       className={`pt-16 mx-auto pb-10 px-4 sm:px-6 lg:px-8 w-full lg:w-[752px] `}
     >
       <Helmet>
-        <title>Giới thiệu về {Infos?.[0]?.fullname || "Portfolio"}</title>
+        <title>About {Infos?.[0]?.fullname || "Portfolio"}</title>
         <link rel="icon" href={Infos?.[0]?.avatar} type="image/png" />
       </Helmet>
       {/* Title and Description */}
-      <InfoPage title={"Giới thiệu"} desc={"Thông tin giới thiệu chi tiết"} />
+      <InfoPage title={"About"} desc={"Detailed introductory information"} />
 
       {/* Skeleton for images and description */}
       <motion.div className="pt-0 sm:pt-4 flex flex-col items-center justify-center">

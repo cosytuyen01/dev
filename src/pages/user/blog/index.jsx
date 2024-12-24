@@ -52,7 +52,7 @@ function Blogs() {
       <Helmet>
         <title>My blogs</title>
       </Helmet>
-      <InfoPage title={"My blogs"} desc={"Some blog share experiences"} />
+      <InfoPage title={"My blogs"} desc={"Some blogs share experiences"} />
       <div className="pt-0 sm:pt-4 items-center">
         <div className="px-2 ">
           {/* ProductCardList với Skeleton */}

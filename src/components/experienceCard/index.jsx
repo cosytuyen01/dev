@@ -35,7 +35,7 @@ function ExperienceCard({ job }) {
         </div>
       </div>
       <p className="text-[16px]  text-subText dark:text-white/70">
-        Công việc: {job?.desc}
+        Work: {job?.desc}
       </p>
     </motion.div>
   );

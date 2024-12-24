@@ -16,7 +16,7 @@ function ExperienceList() {
   return (
     <div className=" flex flex-col gap-4">
       <h2 className="text-[32px] font-semibold text-gray-800 dark:text-white/80">
-        Kinh nghiệm
+        Experience
       </h2>
       <div className="flex flex-col gap-4">
         {sortedData.map((job, index) => (
